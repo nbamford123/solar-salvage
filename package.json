@@ -26,6 +26,7 @@
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.2.5",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.0.2",
     "typescript": "^3.8.3"
   },
@@ -45,7 +46,7 @@
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "type-check": "tsc",
-    "validate": "yarn type-check && yarn check-format && yarn lint && yarn build"
+    "validate": "npm-run-all --parallel type-check check-format lint build"
   },
   "repository": {
     "type": "git",
