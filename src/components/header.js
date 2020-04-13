@@ -1,8 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
-import { Link } from 'gatsby';
+import { graphql, Link, GatsbyLinkProps, useStaticQuery } from 'gatsby';
+import Img from 'gatsby-image';
 
+// interface NavLinkProps extends GatsbyLinkProps<> {
+//   fontWeight: string;
+// }
 const NavLink = styled(Link)`
   color: #222;
   font-size: 1rem;
@@ -21,34 +25,58 @@ const NavLink = styled(Link)`
   }
 `;
 
+const headerImage = () => {
+  const { image } = useStaticQuery(graphql`
+    query {
+      image: file(relativePath: { eq: "solsal_banner_05.jpg" }) {
+        sharp: childImageSharp {
+          fixed(width: 980, height: 120) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+    }
+  `);
+  return (
+    <Img
+      Tag="section"
+      imgStyle={{ marginTop: 0 }}
+      fixed={image.sharp.fixed}
+      fadeIn="soft"
+    />
+  );
+};
+
 const Header = () => (
   <header
     css={css`
       background: #eee;
       border-bottom: 1px solid #ddd;
       display: flex;
-      justify-content: space-between;
-      padding: 0.5rem calc((100vw - 550px - 0.5rem) / 2);
+      flex-direction: column;
+      padding: 0 calc((100vw - 980px - 0.5rem) / 2) 0.5rem;
     `}
   >
-    <NavLink to="/" fontWeight="bold">
-      FEM Workshop
-    </NavLink>
-    <nav
+    {headerImage()}
+    <div
       css={css`
+        display: flex;
+        justify-content: space-between;
         margin-top: 0;
       `}
     >
-      <NavLink to="/" activeClassName="current-page">
-        Home
-      </NavLink>
-      <NavLink to="/about" activeClassName="current-page">
-        About
-      </NavLink>
-      <NavLink to="/contact" activeClassName="current-page">
-        Contact
-      </NavLink>
-    </nav>
+      <nav>
+        <NavLink to="/" activeClassName="current-page">
+          Home
+        </NavLink>
+        <NavLink to="/about" activeClassName="current-page">
+          About
+        </NavLink>
+        <NavLink to="/contact" activeClassName="current-page">
+          Contact
+        </NavLink>
+      </nav>
+    </div>
   </header>
 );
 

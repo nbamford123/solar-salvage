@@ -10,7 +10,6 @@ const Index = () => {
   const posts = usePosts();
   return (
     <>
-      <Hero />
       <Layout>
         <h2>Read my blog</h2>
         {posts.map(post => (
