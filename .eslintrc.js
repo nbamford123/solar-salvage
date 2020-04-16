@@ -38,4 +38,5 @@ module.exports = {
       },
     },
   ],
+  ignorePatterns: ['graphql-types.ts'], // don't want this in gitignore
 };

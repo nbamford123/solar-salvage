@@ -18,6 +18,7 @@
     "gatsby-plugin-offline": "^3.1.2",
     "gatsby-plugin-react-helmet": "^3.2.1",
     "gatsby-plugin-sharp": "^2.5.3",
+    "gatsby-plugin-ts": "^2.7.1",
     "gatsby-plugin-typescript": "^2.3.1",
     "gatsby-plugin-webpack-bundle-analyzer": "^1.0.5",
     "gatsby-remark-images": "^3.2.1",
