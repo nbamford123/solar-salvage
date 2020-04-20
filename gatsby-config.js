@@ -1,8 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: 'Frontend Masters Gatsby Workshop',
-    description:
-      'A site we built together during a Frontend Masters full-day Frontend Masters Gatsby workshop!',
+    title: 'Solar Salvage',
+    description: 'A science fiction webcomic',
     author: 'nbamford',
   },
   plugins: [
