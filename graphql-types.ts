@@ -735,6 +735,47 @@ export type FileFieldsEnum =
   'childMdx___frontmatter___image___publicURL' |
   'childMdx___frontmatter___image___id' |
   'childMdx___frontmatter___image___children' |
+  'childMdx___frontmatter___type' |
+  'childMdx___frontmatter___chapter' |
+  'childMdx___frontmatter___page' |
+  'childMdx___frontmatter___posted' |
+  'childMdx___frontmatter___comic___sourceInstanceName' |
+  'childMdx___frontmatter___comic___absolutePath' |
+  'childMdx___frontmatter___comic___relativePath' |
+  'childMdx___frontmatter___comic___extension' |
+  'childMdx___frontmatter___comic___size' |
+  'childMdx___frontmatter___comic___prettySize' |
+  'childMdx___frontmatter___comic___modifiedTime' |
+  'childMdx___frontmatter___comic___accessTime' |
+  'childMdx___frontmatter___comic___changeTime' |
+  'childMdx___frontmatter___comic___birthTime' |
+  'childMdx___frontmatter___comic___root' |
+  'childMdx___frontmatter___comic___dir' |
+  'childMdx___frontmatter___comic___base' |
+  'childMdx___frontmatter___comic___ext' |
+  'childMdx___frontmatter___comic___name' |
+  'childMdx___frontmatter___comic___relativeDirectory' |
+  'childMdx___frontmatter___comic___dev' |
+  'childMdx___frontmatter___comic___mode' |
+  'childMdx___frontmatter___comic___nlink' |
+  'childMdx___frontmatter___comic___uid' |
+  'childMdx___frontmatter___comic___gid' |
+  'childMdx___frontmatter___comic___rdev' |
+  'childMdx___frontmatter___comic___ino' |
+  'childMdx___frontmatter___comic___atimeMs' |
+  'childMdx___frontmatter___comic___mtimeMs' |
+  'childMdx___frontmatter___comic___ctimeMs' |
+  'childMdx___frontmatter___comic___atime' |
+  'childMdx___frontmatter___comic___mtime' |
+  'childMdx___frontmatter___comic___ctime' |
+  'childMdx___frontmatter___comic___birthtime' |
+  'childMdx___frontmatter___comic___birthtimeMs' |
+  'childMdx___frontmatter___comic___blksize' |
+  'childMdx___frontmatter___comic___blocks' |
+  'childMdx___frontmatter___comic___url' |
+  'childMdx___frontmatter___comic___publicURL' |
+  'childMdx___frontmatter___comic___id' |
+  'childMdx___frontmatter___comic___children' |
   'childMdx___body' |
   'childMdx___excerpt' |
   'childMdx___headings' |
@@ -1663,6 +1704,10 @@ export type InstaNodeFieldsEnum =
   'localFile___childMdx___frontmatter___title' |
   'localFile___childMdx___frontmatter___slug' |
   'localFile___childMdx___frontmatter___author' |
+  'localFile___childMdx___frontmatter___type' |
+  'localFile___childMdx___frontmatter___chapter' |
+  'localFile___childMdx___frontmatter___page' |
+  'localFile___childMdx___frontmatter___posted' |
   'localFile___childMdx___body' |
   'localFile___childMdx___excerpt' |
   'localFile___childMdx___headings' |
@@ -1911,6 +1956,72 @@ export type MdxFieldsEnum =
   'frontmatter___image___childMdx___timeToRead' |
   'frontmatter___image___childMdx___id' |
   'frontmatter___image___childMdx___children' |
+  'frontmatter___type' |
+  'frontmatter___chapter' |
+  'frontmatter___page' |
+  'frontmatter___posted' |
+  'frontmatter___comic___sourceInstanceName' |
+  'frontmatter___comic___absolutePath' |
+  'frontmatter___comic___relativePath' |
+  'frontmatter___comic___extension' |
+  'frontmatter___comic___size' |
+  'frontmatter___comic___prettySize' |
+  'frontmatter___comic___modifiedTime' |
+  'frontmatter___comic___accessTime' |
+  'frontmatter___comic___changeTime' |
+  'frontmatter___comic___birthTime' |
+  'frontmatter___comic___root' |
+  'frontmatter___comic___dir' |
+  'frontmatter___comic___base' |
+  'frontmatter___comic___ext' |
+  'frontmatter___comic___name' |
+  'frontmatter___comic___relativeDirectory' |
+  'frontmatter___comic___dev' |
+  'frontmatter___comic___mode' |
+  'frontmatter___comic___nlink' |
+  'frontmatter___comic___uid' |
+  'frontmatter___comic___gid' |
+  'frontmatter___comic___rdev' |
+  'frontmatter___comic___ino' |
+  'frontmatter___comic___atimeMs' |
+  'frontmatter___comic___mtimeMs' |
+  'frontmatter___comic___ctimeMs' |
+  'frontmatter___comic___atime' |
+  'frontmatter___comic___mtime' |
+  'frontmatter___comic___ctime' |
+  'frontmatter___comic___birthtime' |
+  'frontmatter___comic___birthtimeMs' |
+  'frontmatter___comic___blksize' |
+  'frontmatter___comic___blocks' |
+  'frontmatter___comic___url' |
+  'frontmatter___comic___publicURL' |
+  'frontmatter___comic___childImageSharp___id' |
+  'frontmatter___comic___childImageSharp___children' |
+  'frontmatter___comic___id' |
+  'frontmatter___comic___parent___id' |
+  'frontmatter___comic___parent___children' |
+  'frontmatter___comic___children' |
+  'frontmatter___comic___children___id' |
+  'frontmatter___comic___children___children' |
+  'frontmatter___comic___internal___content' |
+  'frontmatter___comic___internal___contentDigest' |
+  'frontmatter___comic___internal___description' |
+  'frontmatter___comic___internal___fieldOwners' |
+  'frontmatter___comic___internal___ignoreType' |
+  'frontmatter___comic___internal___mediaType' |
+  'frontmatter___comic___internal___owner' |
+  'frontmatter___comic___internal___type' |
+  'frontmatter___comic___childMdx___rawBody' |
+  'frontmatter___comic___childMdx___fileAbsolutePath' |
+  'frontmatter___comic___childMdx___body' |
+  'frontmatter___comic___childMdx___excerpt' |
+  'frontmatter___comic___childMdx___headings' |
+  'frontmatter___comic___childMdx___html' |
+  'frontmatter___comic___childMdx___mdxAST' |
+  'frontmatter___comic___childMdx___tableOfContents' |
+  'frontmatter___comic___childMdx___timeToRead' |
+  'frontmatter___comic___childMdx___id' |
+  'frontmatter___comic___childMdx___children' |
   'body' |
   'excerpt' |
   'headings' |
@@ -2033,6 +2144,11 @@ export type MdxFrontmatter = {
   slug?: Maybe<Scalars['String']>;
   author?: Maybe<Scalars['String']>;
   image?: Maybe<File>;
+  type?: Maybe<Scalars['String']>;
+  chapter?: Maybe<Scalars['Int']>;
+  page?: Maybe<Scalars['Int']>;
+  posted?: Maybe<Scalars['String']>;
+  comic?: Maybe<File>;
 };
 
 export type MdxFrontmatterFilterInput = {
@@ -2040,6 +2156,11 @@ export type MdxFrontmatterFilterInput = {
   slug?: Maybe<StringQueryOperatorInput>;
   author?: Maybe<StringQueryOperatorInput>;
   image?: Maybe<FileFilterInput>;
+  type?: Maybe<StringQueryOperatorInput>;
+  chapter?: Maybe<IntQueryOperatorInput>;
+  page?: Maybe<IntQueryOperatorInput>;
+  posted?: Maybe<StringQueryOperatorInput>;
+  comic?: Maybe<FileFilterInput>;
 };
 
 export type MdxGroupConnection = {
@@ -2283,6 +2404,8 @@ export type QueryAllSitePageArgs = {
 export type QuerySiteArgs = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
+  port?: Maybe<IntQueryOperatorInput>;
+  host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -2421,6 +2544,8 @@ export type QueryAllSitePluginArgs = {
 export type Site = Node & {
   buildTime?: Maybe<Scalars['Date']>;
   siteMetadata?: Maybe<SiteSiteMetadata>;
+  port?: Maybe<Scalars['Int']>;
+  host?: Maybe<Scalars['String']>;
   polyfill?: Maybe<Scalars['Boolean']>;
   pathPrefix?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
@@ -2623,6 +2748,8 @@ export type SiteFieldsEnum =
   'siteMetadata___title' |
   'siteMetadata___description' |
   'siteMetadata___author' |
+  'port' |
+  'host' |
   'polyfill' |
   'pathPrefix' |
   'id' |
@@ -2715,6 +2842,8 @@ export type SiteFieldsEnum =
 export type SiteFilterInput = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
+  port?: Maybe<IntQueryOperatorInput>;
+  host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;

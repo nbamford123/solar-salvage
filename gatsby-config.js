@@ -34,6 +34,13 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'comics',
+        path: 'comics',
+      },
+    },
+    {
       resolve: 'gatsby-source-instagram',
       options: {
         username: 'gatsbyjs',

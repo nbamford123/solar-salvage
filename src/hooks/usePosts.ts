@@ -19,7 +19,7 @@ interface Post {
 const usePosts = (): Array<Post> => {
   const data: PostQuery = useStaticQuery(graphql`
     query Post {
-      allMdx {
+      allMdx(filter: { frontmatter: { type: { eq: "blog" } } }) {
         nodes {
           frontmatter {
             title
