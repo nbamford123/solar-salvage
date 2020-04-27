@@ -1,25 +1,37 @@
 import React from 'react';
 import { css } from '@emotion/core';
+import Image from 'gatsby-image';
 
-export const Comic: React.FC<{}> = () => {
+import { latestComic } from '../hooks/latestComic';
+
+export const ComicComponent: React.FC<{}> = () => {
+  const comic = latestComic();
   return (
-    <div
+    // <div
+    //   css={css`
+    //     border: 1px solid black;
+    //     margin: 0.5rem;
+    //     width: 640px;
+    //   `}
+    // >
+    //   {' '}
+    <Image
       css={css`
-        border: 1px solid black;
-        margin: 0.5rem;
-        width: 640px;
+        * {
+          margin-top: 0;
+        }
       `}
-    >
-      {' '}
-      <div
-        css={css`
-          background: #eee;
-          margin: 0.5rem;
-          height: 900px;
-          width: 600px;
-          flex: 0 0 auto;
-        `}
-      />
-    </div>
+      fixed={comic.comic?.sharp?.fixed ?? undefined}
+      alt={comic.page.toString()}
+    />
+    // <div
+    //   css={css`
+    //     background: #eee;
+    //     margin: 0.5rem;
+    //     height: 900px;
+    //     width: 600px;
+    //     flex: 0 0 auto;
+    //   `}
+    // >
   );
 };
