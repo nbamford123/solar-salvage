@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/core';
 
-import { Comic } from './comic';
+import { ComicWrapper } from './comic';
 import { Sidebar } from './sidebar';
 
 export const MainWrapper: React.FC<{}> = () => {
@@ -11,7 +11,7 @@ export const MainWrapper: React.FC<{}> = () => {
         display: flex;
       `}
     >
-      <Comic />
+      <ComicWrapper />
       <Sidebar />
     </div>
   );

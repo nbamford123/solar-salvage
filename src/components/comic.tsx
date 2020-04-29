@@ -4,7 +4,7 @@ import Image from 'gatsby-image';
 
 import { latestComic } from '../hooks/latestComic';
 
-export const ComicComponent: React.FC<{}> = () => {
+export const ComicWrapper: React.FC<{}> = () => {
   const comic = latestComic();
   return (
     // <div
