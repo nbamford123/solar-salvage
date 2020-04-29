@@ -21,6 +21,14 @@ const Layout = ({ children }) => {
             margin-top: 1rem;
           }
 
+          html {
+            box-sizing: border-box;
+          }
+          *,
+          *:before,
+          *:after {
+            box-sizing: inherit;
+          }
           html,
           body {
             margin: 0;

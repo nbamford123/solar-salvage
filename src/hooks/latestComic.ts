@@ -1,7 +1,7 @@
 import { graphql, useStaticQuery } from 'gatsby';
+import { FixedObject } from 'gatsby-image';
 import {
   // eslint-disable-next-line @typescript-eslint/camelcase
-  ImageSharpFixed,
   LatestComicQuery,
 } from '../../graphql-types';
 
@@ -11,7 +11,7 @@ interface Comic {
   posted: Date;
   comic?: {
     // eslint-disable-next-line @typescript-eslint/camelcase
-    sharp?: { fixed?: ImageSharpFixed | null } | null;
+    sharp?: { fixed?: FixedObject | null } | null;
   };
   note: string;
 }
@@ -44,7 +44,9 @@ export const latestComic = (): Comic => {
     chapter: comicMdx.frontmatter?.chapter || 0,
     page: comicMdx.frontmatter?.page || 0,
     posted: comicMdx.frontmatter?.posted,
-    comic: comicMdx.frontmatter?.comic ?? undefined,
+    // This sucks, but there's no way to coerce graphql into returning the appropriate type
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    comic: (comicMdx.frontmatter?.comic ?? undefined) as any,
     note: comicMdx?.body || '',
   };
 };

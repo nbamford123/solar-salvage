@@ -7,31 +7,25 @@ import { latestComic } from '../hooks/latestComic';
 export const ComicWrapper: React.FC<{}> = () => {
   const comic = latestComic();
   return (
-    // <div
-    //   css={css`
-    //     border: 1px solid black;
-    //     margin: 0.5rem;
-    //     width: 640px;
-    //   `}
-    // >
-    //   {' '}
-    <Image
+    <div
       css={css`
-        * {
-          margin-top: 0;
-        }
+        background: #eee;
+        border: 1px solid black;
+        padding: 0.5rem;
+        flex: 0 0 auto;
       `}
-      fixed={comic.comic?.sharp?.fixed ?? undefined}
-      alt={comic.page.toString()}
-    />
-    // <div
-    //   css={css`
-    //     background: #eee;
-    //     margin: 0.5rem;
-    //     height: 900px;
-    //     width: 600px;
-    //     flex: 0 0 auto;
-    //   `}
-    // >
+    >
+      <Image
+        css={css`
+          * {
+            margin-top: 0;
+            margin-bottom: 0;
+          }
+          line-height: 0;
+        `}
+        fixed={comic.comic?.sharp?.fixed ?? undefined}
+        alt={comic.page.toString()}
+      />
+    </div>
   );
 };
