@@ -1,17 +1,20 @@
 import React from 'react';
 import { css } from '@emotion/core';
 
-import { ComicWrapper } from './comic';
+import { latestComic } from '../hooks/latestComic';
+import { ComicWrapper } from './comicWrapper';
 import { Sidebar } from './sidebar';
 
 export const MainWrapper: React.FC<{}> = () => {
+  const comic = latestComic();
+
   return (
     <div
       css={css`
         display: flex;
       `}
     >
-      <ComicWrapper />
+      <ComicWrapper comic={comic} />
       <Sidebar />
     </div>
   );

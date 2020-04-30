@@ -2909,10 +2909,14 @@ export type SitePageConnectionGroupArgs = {
 
 export type SitePageContext = {
   slug?: Maybe<Scalars['String']>;
+  chapter?: Maybe<Scalars['Int']>;
+  page?: Maybe<Scalars['Int']>;
 };
 
 export type SitePageContextFilterInput = {
   slug?: Maybe<StringQueryOperatorInput>;
+  chapter?: Maybe<IntQueryOperatorInput>;
+  page?: Maybe<IntQueryOperatorInput>;
 };
 
 export type SitePageEdge = {
@@ -3015,6 +3019,8 @@ export type SitePageFieldsEnum =
   'internal___type' |
   'isCreatedByStatefulCreatePages' |
   'context___slug' |
+  'context___chapter' |
+  'context___page' |
   'pluginCreator___id' |
   'pluginCreator___parent___id' |
   'pluginCreator___parent___parent___id' |
@@ -3481,6 +3487,20 @@ export type PostQuery = { allMdx: { nodes: Array<(
         & { image?: Maybe<{ sharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }> }
       )> }
     )> } };
+
+export type Unnamed_1_QueryVariables = {
+  chapter: Scalars['Int'];
+  page: Scalars['Int'];
+};
+
+
+export type Unnamed_1_Query = { mdx?: Maybe<(
+    Pick<Mdx, 'body'>
+    & { frontmatter?: Maybe<(
+      Pick<MdxFrontmatter, 'chapter' | 'page' | 'posted'>
+      & { comic?: Maybe<{ sharp?: Maybe<{ fixed?: Maybe<GatsbyImageSharpFixedFragment> }> }> }
+    )> }
+  )> };
 
 export type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
