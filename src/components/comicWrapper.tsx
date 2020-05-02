@@ -32,7 +32,14 @@ export const ComicWrapper: React.SFC<ComicWrapperProps> = ({ comic }) => {
         fixed={comic.comic?.sharp?.fixed ?? undefined}
         alt={comic.page.toString()}
       />
-      <ComicNav />
+      <div
+        css={css`
+          display: flex;
+          justify-content: center;
+        `}
+      >
+        <ComicNav />
+      </div>
     </div>
   );
 };
