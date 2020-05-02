@@ -3466,6 +3466,11 @@ export type StringQueryOperatorInput = {
   glob?: Maybe<Scalars['String']>;
 };
 
+export type AllComicsQueryVariables = {};
+
+
+export type AllComicsQuery = { allMdx: { nodes: Array<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'chapter'>> }> } };
+
 export type LatestComicQueryVariables = {};
 
 
