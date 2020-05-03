@@ -1,11 +1,9 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { css } from '@emotion/core';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
 
-import { ComicWrapper } from '../components/comicWrapper';
+import { MainWrapper } from '../components/mainWrapper';
 import Layout from '../components/layout';
-import ReadLink from '../components/readLink';
 import { ComicMdx, makeComic } from '../types';
 
 export const query = graphql`
@@ -51,9 +49,7 @@ const ComicTemplate: React.FC<ComicTemplateProps> = ({
       >
         Posted on {comic.posted}
       </p>
-      <ComicWrapper comic={comic} />
-      <MDXRenderer>{comic.note}</MDXRenderer>
-      <ReadLink to="/">&larr; back to all posts</ReadLink>
+      <MainWrapper comic={comic} />
     </Layout>
   );
 };

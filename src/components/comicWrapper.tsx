@@ -1,15 +1,14 @@
 import React from 'react';
 import { css } from '@emotion/core';
 import Image from 'gatsby-image';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import { ComicNav } from './comicNav';
-
 import { Comic } from '../types';
 
-interface ComicWrapperProps {
+export interface ComicWrapperProps {
   comic: Comic;
 }
-
 export const ComicWrapper: React.SFC<ComicWrapperProps> = ({ comic }) => {
   return (
     <div
@@ -38,8 +37,9 @@ export const ComicWrapper: React.SFC<ComicWrapperProps> = ({ comic }) => {
           justify-content: center;
         `}
       >
-        <ComicNav />
+        <ComicNav chapter={comic.chapter} page={comic.page} />
       </div>
+      <MDXRenderer>{comic.note}</MDXRenderer>
     </div>
   );
 };

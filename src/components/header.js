@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
-import { graphql, Link, GatsbyLinkProps, useStaticQuery } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 
 // interface NavLinkProps extends GatsbyLinkProps<> {

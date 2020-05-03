@@ -2,36 +2,82 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 import {
   // eslint-disable-next-line @typescript-eslint/camelcase
-  AllComicsQuery,
+  ChapterInfoQuery,
 } from '../../graphql-types';
 import { ChapterSummary } from '../types';
 
-export interface ChapterMdx {
+interface PageMdx {
   frontmatter?: {
     chapter?: number | null;
   } | null;
 }
-// Get every comic and return a map from chapter number to page count
-export const chapterSummary = (): ChapterSummary => {
-  const data: AllComicsQuery = useStaticQuery(graphql`
-    query AllComics {
-      allMdx(filter: { frontmatter: { type: { eq: "comic" } } }) {
+interface ChapterMdx {
+  chapter?: number | null;
+  title?: string | null;
+  writtenBy?: string | null;
+}
+// Map from chapter to number of pages for easier lookup
+interface PageMap {
+  [key: number]: number;
+}
+
+// Get comics and chapters and return chapter info array
+export const chapterSummary = (): ChapterSummary[] => {
+  const data: ChapterInfoQuery = useStaticQuery(graphql`
+    query ChapterInfo {
+      pages: allMdx(filter: { frontmatter: { type: { eq: "comic" } } }) {
         nodes {
           frontmatter {
             chapter
           }
         }
       }
+      chapters: allMdx(filter: { frontmatter: { type: { eq: "chapter" } } }) {
+        nodes {
+          frontmatter {
+            type
+            chapters {
+              chapter
+              title
+              writtenBy
+            }
+          }
+        }
+      }
     }
   `);
 
-  return data.allMdx.nodes.reduce((pv: ChapterSummary, cv: ChapterMdx) => {
+  const pageMap = data.pages.nodes.reduce((pv: PageMap, cv: PageMdx) => {
     const chapter = cv?.frontmatter?.chapter;
     return chapter
       ? {
           ...pv,
-          [chapter]: pv[chapter] ? pv[chapter]++ : 1,
+          [chapter]: pv[chapter] ? ++pv[chapter] : 1,
         }
       : pv;
   }, {});
+
+  const chapters =
+    (data.chapters.nodes.length &&
+      data.chapters.nodes[0]?.frontmatter?.chapters) ||
+    [];
+
+  const chapterSummary = chapters.reduce(
+    (pv: Array<ChapterSummary>, cv: ChapterMdx | null) => [
+      ...pv,
+      ...(cv && cv.chapter
+        ? [
+            {
+              chapter: cv.chapter || 0,
+              title: cv.title || '',
+              writtenBy: cv.writtenBy || '',
+              pages: pageMap[cv.chapter] || 0,
+            },
+          ]
+        : []),
+    ],
+    [],
+  );
+
+  return chapterSummary;
 };

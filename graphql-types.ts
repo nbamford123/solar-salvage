@@ -776,6 +776,10 @@ export type FileFieldsEnum =
   'childMdx___frontmatter___comic___publicURL' |
   'childMdx___frontmatter___comic___id' |
   'childMdx___frontmatter___comic___children' |
+  'childMdx___frontmatter___chapters' |
+  'childMdx___frontmatter___chapters___chapter' |
+  'childMdx___frontmatter___chapters___title' |
+  'childMdx___frontmatter___chapters___writtenBy' |
   'childMdx___body' |
   'childMdx___excerpt' |
   'childMdx___headings' |
@@ -1708,6 +1712,7 @@ export type InstaNodeFieldsEnum =
   'localFile___childMdx___frontmatter___chapter' |
   'localFile___childMdx___frontmatter___page' |
   'localFile___childMdx___frontmatter___posted' |
+  'localFile___childMdx___frontmatter___chapters' |
   'localFile___childMdx___body' |
   'localFile___childMdx___excerpt' |
   'localFile___childMdx___headings' |
@@ -2022,6 +2027,10 @@ export type MdxFieldsEnum =
   'frontmatter___comic___childMdx___timeToRead' |
   'frontmatter___comic___childMdx___id' |
   'frontmatter___comic___childMdx___children' |
+  'frontmatter___chapters' |
+  'frontmatter___chapters___chapter' |
+  'frontmatter___chapters___title' |
+  'frontmatter___chapters___writtenBy' |
   'body' |
   'excerpt' |
   'headings' |
@@ -2149,6 +2158,7 @@ export type MdxFrontmatter = {
   page?: Maybe<Scalars['Int']>;
   posted?: Maybe<Scalars['Date']>;
   comic?: Maybe<File>;
+  chapters?: Maybe<Array<Maybe<MdxFrontmatterChapters>>>;
 };
 
 
@@ -2157,6 +2167,22 @@ export type MdxFrontmatterPostedArgs = {
   fromNow?: Maybe<Scalars['Boolean']>;
   difference?: Maybe<Scalars['String']>;
   locale?: Maybe<Scalars['String']>;
+};
+
+export type MdxFrontmatterChapters = {
+  chapter?: Maybe<Scalars['Int']>;
+  title?: Maybe<Scalars['String']>;
+  writtenBy?: Maybe<Scalars['String']>;
+};
+
+export type MdxFrontmatterChaptersFilterInput = {
+  chapter?: Maybe<IntQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+  writtenBy?: Maybe<StringQueryOperatorInput>;
+};
+
+export type MdxFrontmatterChaptersFilterListInput = {
+  elemMatch?: Maybe<MdxFrontmatterChaptersFilterInput>;
 };
 
 export type MdxFrontmatterFilterInput = {
@@ -2169,6 +2195,7 @@ export type MdxFrontmatterFilterInput = {
   page?: Maybe<IntQueryOperatorInput>;
   posted?: Maybe<DateQueryOperatorInput>;
   comic?: Maybe<FileFilterInput>;
+  chapters?: Maybe<MdxFrontmatterChaptersFilterListInput>;
 };
 
 export type MdxGroupConnection = {
@@ -2412,8 +2439,6 @@ export type QueryAllSitePageArgs = {
 export type QuerySiteArgs = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
-  port?: Maybe<IntQueryOperatorInput>;
-  host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -2552,8 +2577,6 @@ export type QueryAllSitePluginArgs = {
 export type Site = Node & {
   buildTime?: Maybe<Scalars['Date']>;
   siteMetadata?: Maybe<SiteSiteMetadata>;
-  port?: Maybe<Scalars['Int']>;
-  host?: Maybe<Scalars['String']>;
   polyfill?: Maybe<Scalars['Boolean']>;
   pathPrefix?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
@@ -2756,8 +2779,6 @@ export type SiteFieldsEnum =
   'siteMetadata___title' |
   'siteMetadata___description' |
   'siteMetadata___author' |
-  'port' |
-  'host' |
   'polyfill' |
   'pathPrefix' |
   'id' |
@@ -2850,8 +2871,6 @@ export type SiteFieldsEnum =
 export type SiteFilterInput = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
-  port?: Maybe<IntQueryOperatorInput>;
-  host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -3466,10 +3485,13 @@ export type StringQueryOperatorInput = {
   glob?: Maybe<Scalars['String']>;
 };
 
-export type AllComicsQueryVariables = {};
+export type ChapterInfoQueryVariables = {};
 
 
-export type AllComicsQuery = { allMdx: { nodes: Array<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'chapter'>> }> } };
+export type ChapterInfoQuery = { pages: { nodes: Array<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'chapter'>> }> }, chapters: { nodes: Array<{ frontmatter?: Maybe<(
+        Pick<MdxFrontmatter, 'type'>
+        & { chapters?: Maybe<Array<Maybe<Pick<MdxFrontmatterChapters, 'chapter' | 'title' | 'writtenBy'>>>> }
+      )> }> } };
 
 export type LatestComicQueryVariables = {};
 

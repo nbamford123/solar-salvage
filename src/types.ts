@@ -23,10 +23,13 @@ export interface ComicMdx {
   body: string;
 }
 
-// A map of chapter numbers => page count
 export interface ChapterSummary {
-  [key: number]: number;
+  chapter: number;
+  title: string;
+  pages: number;
+  writtenBy: string;
 }
+
 export const makeComic = (mdx: ComicMdx): Comic => ({
   chapter: mdx.frontmatter?.chapter || 0,
   page: mdx.frontmatter?.page || 0,
