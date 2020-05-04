@@ -37,38 +37,72 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
   const nextChapter = chapterInfo.find(
     chapterSummary => chapterSummary.chapter === chapter + 1,
   );
-  // next page
-  const nextPage =
+  // next page, maybe next chapter
+  const nextPageNav =
     page + 1 > myChapter.pages
       ? nextChapter
         ? {
             page: 1,
             chapter: nextChapter.chapter,
+            text: 'Next chapter',
           }
         : {
             page: page,
             chapter: chapter,
+            text: 'Last page',
           }
       : {
           page: page + 1,
           chapter: chapter,
+          text: 'Next page',
         };
 
-  // previous page
-  const previousPage =
+  // previous page, maybe previous chapter
+  const previousPageNav =
     page - 1 < 1
       ? prevChapter
         ? {
             page: prevChapter.pages,
             chapter: prevChapter.chapter,
+            text: 'Previous chapter',
           }
         : {
             page: page,
             chapter: chapter,
+            text: 'First page',
           }
       : {
           page: page - 1,
           chapter: chapter,
+          text: 'Previous page',
+        };
+
+  // Last page in chapter, or first page in next chapter if already there
+  const lastPageNav =
+    page === myChapter.pages
+      ? {
+          chapter: nextChapter ? nextChapter.chapter : chapter,
+          page: nextChapter ? 1 : page,
+          text: nextChapter ? 'Next chapter' : 'End of chapter',
+        }
+      : {
+          chapter: chapter,
+          page: myChapter.pages,
+          text: 'End of chapter',
+        };
+
+  // First page in chapter, or last page in previous chapter if already there
+  const firstPageNav =
+    page === 1
+      ? {
+          chapter: prevChapter ? prevChapter.chapter : chapter,
+          page: prevChapter ? prevChapter.pages : page,
+          text: prevChapter ? 'Previous chapter' : 'Beginning of chapter',
+        }
+      : {
+          chapter: chapter,
+          page: 1,
+          text: 'Beginning of chapter',
         };
 
   return (
@@ -82,21 +116,40 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
         }
       `}
     >
-      <NavLink to={`${chapter}-1`}>&lt;&lt;</NavLink>
-      <NavLink to={`${previousPage.chapter}-${previousPage.page}`}>
+      <NavLink
+        title={firstPageNav.text}
+        to={`${firstPageNav.chapter}-${firstPageNav.page}`}
+      >
+        &lt;&lt;
+      </NavLink>
+      <NavLink
+        title={previousPageNav.text}
+        to={`${previousPageNav.chapter}-${previousPageNav.page}`}
+      >
         &lt;
       </NavLink>
       <select
         css={css`
           margin-right: 1rem;
         `}
+        title={'Select chapter'}
         value={myChapter.chapter}
         onChange={e => navigate(`${e.target.value}-1`)}
       >
         {chapterOptions}
       </select>
-      <NavLink to={`${nextPage.chapter}-${nextPage.page}`}>&gt;</NavLink>
-      <NavLink to={`${chapter}-${myChapter.pages}`}>&gt;&gt;</NavLink>
+      <NavLink
+        title={nextPageNav.text}
+        to={`${nextPageNav.chapter}-${nextPageNav.page}`}
+      >
+        &gt;
+      </NavLink>
+      <NavLink
+        title={lastPageNav.text}
+        to={`${lastPageNav.chapter}-${lastPageNav.page}`}
+      >
+        &gt;&gt;
+      </NavLink>
     </div>
   );
 };
