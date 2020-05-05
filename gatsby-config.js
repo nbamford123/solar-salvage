@@ -41,6 +41,13 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'chapter-thumbs',
+        path: 'comics/chapter-images',
+      },
+    },
+    {
       resolve: 'gatsby-source-instagram',
       options: {
         username: 'gatsbyjs',
