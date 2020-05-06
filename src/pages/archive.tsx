@@ -30,11 +30,11 @@ const Archive: React.FC<{}> = () => {
               to={`${chapter.chapter}-1`}
               css={css`
                 margin: 1rem 1rem 0 0;
-                width: 100px;
+                width: 200px;
                 flex-shrink: 0;
               `}
             >
-              {/* <Image
+              <Image
                 css={css`
                   * {
                     margin-top: 0;
@@ -43,16 +43,19 @@ const Archive: React.FC<{}> = () => {
                     align-self: flex-start;
                   }
                 `}
-                fixed={chapter.thumb.sharp.fixed}
-                alt={chapter.chapter}
-              /> */}
+                fixed={chapter?.thumb?.sharp?.fixed}
+                alt={chapter.chapter.toString()}
+              />
             </Link>
             <div
               css={css`
                 flex: 1 1 auto;
               `}
             >
-              {chapter.synopsis}
+              <h2>
+                Chapter {chapter.chapter} {chapter.title}
+              </h2>
+              <p>{chapter.synopsis}</p>
             </div>
           </div>
         ))}

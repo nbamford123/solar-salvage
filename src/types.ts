@@ -2,7 +2,7 @@ import { FixedObject } from 'gatsby-image';
 
 export type GatsbyFixedImage = {
   // eslint-disable-next-line @typescript-eslint/camelcase
-  sharp?: { fixed?: FixedObject | null } | null;
+  sharp?: { fixed?: FixedObject | FixedObject[] };
 };
 
 export interface Comic {
