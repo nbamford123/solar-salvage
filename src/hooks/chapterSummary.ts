@@ -4,17 +4,12 @@ import {
   // eslint-disable-next-line @typescript-eslint/camelcase
   ChapterInfoQuery,
 } from '../../graphql-types';
-import { ChapterSummary } from '../types';
+import { ChapterMdx, ChapterSummary } from '../types';
 
 interface PageMdx {
   frontmatter?: {
     chapter?: number | null;
   } | null;
-}
-interface ChapterMdx {
-  chapter?: number | null;
-  title?: string | null;
-  writtenBy?: string | null;
 }
 // Map from chapter to number of pages for easier lookup
 interface PageMap {
@@ -38,7 +33,15 @@ export const chapterSummary = (): ChapterSummary[] => {
             type
             chapters {
               chapter
+              synopsis
               title
+              thumb {
+                sharp: childImageSharp {
+                  fixed(width: 200, height: 200) {
+                    ...GatsbyImageSharpFixed
+                  }
+                }
+              }
               writtenBy
             }
           }
@@ -69,6 +72,10 @@ export const chapterSummary = (): ChapterSummary[] => {
         ? [
             {
               chapter: cv.chapter || 0,
+              synopsis: cv.synopsis || '',
+              // If there's a typescript way to deal with these, I can't find it
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              thumb: cv.thumb as any,
               title: cv.title || '',
               writtenBy: cv.writtenBy || '',
               pages: pageMap[cv.chapter] || 0,

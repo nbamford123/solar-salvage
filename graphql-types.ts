@@ -778,6 +778,7 @@ export type FileFieldsEnum =
   'childMdx___frontmatter___comic___children' |
   'childMdx___frontmatter___chapters' |
   'childMdx___frontmatter___chapters___chapter' |
+  'childMdx___frontmatter___chapters___synopsis' |
   'childMdx___frontmatter___chapters___title' |
   'childMdx___frontmatter___chapters___writtenBy' |
   'childMdx___body' |
@@ -2029,7 +2030,45 @@ export type MdxFieldsEnum =
   'frontmatter___comic___childMdx___children' |
   'frontmatter___chapters' |
   'frontmatter___chapters___chapter' |
+  'frontmatter___chapters___synopsis' |
   'frontmatter___chapters___title' |
+  'frontmatter___chapters___thumb___sourceInstanceName' |
+  'frontmatter___chapters___thumb___absolutePath' |
+  'frontmatter___chapters___thumb___relativePath' |
+  'frontmatter___chapters___thumb___extension' |
+  'frontmatter___chapters___thumb___size' |
+  'frontmatter___chapters___thumb___prettySize' |
+  'frontmatter___chapters___thumb___modifiedTime' |
+  'frontmatter___chapters___thumb___accessTime' |
+  'frontmatter___chapters___thumb___changeTime' |
+  'frontmatter___chapters___thumb___birthTime' |
+  'frontmatter___chapters___thumb___root' |
+  'frontmatter___chapters___thumb___dir' |
+  'frontmatter___chapters___thumb___base' |
+  'frontmatter___chapters___thumb___ext' |
+  'frontmatter___chapters___thumb___name' |
+  'frontmatter___chapters___thumb___relativeDirectory' |
+  'frontmatter___chapters___thumb___dev' |
+  'frontmatter___chapters___thumb___mode' |
+  'frontmatter___chapters___thumb___nlink' |
+  'frontmatter___chapters___thumb___uid' |
+  'frontmatter___chapters___thumb___gid' |
+  'frontmatter___chapters___thumb___rdev' |
+  'frontmatter___chapters___thumb___ino' |
+  'frontmatter___chapters___thumb___atimeMs' |
+  'frontmatter___chapters___thumb___mtimeMs' |
+  'frontmatter___chapters___thumb___ctimeMs' |
+  'frontmatter___chapters___thumb___atime' |
+  'frontmatter___chapters___thumb___mtime' |
+  'frontmatter___chapters___thumb___ctime' |
+  'frontmatter___chapters___thumb___birthtime' |
+  'frontmatter___chapters___thumb___birthtimeMs' |
+  'frontmatter___chapters___thumb___blksize' |
+  'frontmatter___chapters___thumb___blocks' |
+  'frontmatter___chapters___thumb___url' |
+  'frontmatter___chapters___thumb___publicURL' |
+  'frontmatter___chapters___thumb___id' |
+  'frontmatter___chapters___thumb___children' |
   'frontmatter___chapters___writtenBy' |
   'body' |
   'excerpt' |
@@ -2171,13 +2210,17 @@ export type MdxFrontmatterPostedArgs = {
 
 export type MdxFrontmatterChapters = {
   chapter?: Maybe<Scalars['Int']>;
+  synopsis?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
+  thumb?: Maybe<File>;
   writtenBy?: Maybe<Scalars['String']>;
 };
 
 export type MdxFrontmatterChaptersFilterInput = {
   chapter?: Maybe<IntQueryOperatorInput>;
+  synopsis?: Maybe<StringQueryOperatorInput>;
   title?: Maybe<StringQueryOperatorInput>;
+  thumb?: Maybe<FileFilterInput>;
   writtenBy?: Maybe<StringQueryOperatorInput>;
 };
 
@@ -3498,7 +3541,10 @@ export type ChapterInfoQueryVariables = {};
 
 export type ChapterInfoQuery = { pages: { nodes: Array<{ frontmatter?: Maybe<Pick<MdxFrontmatter, 'chapter'>> }> }, chapters: { nodes: Array<{ frontmatter?: Maybe<(
         Pick<MdxFrontmatter, 'type'>
-        & { chapters?: Maybe<Array<Maybe<Pick<MdxFrontmatterChapters, 'chapter' | 'title' | 'writtenBy'>>>> }
+        & { chapters?: Maybe<Array<Maybe<(
+          Pick<MdxFrontmatterChapters, 'chapter' | 'synopsis' | 'title' | 'writtenBy'>
+          & { thumb?: Maybe<{ sharp?: Maybe<{ fixed?: Maybe<GatsbyImageSharpFixedFragment> }> }> }
+        )>>> }
       )> }> } };
 
 export type LatestComicQueryVariables = {};

@@ -2,14 +2,14 @@ import { FixedObject } from 'gatsby-image';
 
 export type GatsbyFixedImage = {
   // eslint-disable-next-line @typescript-eslint/camelcase
-  sharp?: { fixed?: FixedObject | null } | null;
+  sharp?: { fixed?: FixedObject | FixedObject[] };
 };
 
 export interface Comic {
   chapter: number;
   page: number;
   posted?: Date;
-  comic?: GatsbyFixedImage;
+  comic: GatsbyFixedImage;
   note: string;
 }
 
@@ -23,10 +23,20 @@ export interface ComicMdx {
   body: string;
 }
 
+export interface ChapterMdx {
+  chapter?: number | null;
+  synopsis?: string | null;
+  title?: string | null;
+  thumb?: GatsbyFixedImage;
+  writtenBy?: string | null;
+}
+
 export interface ChapterSummary {
   chapter: number;
-  title: string;
   pages: number;
+  synopsis: string;
+  title: string;
+  thumb: GatsbyFixedImage;
   writtenBy: string;
 }
 
