@@ -6,6 +6,7 @@ import { Link } from 'gatsby';
 import Layout from '../components/layout';
 import { chapterSummary } from '../hooks/chapterSummary';
 
+// TODO: Fix page indexing when chapter title pages (0) are added
 const Archive: React.FC<{}> = () => {
   const chapters = chapterSummary();
   return (
@@ -56,6 +57,19 @@ const Archive: React.FC<{}> = () => {
                 Chapter {chapter.chapter} {chapter.title}
               </h2>
               <p>{chapter.synopsis}</p>
+              <p>
+                <select>
+                  <option>Go to page</option>
+                  {Array.from(Array(chapter.pages), (_, index) => (
+                    <option
+                      key={index}
+                      value={`${chapter.chapter}-${index + 1}`}
+                    >
+                      {index + 1}
+                    </option>
+                  ))}
+                </select>
+              </p>
             </div>
           </div>
         ))}
