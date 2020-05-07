@@ -1,7 +1,8 @@
 import React from 'react';
 import { css } from '@emotion/core';
 import Image from 'gatsby-image';
-import { Link } from 'gatsby';
+import { Link, navigate } from 'gatsby';
+import Select from 'react-select';
 
 import Layout from '../components/layout';
 import { chapterSummary } from '../hooks/chapterSummary';
@@ -50,26 +51,36 @@ const Archive: React.FC<{}> = () => {
             </Link>
             <div
               css={css`
+                display: flex;
+                flex-direction: column;
                 flex: 1 1 auto;
+                height: 40px;
               `}
             >
               <h2>
                 Chapter {chapter.chapter} {chapter.title}
               </h2>
               <p>{chapter.synopsis}</p>
-              <p>
-                <select>
-                  <option>Go to page</option>
-                  {Array.from(Array(chapter.pages), (_, index) => (
-                    <option
-                      key={index}
-                      value={`${chapter.chapter}-${index + 1}`}
-                    >
-                      {index + 1}
-                    </option>
-                  ))}
-                </select>
-              </p>
+              <Select
+                css={css`
+                  margin-top: 1rem;
+                  * {
+                    margin-top: 0;
+                  }
+                `}
+                placeholder="Jump to page"
+                onChange={(value, action) =>
+                  action.action === 'select-option' &&
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  navigate((value as any).value)
+                }
+                options={[{ value: '', label: 'Go to page' }].concat(
+                  Array.from(Array(chapter.pages), (_, index) => ({
+                    value: `${chapter.chapter}-${index + 1}`,
+                    label: `${index + 1}`,
+                  })),
+                )}
+              />
             </div>
           </div>
         ))}
