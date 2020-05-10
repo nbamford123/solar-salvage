@@ -1,0 +1,13 @@
+## To Do
+
+* About Page
+* Proper backgrounds for each element-- borders and backgrounds for now
+* Same layout everywhere
+* Blog page plus navigation
+* Header with text instead of text in image
+* Bigger comic/layout sizes
+* Sidebar items-- links? Ads?
+* Mobile version
+* font, color scheme, backgrounds, button art
+* fix naviagtion
+* search code for to-do

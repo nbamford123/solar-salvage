@@ -10,6 +10,8 @@ export interface ComicNavProps {
   page: number;
 }
 
+// TODO: Fix this-- make stuff disabled when they don't make sense instead of changing functionality
+// Also, maybe tippy or a real tooltip?
 const NavLink = styled(Link)`
   display: inline-block;
   font-size: 1.25rem;

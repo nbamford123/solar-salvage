@@ -13,13 +13,10 @@ export const ComicWrapper: React.SFC<ComicWrapperProps> = ({ comic }) => {
   return (
     <div
       css={css`
-        background: #eee;
-        border: 1px solid black;
         display: flex;
         flex-direction: column;
         line-height: 0;
-        padding: 0.5rem;
-        flex: 0 0 auto;
+        align-items: center;
       `}
     >
       <Image

@@ -69,7 +69,7 @@ const Header = () => (
     >
       <nav>
         <NavLink to="/" activeClassName="current-page">
-          HOME
+          LATEST PAGE
         </NavLink>
         <NavLink to="/about" activeClassName="current-page">
           ABOUT
