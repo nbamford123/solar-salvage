@@ -5,13 +5,14 @@ export const Sidebar: React.FC<{}> = () => {
   return (
     <div
       css={css`
+        align-items: center;
         border: 1px solid black;
-        margin: 0.5rem;
-        width: 100%;
         display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: space-around;
+        margin: 0 0.5rem;
+        min-height: 989px;
+        width: 100%;
       `}
     >
       <div

@@ -132,7 +132,7 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
       </NavLink>
       <select
         css={css`
-          margin-right: 1rem;
+          margin-right: 0.5rem;
         `}
         title={'Select chapter'}
         value={myChapter.chapter}

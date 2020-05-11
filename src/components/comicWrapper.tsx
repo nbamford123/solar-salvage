@@ -17,6 +17,7 @@ export const ComicWrapper: React.SFC<ComicWrapperProps> = ({ comic }) => {
         flex-direction: column;
         line-height: 0;
         align-items: center;
+        margin: 0.5rem;
       `}
     >
       <Image
