@@ -1,0 +1,16 @@
+## To Do
+
+* About Page
+* Proper backgrounds for each element-- borders and backgrounds for now
+* Blog page plus navigation
+* Header with text instead of text in image
+* Bigger comic/layout sizes
+* Sidebar items-- links? Ads?
+* Mobile version
+* font, color scheme, backgrounds, button art
+* fix naviagtion-- tippy for pop-ups?
+* search code for to-do
+* more sensical page addresses (like "chapter1-page1?)
+* define heights/widths somewhere central, like in types or consts
+* comments?
+

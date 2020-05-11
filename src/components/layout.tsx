@@ -4,8 +4,13 @@ import { Helmet } from 'react-helmet';
 
 import Header from './header';
 import useSiteMetadata from '../hooks/useSiteMetadata';
+import { MainWrapper } from './mainWrapper';
+import { Blog } from './blog';
 
-const Layout = ({ children }) => {
+export interface LayoutProps {
+  page: JSX.Element;
+}
+const Layout: React.SFC<LayoutProps> = ({ page }) => {
   const { title, description } = useSiteMetadata();
   return (
     <>
@@ -75,12 +80,15 @@ const Layout = ({ children }) => {
       <Header />
       <main
         css={css`
+          display: flex;
+          flex-direction: column;
           margin: 2rem auto;
           max-width: 90vw;
           width: 980px;
         `}
       >
-        {children}
+        <MainWrapper page={page} />
+        <Blog />
       </main>
     </>
   );

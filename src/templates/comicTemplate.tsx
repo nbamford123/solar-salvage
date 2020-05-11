@@ -1,8 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { css } from '@emotion/core';
 
-import { MainWrapper } from '../components/mainWrapper';
+import { ComicWrapper } from '../components/comicWrapper';
 import Layout from '../components/layout';
 import { ComicMdx, makeComic } from '../types';
 
@@ -39,19 +38,8 @@ const ComicTemplate: React.FC<ComicTemplateProps> = ({
   data: { mdx: comicMdx },
 }) => {
   const comic = makeComic(comicMdx);
-  return (
-    <Layout>
-      <h1>{comic.page}</h1>
-      <p
-        css={css`
-          font-size: 0.75rem;
-        `}
-      >
-        Posted on {comic.posted}
-      </p>
-      <MainWrapper comic={comic} />
-    </Layout>
-  );
+  const page = <ComicWrapper comic={comic} />;
+  return <Layout page={page} />;
 };
 
 export default ComicTemplate;

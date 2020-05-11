@@ -10,6 +10,8 @@ export interface ComicNavProps {
   page: number;
 }
 
+// TODO: Fix this-- make stuff disabled when they don't make sense instead of changing functionality
+// Also, maybe tippy or a real tooltip?
 const NavLink = styled(Link)`
   display: inline-block;
   font-size: 1.25rem;
@@ -130,7 +132,7 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
       </NavLink>
       <select
         css={css`
-          margin-right: 1rem;
+          margin-right: 0.5rem;
         `}
         title={'Select chapter'}
         value={myChapter.chapter}
