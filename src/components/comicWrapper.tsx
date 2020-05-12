@@ -13,9 +13,9 @@ export const ComicWrapper: React.SFC<ComicWrapperProps> = ({ comic }) => {
   return (
     <div
       css={css`
+        background: white;
         display: flex;
         flex-direction: column;
-        line-height: 0;
         align-items: center;
         margin: 0.5rem;
       `}

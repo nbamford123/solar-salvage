@@ -2,15 +2,18 @@ import React from 'react';
 import { css } from '@emotion/core';
 
 import usePosts from '../hooks/usePosts';
-import PostPreview from '../components/postPreview';
+import PostPreview from './postPreview';
 
-export const Blog: React.FC<{}> = () => {
+// TODO: limit this to two or three posts
+export const BlogPreview: React.FC<{}> = () => {
   const posts = usePosts();
   return (
     <div
       css={css`
+        background: white;
         display: flex;
         flex-direction: column;
+        padding: 0.5rem;
       `}
     >
       <h2>Blog</h2>
