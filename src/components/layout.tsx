@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 import Header from './header';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import { MainWrapper } from './mainWrapper';
-import { Blog } from './blog';
+import { BlogWrapper } from './blogWrapper';
 
 export interface LayoutProps {
   page: JSX.Element;
@@ -88,7 +88,7 @@ const Layout: React.SFC<LayoutProps> = ({ page }) => {
         `}
       >
         <MainWrapper page={page} />
-        <Blog />
+        <BlogWrapper />
       </main>
     </>
   );

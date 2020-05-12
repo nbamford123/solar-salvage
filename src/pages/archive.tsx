@@ -13,6 +13,7 @@ const Archive: React.FC<{}> = () => {
   const page = (
     <div
       css={css`
+        background: white;
         display: flex;
         flex-direction: column;
         justify-content: center;
