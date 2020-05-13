@@ -5,6 +5,26 @@ export type GatsbyFixedImage = {
   sharp?: { fixed?: FixedObject | FixedObject[] };
 };
 
+export interface PostMdx {
+  frontmatter?: {
+    title: string;
+    author: string;
+  };
+  body: string;
+}
+
+export interface Post {
+  title: string;
+  author: string;
+  body: string;
+}
+
+export const makePost = (mdx: PostMdx): Post => ({
+  title: mdx.frontmatter?.title || '',
+  author: mdx.frontmatter?.author || '',
+  body: mdx?.body || '',
+});
+
 export interface Comic {
   chapter: number;
   page: number;
