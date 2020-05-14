@@ -9,6 +9,7 @@ export interface PostMdx {
   frontmatter?: {
     title: string;
     author: string;
+    date: Date;
   };
   body: string;
 }
@@ -16,12 +17,14 @@ export interface PostMdx {
 export interface Post {
   title: string;
   author: string;
+  date: Date;
   body: string;
 }
 
 export const makePost = (mdx: PostMdx): Post => ({
   title: mdx.frontmatter?.title || '',
   author: mdx.frontmatter?.author || '',
+  date: mdx.frontmatter?.date || new Date(),
   body: mdx?.body || '',
 });
 

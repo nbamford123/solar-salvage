@@ -3562,12 +3562,22 @@ export type PostQuery = { allMdx: { nodes: Array<(
     )> } };
 
 export type Unnamed_1_QueryVariables = {
+  slug: Scalars['String'];
+};
+
+
+export type Unnamed_1_Query = { mdx?: Maybe<(
+    Pick<Mdx, 'body'>
+    & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'author'>> }
+  )> };
+
+export type Unnamed_2_QueryVariables = {
   chapter: Scalars['Int'];
   page: Scalars['Int'];
 };
 
 
-export type Unnamed_1_Query = { mdx?: Maybe<(
+export type Unnamed_2_Query = { mdx?: Maybe<(
     Pick<Mdx, 'body'>
     & { frontmatter?: Maybe<(
       Pick<MdxFrontmatter, 'chapter' | 'page' | 'posted'>

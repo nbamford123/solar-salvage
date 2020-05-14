@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/core';
 
-import { BlogPreview } from './blogPreview';
+import { BlogPreview } from './blogPage';
 
 export const BlogWrapper: React.FC<{}> = () => (
   <div
