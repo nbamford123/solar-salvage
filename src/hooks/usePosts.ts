@@ -1,20 +1,9 @@
 import { graphql, useStaticQuery } from 'gatsby';
 import {
   // eslint-disable-next-line @typescript-eslint/camelcase
-  GatsbyImageSharpFluid_WithWebpFragment,
   PostQuery,
 } from '../../graphql-types';
-
-interface Post {
-  title: string;
-  author: string;
-  slug: string;
-  image?: {
-    // eslint-disable-next-line @typescript-eslint/camelcase
-    sharp?: { fluid?: GatsbyImageSharpFluid_WithWebpFragment | null } | null;
-  };
-  excerpt: string;
-}
+import { makePost, Post } from '../types';
 
 const usePosts = (): Array<Post> => {
   const data: PostQuery = useStaticQuery(graphql`
@@ -25,30 +14,12 @@ const usePosts = (): Array<Post> => {
             title
             slug
             author
-            image {
-              sharp: childImageSharp {
-                fluid(
-                  maxWidth: 100
-                  maxHeight: 100
-                  duotone: { shadow: "#663399", highlight: "#ddbbff" }
-                ) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
-            }
           }
-          excerpt
+          body
         }
       }
     }
   `);
-
-  return data.allMdx.nodes.map(post => ({
-    title: post.frontmatter?.title || '',
-    author: post.frontmatter?.author || '',
-    slug: post.frontmatter?.slug || '',
-    image: post.frontmatter?.image ?? undefined,
-    excerpt: post?.excerpt || '',
-  }));
+  return data.allMdx.nodes.map(postMdx => makePost(postMdx));
 };
 export default usePosts;

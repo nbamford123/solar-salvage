@@ -11,6 +11,9 @@ export interface PostMdx {
     author: string;
     date: Date;
   };
+  fields?: {
+    slug: string;
+  };
   body: string;
 }
 
@@ -19,6 +22,7 @@ export interface Post {
   author: string;
   date: Date;
   body: string;
+  slug: string;
 }
 
 export const makePost = (mdx: PostMdx): Post => ({
@@ -26,6 +30,7 @@ export const makePost = (mdx: PostMdx): Post => ({
   author: mdx.frontmatter?.author || '',
   date: mdx.frontmatter?.date || new Date(),
   body: mdx?.body || '',
+  slug: mdx?.fields?.slug || '',
 });
 
 export interface Comic {
@@ -34,14 +39,18 @@ export interface Comic {
   posted?: Date;
   comic: GatsbyFixedImage;
   note: string;
+  slug: string;
 }
 
 export interface ComicMdx {
   frontmatter?: {
-    chapter: number;
-    page: number;
-    posted: Date;
-    comic: GatsbyFixedImage;
+    chapter?: number;
+    page?: number;
+    posted?: Date;
+    comic?: GatsbyFixedImage;
+  } | null;
+  fields?: {
+    slug?: string;
   };
   body: string;
 }
@@ -71,4 +80,5 @@ export const makeComic = (mdx: ComicMdx): Comic => ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   comic: (mdx.frontmatter?.comic ?? undefined) as any,
   note: mdx?.body || '',
+  slug: mdx?.fields?.slug || '',
 });

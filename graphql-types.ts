@@ -696,46 +696,10 @@ export type FileFieldsEnum =
   'childMdx___rawBody' |
   'childMdx___fileAbsolutePath' |
   'childMdx___frontmatter___title' |
-  'childMdx___frontmatter___slug' |
+  'childMdx___frontmatter___date' |
   'childMdx___frontmatter___author' |
-  'childMdx___frontmatter___image___sourceInstanceName' |
-  'childMdx___frontmatter___image___absolutePath' |
-  'childMdx___frontmatter___image___relativePath' |
-  'childMdx___frontmatter___image___extension' |
-  'childMdx___frontmatter___image___size' |
-  'childMdx___frontmatter___image___prettySize' |
-  'childMdx___frontmatter___image___modifiedTime' |
-  'childMdx___frontmatter___image___accessTime' |
-  'childMdx___frontmatter___image___changeTime' |
-  'childMdx___frontmatter___image___birthTime' |
-  'childMdx___frontmatter___image___root' |
-  'childMdx___frontmatter___image___dir' |
-  'childMdx___frontmatter___image___base' |
-  'childMdx___frontmatter___image___ext' |
-  'childMdx___frontmatter___image___name' |
-  'childMdx___frontmatter___image___relativeDirectory' |
-  'childMdx___frontmatter___image___dev' |
-  'childMdx___frontmatter___image___mode' |
-  'childMdx___frontmatter___image___nlink' |
-  'childMdx___frontmatter___image___uid' |
-  'childMdx___frontmatter___image___gid' |
-  'childMdx___frontmatter___image___rdev' |
-  'childMdx___frontmatter___image___ino' |
-  'childMdx___frontmatter___image___atimeMs' |
-  'childMdx___frontmatter___image___mtimeMs' |
-  'childMdx___frontmatter___image___ctimeMs' |
-  'childMdx___frontmatter___image___atime' |
-  'childMdx___frontmatter___image___mtime' |
-  'childMdx___frontmatter___image___ctime' |
-  'childMdx___frontmatter___image___birthtime' |
-  'childMdx___frontmatter___image___birthtimeMs' |
-  'childMdx___frontmatter___image___blksize' |
-  'childMdx___frontmatter___image___blocks' |
-  'childMdx___frontmatter___image___url' |
-  'childMdx___frontmatter___image___publicURL' |
-  'childMdx___frontmatter___image___id' |
-  'childMdx___frontmatter___image___children' |
   'childMdx___frontmatter___type' |
+  'childMdx___frontmatter___slug' |
   'childMdx___frontmatter___chapters' |
   'childMdx___frontmatter___chapters___chapter' |
   'childMdx___frontmatter___chapters___synopsis' |
@@ -793,6 +757,7 @@ export type FileFieldsEnum =
   'childMdx___wordCount___paragraphs' |
   'childMdx___wordCount___sentences' |
   'childMdx___wordCount___words' |
+  'childMdx___fields___slug' |
   'childMdx___id' |
   'childMdx___parent___id' |
   'childMdx___parent___parent___id' |
@@ -1707,9 +1672,10 @@ export type InstaNodeFieldsEnum =
   'localFile___childMdx___rawBody' |
   'localFile___childMdx___fileAbsolutePath' |
   'localFile___childMdx___frontmatter___title' |
-  'localFile___childMdx___frontmatter___slug' |
+  'localFile___childMdx___frontmatter___date' |
   'localFile___childMdx___frontmatter___author' |
   'localFile___childMdx___frontmatter___type' |
+  'localFile___childMdx___frontmatter___slug' |
   'localFile___childMdx___frontmatter___chapters' |
   'localFile___childMdx___frontmatter___chapter' |
   'localFile___childMdx___frontmatter___page' |
@@ -1726,6 +1692,7 @@ export type InstaNodeFieldsEnum =
   'localFile___childMdx___wordCount___paragraphs' |
   'localFile___childMdx___wordCount___sentences' |
   'localFile___childMdx___wordCount___words' |
+  'localFile___childMdx___fields___slug' |
   'localFile___childMdx___id' |
   'localFile___childMdx___parent___id' |
   'localFile___childMdx___parent___children' |
@@ -1845,6 +1812,7 @@ export type Mdx = Node & {
   tableOfContents?: Maybe<Scalars['JSON']>;
   timeToRead?: Maybe<Scalars['Int']>;
   wordCount?: Maybe<MdxWordCount>;
+  fields?: Maybe<MdxFields>;
   id: Scalars['ID'];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -1894,75 +1862,18 @@ export type MdxEdge = {
   previous?: Maybe<Mdx>;
 };
 
+export type MdxFields = {
+  slug?: Maybe<Scalars['String']>;
+};
+
 export type MdxFieldsEnum = 
   'rawBody' |
   'fileAbsolutePath' |
   'frontmatter___title' |
-  'frontmatter___slug' |
+  'frontmatter___date' |
   'frontmatter___author' |
-  'frontmatter___image___sourceInstanceName' |
-  'frontmatter___image___absolutePath' |
-  'frontmatter___image___relativePath' |
-  'frontmatter___image___extension' |
-  'frontmatter___image___size' |
-  'frontmatter___image___prettySize' |
-  'frontmatter___image___modifiedTime' |
-  'frontmatter___image___accessTime' |
-  'frontmatter___image___changeTime' |
-  'frontmatter___image___birthTime' |
-  'frontmatter___image___root' |
-  'frontmatter___image___dir' |
-  'frontmatter___image___base' |
-  'frontmatter___image___ext' |
-  'frontmatter___image___name' |
-  'frontmatter___image___relativeDirectory' |
-  'frontmatter___image___dev' |
-  'frontmatter___image___mode' |
-  'frontmatter___image___nlink' |
-  'frontmatter___image___uid' |
-  'frontmatter___image___gid' |
-  'frontmatter___image___rdev' |
-  'frontmatter___image___ino' |
-  'frontmatter___image___atimeMs' |
-  'frontmatter___image___mtimeMs' |
-  'frontmatter___image___ctimeMs' |
-  'frontmatter___image___atime' |
-  'frontmatter___image___mtime' |
-  'frontmatter___image___ctime' |
-  'frontmatter___image___birthtime' |
-  'frontmatter___image___birthtimeMs' |
-  'frontmatter___image___blksize' |
-  'frontmatter___image___blocks' |
-  'frontmatter___image___url' |
-  'frontmatter___image___publicURL' |
-  'frontmatter___image___childImageSharp___id' |
-  'frontmatter___image___childImageSharp___children' |
-  'frontmatter___image___id' |
-  'frontmatter___image___parent___id' |
-  'frontmatter___image___parent___children' |
-  'frontmatter___image___children' |
-  'frontmatter___image___children___id' |
-  'frontmatter___image___children___children' |
-  'frontmatter___image___internal___content' |
-  'frontmatter___image___internal___contentDigest' |
-  'frontmatter___image___internal___description' |
-  'frontmatter___image___internal___fieldOwners' |
-  'frontmatter___image___internal___ignoreType' |
-  'frontmatter___image___internal___mediaType' |
-  'frontmatter___image___internal___owner' |
-  'frontmatter___image___internal___type' |
-  'frontmatter___image___childMdx___rawBody' |
-  'frontmatter___image___childMdx___fileAbsolutePath' |
-  'frontmatter___image___childMdx___body' |
-  'frontmatter___image___childMdx___excerpt' |
-  'frontmatter___image___childMdx___headings' |
-  'frontmatter___image___childMdx___html' |
-  'frontmatter___image___childMdx___mdxAST' |
-  'frontmatter___image___childMdx___tableOfContents' |
-  'frontmatter___image___childMdx___timeToRead' |
-  'frontmatter___image___childMdx___id' |
-  'frontmatter___image___childMdx___children' |
   'frontmatter___type' |
+  'frontmatter___slug' |
   'frontmatter___chapters' |
   'frontmatter___chapters___chapter' |
   'frontmatter___chapters___synopsis' |
@@ -2082,6 +1993,7 @@ export type MdxFieldsEnum =
   'wordCount___paragraphs' |
   'wordCount___sentences' |
   'wordCount___words' |
+  'fields___slug' |
   'id' |
   'parent___id' |
   'parent___parent___id' |
@@ -2169,6 +2081,10 @@ export type MdxFieldsEnum =
   'internal___owner' |
   'internal___type';
 
+export type MdxFieldsFilterInput = {
+  slug?: Maybe<StringQueryOperatorInput>;
+};
+
 export type MdxFilterInput = {
   rawBody?: Maybe<StringQueryOperatorInput>;
   fileAbsolutePath?: Maybe<StringQueryOperatorInput>;
@@ -2181,6 +2097,7 @@ export type MdxFilterInput = {
   tableOfContents?: Maybe<JsonQueryOperatorInput>;
   timeToRead?: Maybe<IntQueryOperatorInput>;
   wordCount?: Maybe<MdxWordCountFilterInput>;
+  fields?: Maybe<MdxFieldsFilterInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -2189,10 +2106,10 @@ export type MdxFilterInput = {
 
 export type MdxFrontmatter = {
   title: Scalars['String'];
-  slug?: Maybe<Scalars['String']>;
+  date?: Maybe<Scalars['String']>;
   author?: Maybe<Scalars['String']>;
-  image?: Maybe<File>;
   type?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
   chapters?: Maybe<Array<Maybe<MdxFrontmatterChapters>>>;
   chapter?: Maybe<Scalars['Int']>;
   page?: Maybe<Scalars['Int']>;
@@ -2230,10 +2147,10 @@ export type MdxFrontmatterChaptersFilterListInput = {
 
 export type MdxFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
-  slug?: Maybe<StringQueryOperatorInput>;
+  date?: Maybe<StringQueryOperatorInput>;
   author?: Maybe<StringQueryOperatorInput>;
-  image?: Maybe<FileFilterInput>;
   type?: Maybe<StringQueryOperatorInput>;
+  slug?: Maybe<StringQueryOperatorInput>;
   chapters?: Maybe<MdxFrontmatterChaptersFilterListInput>;
   chapter?: Maybe<IntQueryOperatorInput>;
   page?: Maybe<IntQueryOperatorInput>;
@@ -2482,6 +2399,8 @@ export type QueryAllSitePageArgs = {
 export type QuerySiteArgs = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
+  port?: Maybe<IntQueryOperatorInput>;
+  host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -2533,6 +2452,7 @@ export type QueryMdxArgs = {
   tableOfContents?: Maybe<JsonQueryOperatorInput>;
   timeToRead?: Maybe<IntQueryOperatorInput>;
   wordCount?: Maybe<MdxWordCountFilterInput>;
+  fields?: Maybe<MdxFieldsFilterInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -2620,6 +2540,8 @@ export type QueryAllSitePluginArgs = {
 export type Site = Node & {
   buildTime?: Maybe<Scalars['Date']>;
   siteMetadata?: Maybe<SiteSiteMetadata>;
+  port?: Maybe<Scalars['Int']>;
+  host?: Maybe<Scalars['String']>;
   polyfill?: Maybe<Scalars['Boolean']>;
   pathPrefix?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
@@ -2822,6 +2744,8 @@ export type SiteFieldsEnum =
   'siteMetadata___title' |
   'siteMetadata___description' |
   'siteMetadata___author' |
+  'port' |
+  'host' |
   'polyfill' |
   'pathPrefix' |
   'id' |
@@ -2914,6 +2838,8 @@ export type SiteFieldsEnum =
 export type SiteFilterInput = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
+  port?: Maybe<IntQueryOperatorInput>;
+  host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -2970,12 +2896,14 @@ export type SitePageConnectionGroupArgs = {
 };
 
 export type SitePageContext = {
+  date?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   chapter?: Maybe<Scalars['Int']>;
   page?: Maybe<Scalars['Int']>;
 };
 
 export type SitePageContextFilterInput = {
+  date?: Maybe<StringQueryOperatorInput>;
   slug?: Maybe<StringQueryOperatorInput>;
   chapter?: Maybe<IntQueryOperatorInput>;
   page?: Maybe<IntQueryOperatorInput>;
@@ -3080,6 +3008,7 @@ export type SitePageFieldsEnum =
   'internal___owner' |
   'internal___type' |
   'isCreatedByStatefulCreatePages' |
+  'context___date' |
   'context___slug' |
   'context___chapter' |
   'context___page' |
@@ -3547,18 +3476,15 @@ export type LatestComicQuery = { allMdx: { nodes: Array<(
       & { frontmatter?: Maybe<(
         Pick<MdxFrontmatter, 'chapter' | 'page' | 'posted'>
         & { comic?: Maybe<{ sharp?: Maybe<{ fixed?: Maybe<GatsbyImageSharpFixedFragment> }> }> }
-      )> }
+      )>, fields?: Maybe<Pick<MdxFields, 'slug'>> }
     )> } };
 
 export type PostQueryVariables = {};
 
 
 export type PostQuery = { allMdx: { nodes: Array<(
-      Pick<Mdx, 'excerpt'>
-      & { frontmatter?: Maybe<(
-        Pick<MdxFrontmatter, 'title' | 'slug' | 'author'>
-        & { image?: Maybe<{ sharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }> }
-      )> }
+      Pick<Mdx, 'body'>
+      & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'slug' | 'author'>> }
     )> } };
 
 export type Unnamed_1_QueryVariables = {

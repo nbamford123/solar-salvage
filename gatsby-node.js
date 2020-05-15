@@ -1,9 +1,29 @@
+const { createFilePath } = require(`gatsby-source-filesystem`);
+
+exports.onCreateNode = ({ getNode, node, actions }) => {
+  const { createNodeField } = actions;
+  if (
+    node.internal.type === `Mdx` &&
+    (node.frontmatter.type === 'comic' || node.frontmatter.type === 'blog')
+  ) {
+    const slug = createFilePath({ node, getNode, basePath: `pages` });
+    createNodeField({
+      node,
+      name: `slug`,
+      value: slug,
+    });
+  }
+};
+
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const blogPosts = await graphql(`
     query {
       allMdx(filter: { frontmatter: { type: { eq: "blog" } } }) {
         nodes {
           frontmatter {
+            date
+          }
+          fields {
             slug
           }
         }
@@ -17,10 +37,11 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const posts = blogPosts.data.allMdx.nodes;
   posts.forEach(post => {
     actions.createPage({
-      path: post.frontmatter.slug,
+      path: post.fields.slug,
       component: require.resolve('./src/templates/blogTemplate.tsx'),
       context: {
-        slug: `${post.frontmatter.slug}`,
+        date: `${post.frontmatter.date}`,
+        slug: post.fields.slug,
       },
     });
   });
@@ -33,6 +54,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
             chapter
             page
           }
+          fields {
+            slug
+          }
         }
       }
     }
@@ -44,11 +68,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const comics = comicPosts.data.allMdx.nodes;
   comics.forEach(comic => {
     actions.createPage({
-      path: `${comic.frontmatter.chapter}-${comic.frontmatter.page}`,
+      path: comic.fields.slug,
       component: require.resolve('./src/templates/comicTemplate.tsx'),
       context: {
         chapter: comic.frontmatter.chapter,
         page: comic.frontmatter.page,
+        slug: comic.fields.slug,
       },
     });
   });

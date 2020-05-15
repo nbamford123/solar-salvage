@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/core';
 
-import { BlogPreview } from './blogPage';
+import { BlogEntry } from './blogEntry';
 
 export const BlogWrapper: React.FC<{}> = () => (
   <div
@@ -13,6 +13,6 @@ export const BlogWrapper: React.FC<{}> = () => (
       padding: 0.5rem;
     `}
   >
-    <BlogPreview />
+    <BlogEntry />
   </div>
 );
