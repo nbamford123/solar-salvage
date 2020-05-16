@@ -700,11 +700,6 @@ export type FileFieldsEnum =
   'childMdx___frontmatter___author' |
   'childMdx___frontmatter___type' |
   'childMdx___frontmatter___slug' |
-  'childMdx___frontmatter___chapters' |
-  'childMdx___frontmatter___chapters___chapter' |
-  'childMdx___frontmatter___chapters___synopsis' |
-  'childMdx___frontmatter___chapters___title' |
-  'childMdx___frontmatter___chapters___writtenBy' |
   'childMdx___frontmatter___chapter' |
   'childMdx___frontmatter___page' |
   'childMdx___frontmatter___posted' |
@@ -745,6 +740,11 @@ export type FileFieldsEnum =
   'childMdx___frontmatter___comic___publicURL' |
   'childMdx___frontmatter___comic___id' |
   'childMdx___frontmatter___comic___children' |
+  'childMdx___frontmatter___chapters' |
+  'childMdx___frontmatter___chapters___chapter' |
+  'childMdx___frontmatter___chapters___synopsis' |
+  'childMdx___frontmatter___chapters___title' |
+  'childMdx___frontmatter___chapters___writtenBy' |
   'childMdx___body' |
   'childMdx___excerpt' |
   'childMdx___headings' |
@@ -1676,10 +1676,10 @@ export type InstaNodeFieldsEnum =
   'localFile___childMdx___frontmatter___author' |
   'localFile___childMdx___frontmatter___type' |
   'localFile___childMdx___frontmatter___slug' |
-  'localFile___childMdx___frontmatter___chapters' |
   'localFile___childMdx___frontmatter___chapter' |
   'localFile___childMdx___frontmatter___page' |
   'localFile___childMdx___frontmatter___posted' |
+  'localFile___childMdx___frontmatter___chapters' |
   'localFile___childMdx___body' |
   'localFile___childMdx___excerpt' |
   'localFile___childMdx___headings' |
@@ -1874,48 +1874,6 @@ export type MdxFieldsEnum =
   'frontmatter___author' |
   'frontmatter___type' |
   'frontmatter___slug' |
-  'frontmatter___chapters' |
-  'frontmatter___chapters___chapter' |
-  'frontmatter___chapters___synopsis' |
-  'frontmatter___chapters___title' |
-  'frontmatter___chapters___thumb___sourceInstanceName' |
-  'frontmatter___chapters___thumb___absolutePath' |
-  'frontmatter___chapters___thumb___relativePath' |
-  'frontmatter___chapters___thumb___extension' |
-  'frontmatter___chapters___thumb___size' |
-  'frontmatter___chapters___thumb___prettySize' |
-  'frontmatter___chapters___thumb___modifiedTime' |
-  'frontmatter___chapters___thumb___accessTime' |
-  'frontmatter___chapters___thumb___changeTime' |
-  'frontmatter___chapters___thumb___birthTime' |
-  'frontmatter___chapters___thumb___root' |
-  'frontmatter___chapters___thumb___dir' |
-  'frontmatter___chapters___thumb___base' |
-  'frontmatter___chapters___thumb___ext' |
-  'frontmatter___chapters___thumb___name' |
-  'frontmatter___chapters___thumb___relativeDirectory' |
-  'frontmatter___chapters___thumb___dev' |
-  'frontmatter___chapters___thumb___mode' |
-  'frontmatter___chapters___thumb___nlink' |
-  'frontmatter___chapters___thumb___uid' |
-  'frontmatter___chapters___thumb___gid' |
-  'frontmatter___chapters___thumb___rdev' |
-  'frontmatter___chapters___thumb___ino' |
-  'frontmatter___chapters___thumb___atimeMs' |
-  'frontmatter___chapters___thumb___mtimeMs' |
-  'frontmatter___chapters___thumb___ctimeMs' |
-  'frontmatter___chapters___thumb___atime' |
-  'frontmatter___chapters___thumb___mtime' |
-  'frontmatter___chapters___thumb___ctime' |
-  'frontmatter___chapters___thumb___birthtime' |
-  'frontmatter___chapters___thumb___birthtimeMs' |
-  'frontmatter___chapters___thumb___blksize' |
-  'frontmatter___chapters___thumb___blocks' |
-  'frontmatter___chapters___thumb___url' |
-  'frontmatter___chapters___thumb___publicURL' |
-  'frontmatter___chapters___thumb___id' |
-  'frontmatter___chapters___thumb___children' |
-  'frontmatter___chapters___writtenBy' |
   'frontmatter___chapter' |
   'frontmatter___page' |
   'frontmatter___posted' |
@@ -1981,6 +1939,48 @@ export type MdxFieldsEnum =
   'frontmatter___comic___childMdx___timeToRead' |
   'frontmatter___comic___childMdx___id' |
   'frontmatter___comic___childMdx___children' |
+  'frontmatter___chapters' |
+  'frontmatter___chapters___chapter' |
+  'frontmatter___chapters___synopsis' |
+  'frontmatter___chapters___title' |
+  'frontmatter___chapters___thumb___sourceInstanceName' |
+  'frontmatter___chapters___thumb___absolutePath' |
+  'frontmatter___chapters___thumb___relativePath' |
+  'frontmatter___chapters___thumb___extension' |
+  'frontmatter___chapters___thumb___size' |
+  'frontmatter___chapters___thumb___prettySize' |
+  'frontmatter___chapters___thumb___modifiedTime' |
+  'frontmatter___chapters___thumb___accessTime' |
+  'frontmatter___chapters___thumb___changeTime' |
+  'frontmatter___chapters___thumb___birthTime' |
+  'frontmatter___chapters___thumb___root' |
+  'frontmatter___chapters___thumb___dir' |
+  'frontmatter___chapters___thumb___base' |
+  'frontmatter___chapters___thumb___ext' |
+  'frontmatter___chapters___thumb___name' |
+  'frontmatter___chapters___thumb___relativeDirectory' |
+  'frontmatter___chapters___thumb___dev' |
+  'frontmatter___chapters___thumb___mode' |
+  'frontmatter___chapters___thumb___nlink' |
+  'frontmatter___chapters___thumb___uid' |
+  'frontmatter___chapters___thumb___gid' |
+  'frontmatter___chapters___thumb___rdev' |
+  'frontmatter___chapters___thumb___ino' |
+  'frontmatter___chapters___thumb___atimeMs' |
+  'frontmatter___chapters___thumb___mtimeMs' |
+  'frontmatter___chapters___thumb___ctimeMs' |
+  'frontmatter___chapters___thumb___atime' |
+  'frontmatter___chapters___thumb___mtime' |
+  'frontmatter___chapters___thumb___ctime' |
+  'frontmatter___chapters___thumb___birthtime' |
+  'frontmatter___chapters___thumb___birthtimeMs' |
+  'frontmatter___chapters___thumb___blksize' |
+  'frontmatter___chapters___thumb___blocks' |
+  'frontmatter___chapters___thumb___url' |
+  'frontmatter___chapters___thumb___publicURL' |
+  'frontmatter___chapters___thumb___id' |
+  'frontmatter___chapters___thumb___children' |
+  'frontmatter___chapters___writtenBy' |
   'body' |
   'excerpt' |
   'headings' |
@@ -2110,11 +2110,11 @@ export type MdxFrontmatter = {
   author?: Maybe<Scalars['String']>;
   type?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
-  chapters?: Maybe<Array<Maybe<MdxFrontmatterChapters>>>;
   chapter?: Maybe<Scalars['Int']>;
   page?: Maybe<Scalars['Int']>;
   posted?: Maybe<Scalars['Date']>;
   comic?: Maybe<File>;
+  chapters?: Maybe<Array<Maybe<MdxFrontmatterChapters>>>;
 };
 
 
@@ -2151,11 +2151,11 @@ export type MdxFrontmatterFilterInput = {
   author?: Maybe<StringQueryOperatorInput>;
   type?: Maybe<StringQueryOperatorInput>;
   slug?: Maybe<StringQueryOperatorInput>;
-  chapters?: Maybe<MdxFrontmatterChaptersFilterListInput>;
   chapter?: Maybe<IntQueryOperatorInput>;
   page?: Maybe<IntQueryOperatorInput>;
   posted?: Maybe<DateQueryOperatorInput>;
   comic?: Maybe<FileFilterInput>;
+  chapters?: Maybe<MdxFrontmatterChaptersFilterListInput>;
 };
 
 export type MdxGroupConnection = {
@@ -2888,17 +2888,23 @@ export type SitePageConnectionGroupArgs = {
 };
 
 export type SitePageContext = {
-  date?: Maybe<Scalars['String']>;
-  slug?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  numPages?: Maybe<Scalars['Int']>;
+  currentPage?: Maybe<Scalars['Int']>;
   chapter?: Maybe<Scalars['Int']>;
   page?: Maybe<Scalars['Int']>;
+  slug?: Maybe<Scalars['String']>;
 };
 
 export type SitePageContextFilterInput = {
-  date?: Maybe<StringQueryOperatorInput>;
-  slug?: Maybe<StringQueryOperatorInput>;
+  limit?: Maybe<IntQueryOperatorInput>;
+  skip?: Maybe<IntQueryOperatorInput>;
+  numPages?: Maybe<IntQueryOperatorInput>;
+  currentPage?: Maybe<IntQueryOperatorInput>;
   chapter?: Maybe<IntQueryOperatorInput>;
   page?: Maybe<IntQueryOperatorInput>;
+  slug?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePageEdge = {
@@ -3000,10 +3006,13 @@ export type SitePageFieldsEnum =
   'internal___owner' |
   'internal___type' |
   'isCreatedByStatefulCreatePages' |
-  'context___date' |
-  'context___slug' |
+  'context___limit' |
+  'context___skip' |
+  'context___numPages' |
+  'context___currentPage' |
   'context___chapter' |
   'context___page' |
+  'context___slug' |
   'pluginCreator___id' |
   'pluginCreator___parent___id' |
   'pluginCreator___parent___parent___id' |
@@ -3480,14 +3489,15 @@ export type PostQuery = { allMdx: { nodes: Array<(
     )> } };
 
 export type Unnamed_1_QueryVariables = {
-  slug: Scalars['String'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
 };
 
 
-export type Unnamed_1_Query = { mdx?: Maybe<(
-    Pick<Mdx, 'body'>
-    & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'author'>> }
-  )> };
+export type Unnamed_1_Query = { allMdx: { edges: Array<{ node: (
+        Pick<Mdx, 'body'>
+        & { fields?: Maybe<Pick<MdxFields, 'slug'>>, frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'author'>> }
+      ) }> } };
 
 export type Unnamed_2_QueryVariables = {
   chapter: Scalars['Int'];

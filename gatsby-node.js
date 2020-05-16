@@ -18,13 +18,15 @@ exports.onCreateNode = ({ getNode, node, actions }) => {
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const blogPosts = await graphql(`
     query {
-      allMdx(filter: { frontmatter: { type: { eq: "blog" } } }) {
-        nodes {
-          frontmatter {
-            date
-          }
-          fields {
-            slug
+      allMdx(
+        filter: { frontmatter: { type: { eq: "blog" } } }
+        sort: { fields: [frontmatter___date], order: DESC }
+      ) {
+        edges {
+          node {
+            fields {
+              slug
+            }
           }
         }
       }
@@ -34,14 +36,18 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     reporter.panic('failed to create posts', blogPosts.errors);
   }
 
-  const posts = blogPosts.data.allMdx.nodes;
-  posts.forEach(post => {
+  const posts = blogPosts.data.allMdx.edges;
+  const postsPerPage = 6;
+  const numPages = Math.ceil(posts.length / postsPerPage);
+  Array.from({ length: numPages }).forEach((_, i) => {
     actions.createPage({
-      path: post.fields.slug,
-      component: require.resolve('./src/templates/blogTemplate.tsx'),
+      path: i === 0 ? `/blog` : `/blog/${i + 1}`,
+      component: require.resolve('./src/templates/blogListTemplate.tsx'),
       context: {
-        date: `${post.frontmatter.date}`,
-        slug: post.fields.slug,
+        limit: postsPerPage,
+        skip: i * postsPerPage,
+        numPages,
+        currentPage: i + 1,
       },
     });
   });
@@ -68,7 +74,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const comics = comicPosts.data.allMdx.nodes;
   comics.forEach(comic => {
     actions.createPage({
-      path: comic.fields.slug,
+      path: `/comics/${comic.fields.slug}`,
       component: require.resolve('./src/templates/comicTemplate.tsx'),
       context: {
         chapter: comic.frontmatter.chapter,
