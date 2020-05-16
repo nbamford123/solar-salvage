@@ -1,14 +1,15 @@
 ## To Do
 
-* Blog page plus navigation, use dates instead of slugs for page names
-* more sensical page addresses (like "chapter1-page1?)
+* Blog navigation, blog preview on index, link on menu? 
+* update comic navigation
 * Header with text instead of text in image
-* font, color scheme, backgrounds, button art
 * Bigger comic/layout sizes
 * define heights/widths somewhere central, like in types or consts
 * Sidebar items-- links? Ads?
+* font, color scheme, backgrounds, button art
 * Mobile version
 * fix naviagtion-- tippy for pop-ups?
 * search code for to-do
 * comments?
+* tests?
 

@@ -12,8 +12,10 @@ const usePosts = (): Array<Post> => {
         nodes {
           frontmatter {
             title
-            slug
             author
+          }
+          fields {
+            slug
           }
           body
         }

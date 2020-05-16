@@ -696,10 +696,6 @@ export type FileFieldsEnum =
   'childMdx___rawBody' |
   'childMdx___fileAbsolutePath' |
   'childMdx___frontmatter___title' |
-  'childMdx___frontmatter___date' |
-  'childMdx___frontmatter___author' |
-  'childMdx___frontmatter___type' |
-  'childMdx___frontmatter___slug' |
   'childMdx___frontmatter___chapter' |
   'childMdx___frontmatter___page' |
   'childMdx___frontmatter___posted' |
@@ -740,11 +736,14 @@ export type FileFieldsEnum =
   'childMdx___frontmatter___comic___publicURL' |
   'childMdx___frontmatter___comic___id' |
   'childMdx___frontmatter___comic___children' |
+  'childMdx___frontmatter___type' |
   'childMdx___frontmatter___chapters' |
   'childMdx___frontmatter___chapters___chapter' |
   'childMdx___frontmatter___chapters___synopsis' |
   'childMdx___frontmatter___chapters___title' |
   'childMdx___frontmatter___chapters___writtenBy' |
+  'childMdx___frontmatter___date' |
+  'childMdx___frontmatter___author' |
   'childMdx___body' |
   'childMdx___excerpt' |
   'childMdx___headings' |
@@ -1672,14 +1671,13 @@ export type InstaNodeFieldsEnum =
   'localFile___childMdx___rawBody' |
   'localFile___childMdx___fileAbsolutePath' |
   'localFile___childMdx___frontmatter___title' |
-  'localFile___childMdx___frontmatter___date' |
-  'localFile___childMdx___frontmatter___author' |
-  'localFile___childMdx___frontmatter___type' |
-  'localFile___childMdx___frontmatter___slug' |
   'localFile___childMdx___frontmatter___chapter' |
   'localFile___childMdx___frontmatter___page' |
   'localFile___childMdx___frontmatter___posted' |
+  'localFile___childMdx___frontmatter___type' |
   'localFile___childMdx___frontmatter___chapters' |
+  'localFile___childMdx___frontmatter___date' |
+  'localFile___childMdx___frontmatter___author' |
   'localFile___childMdx___body' |
   'localFile___childMdx___excerpt' |
   'localFile___childMdx___headings' |
@@ -1870,10 +1868,6 @@ export type MdxFieldsEnum =
   'rawBody' |
   'fileAbsolutePath' |
   'frontmatter___title' |
-  'frontmatter___date' |
-  'frontmatter___author' |
-  'frontmatter___type' |
-  'frontmatter___slug' |
   'frontmatter___chapter' |
   'frontmatter___page' |
   'frontmatter___posted' |
@@ -1939,6 +1933,7 @@ export type MdxFieldsEnum =
   'frontmatter___comic___childMdx___timeToRead' |
   'frontmatter___comic___childMdx___id' |
   'frontmatter___comic___childMdx___children' |
+  'frontmatter___type' |
   'frontmatter___chapters' |
   'frontmatter___chapters___chapter' |
   'frontmatter___chapters___synopsis' |
@@ -1981,6 +1976,8 @@ export type MdxFieldsEnum =
   'frontmatter___chapters___thumb___id' |
   'frontmatter___chapters___thumb___children' |
   'frontmatter___chapters___writtenBy' |
+  'frontmatter___date' |
+  'frontmatter___author' |
   'body' |
   'excerpt' |
   'headings' |
@@ -2106,15 +2103,14 @@ export type MdxFilterInput = {
 
 export type MdxFrontmatter = {
   title: Scalars['String'];
-  date?: Maybe<Scalars['String']>;
-  author?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
-  slug?: Maybe<Scalars['String']>;
   chapter?: Maybe<Scalars['Int']>;
   page?: Maybe<Scalars['Int']>;
   posted?: Maybe<Scalars['Date']>;
   comic?: Maybe<File>;
+  type?: Maybe<Scalars['String']>;
   chapters?: Maybe<Array<Maybe<MdxFrontmatterChapters>>>;
+  date?: Maybe<Scalars['String']>;
+  author?: Maybe<Scalars['String']>;
 };
 
 
@@ -2147,15 +2143,14 @@ export type MdxFrontmatterChaptersFilterListInput = {
 
 export type MdxFrontmatterFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
-  date?: Maybe<StringQueryOperatorInput>;
-  author?: Maybe<StringQueryOperatorInput>;
-  type?: Maybe<StringQueryOperatorInput>;
-  slug?: Maybe<StringQueryOperatorInput>;
   chapter?: Maybe<IntQueryOperatorInput>;
   page?: Maybe<IntQueryOperatorInput>;
   posted?: Maybe<DateQueryOperatorInput>;
   comic?: Maybe<FileFilterInput>;
+  type?: Maybe<StringQueryOperatorInput>;
   chapters?: Maybe<MdxFrontmatterChaptersFilterListInput>;
+  date?: Maybe<StringQueryOperatorInput>;
+  author?: Maybe<StringQueryOperatorInput>;
 };
 
 export type MdxGroupConnection = {
@@ -2399,6 +2394,8 @@ export type QueryAllSitePageArgs = {
 export type QuerySiteArgs = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
+  port?: Maybe<IntQueryOperatorInput>;
+  host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -2538,6 +2535,8 @@ export type QueryAllSitePluginArgs = {
 export type Site = Node & {
   buildTime?: Maybe<Scalars['Date']>;
   siteMetadata?: Maybe<SiteSiteMetadata>;
+  port?: Maybe<Scalars['Int']>;
+  host?: Maybe<Scalars['String']>;
   polyfill?: Maybe<Scalars['Boolean']>;
   pathPrefix?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
@@ -2740,6 +2739,8 @@ export type SiteFieldsEnum =
   'siteMetadata___title' |
   'siteMetadata___description' |
   'siteMetadata___author' |
+  'port' |
+  'host' |
   'polyfill' |
   'pathPrefix' |
   'id' |
@@ -2832,6 +2833,8 @@ export type SiteFieldsEnum =
 export type SiteFilterInput = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
+  port?: Maybe<IntQueryOperatorInput>;
+  host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -3485,7 +3488,7 @@ export type PostQueryVariables = {};
 
 export type PostQuery = { allMdx: { nodes: Array<(
       Pick<Mdx, 'body'>
-      & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'slug' | 'author'>> }
+      & { frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'author'>>, fields?: Maybe<Pick<MdxFields, 'slug'>> }
     )> } };
 
 export type Unnamed_1_QueryVariables = {
