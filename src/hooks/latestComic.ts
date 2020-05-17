@@ -34,6 +34,9 @@ export const latestComic = (): Comic => {
               }
             }
           }
+          fields {
+            slug
+          }
           body
         }
       }

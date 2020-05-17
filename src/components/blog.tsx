@@ -1,12 +1,14 @@
 import React from 'react';
 import { css } from '@emotion/core';
 
-import usePosts from '../hooks/usePosts';
-import PostPreview from './postPreview';
+import { BlogEntry } from './blogEntry';
+import { Post } from '../types';
 
-// TODO: limit this to two or three posts
-export const BlogPreview: React.FC<{}> = () => {
-  const posts = usePosts();
+export interface BlogProps {
+  posts: Array<Post>;
+}
+
+export const Blog: React.FC<BlogProps> = ({ posts }) => {
   return (
     <div
       css={css`
@@ -16,9 +18,9 @@ export const BlogPreview: React.FC<{}> = () => {
         padding: 0.5rem;
       `}
     >
-      <h2>Blog</h2>
+      <h2>News</h2>
       {posts.map(post => (
-        <PostPreview key={post.slug} post={post} />
+        <BlogEntry key={post.slug} post={post} />
       ))}
     </div>
   );
