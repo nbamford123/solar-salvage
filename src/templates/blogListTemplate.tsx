@@ -1,10 +1,9 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { css } from '@emotion/core';
 
 import Layout from '../components/layout';
-import PostWrapper from '../components/postWrapper';
-import ReadLink from '../components/readLink';
+import { Blog } from '../components/blog';
+import { ReadLink } from '../components/readLink';
 import { makePost, PostMdx } from '../types';
 
 export const query = graphql`
@@ -32,27 +31,39 @@ export const query = graphql`
 `;
 export interface BlogListTemplateProps {
   data: { allMdx: { edges: Array<{ node: PostMdx }> } };
+  pageContext: {
+    numPages: number;
+    currentPage: number;
+  };
 }
 
-const BlogListTemplate: React.FC<BlogListTemplateProps> = ({ data }) => {
-  const edges = data.allMdx.edges;
+const BlogListTemplate: React.FC<BlogListTemplateProps> = ({
+  pageContext,
+  data,
+}) => {
+  const posts = data.allMdx.edges.map(edge => makePost(edge.node));
+
+  const { currentPage, numPages } = pageContext;
+  const isFirst = currentPage === 1;
+  const isLast = currentPage === numPages;
+  const prevPage = `/blog/${
+    currentPage - 1 === 1 ? '' : (currentPage - 1).toString()
+  }`;
+  const nextPage = `/blog/${(currentPage + 1).toString()}`;
+
   const page = (
     <>
-      <div
-        css={css`
-          background: white;
-          display: flex;
-          flex-direction: column;
-          padding: 0.5rem;
-        `}
-      >
-        <h2>Blog</h2>
-        {edges.map(edge => {
-          const post = makePost(edge.node);
-          return <PostWrapper key={post.slug} post={post} />;
-        })}
-      </div>
-      <ReadLink to="/">&larr; back to all posts</ReadLink>{' '}
+      <Blog posts={posts} />
+      {!isFirst && (
+        <ReadLink to={prevPage} rel="prev">
+          ← Previous Page
+        </ReadLink>
+      )}
+      {!isLast && (
+        <ReadLink to={nextPage} rel="next">
+          Next Page →
+        </ReadLink>
+      )}
     </>
   );
   return <Layout page={page} />;

@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import { Link, navigate } from 'gatsby';
 
 import { chapterSummary } from '../hooks/chapterSummary';
+import { getComicPath } from '../util/getComicPath';
 
 export interface ComicNavProps {
   chapter: number;
@@ -24,7 +25,7 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
   const chapterOptions = chapterInfo.map(chapter => (
     <option
       key={chapter.chapter}
-      value={chapter.chapter}
+      value={getComicPath(chapter.chapter, 1)}
     >{`${chapter.chapter} ${chapter.title}`}</option>
   ));
 
@@ -120,13 +121,13 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
     >
       <NavLink
         title={firstPageNav.text}
-        to={`${firstPageNav.chapter}-${firstPageNav.page}`}
+        to={getComicPath(firstPageNav.chapter, firstPageNav.page)}
       >
         &lt;&lt;
       </NavLink>
       <NavLink
         title={previousPageNav.text}
-        to={`${previousPageNav.chapter}-${previousPageNav.page}`}
+        to={getComicPath(previousPageNav.chapter, previousPageNav.page)}
       >
         &lt;
       </NavLink>
@@ -136,19 +137,19 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
         `}
         title={'Select chapter'}
         value={myChapter.chapter}
-        onChange={e => navigate(`${e.target.value}-1`)}
+        onChange={e => navigate(e.target.value)}
       >
         {chapterOptions}
       </select>
       <NavLink
         title={nextPageNav.text}
-        to={`${nextPageNav.chapter}-${nextPageNav.page}`}
+        to={getComicPath(nextPageNav.chapter, nextPageNav.page)}
       >
         &gt;
       </NavLink>
       <NavLink
         title={lastPageNav.text}
-        to={`${lastPageNav.chapter}-${lastPageNav.page}`}
+        to={getComicPath(lastPageNav.chapter, lastPageNav.page)}
       >
         &gt;&gt;
       </NavLink>

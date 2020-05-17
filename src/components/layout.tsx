@@ -5,12 +5,12 @@ import { Helmet } from 'react-helmet';
 import Header from './header';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import { MainWrapper } from './mainWrapper';
-// import { BlogWrapper } from './blogWrapper';
 
 export interface LayoutProps {
+  children?: JSX.Element | Array<JSX.Element>;
   page: JSX.Element;
 }
-const Layout: React.SFC<LayoutProps> = ({ page }) => {
+const Layout: React.SFC<LayoutProps> = ({ children, page }) => {
   const { title, description } = useSiteMetadata();
   return (
     <>
@@ -87,8 +87,10 @@ const Layout: React.SFC<LayoutProps> = ({ page }) => {
           width: 980px;
         `}
       >
-        <MainWrapper page={page} />
-        {/* <BlogWrapper /> */}
+        <>
+          <MainWrapper page={page} />
+          {children}
+        </>
       </main>
     </>
   );

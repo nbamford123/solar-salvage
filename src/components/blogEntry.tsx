@@ -1,26 +1,28 @@
 import React from 'react';
 import { css } from '@emotion/core';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 
-import usePosts from '../hooks/usePosts';
-import PostWrapper from './postWrapper';
+import { Post } from '../types';
 
-// TODO: limit this to two or three posts
-export const BlogEntry: React.FC<{}> = () => {
-  // Just get the latest 4, here.
-  const posts = usePosts();
-  return (
-    <div
-      css={css`
-        background: white;
-        display: flex;
-        flex-direction: column;
-        padding: 0.5rem;
-      `}
-    >
-      <h2>Blog</h2>
-      {posts.map(post => (
-        <PostWrapper key={post.slug} post={post} />
-      ))}
+export interface BlogEntryProps {
+  post: Post;
+}
+export const BlogEntry: React.FC<BlogEntryProps> = ({ post }) => (
+  <article
+    css={css`
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      margin-top: 0;
+      padding-bottom: 1rem;
+
+      :first-of-type {
+        margin-top: 1rem;
+      }
+    `}
+  >
+    <div>
+      <h3>{post.title}</h3>
+      <MDXRenderer>{post.body}</MDXRenderer>
     </div>
-  );
-};
+  </article>
+);

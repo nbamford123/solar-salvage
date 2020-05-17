@@ -5,10 +5,17 @@ import {
 } from '../../graphql-types';
 import { makePost, Post } from '../types';
 
-const usePosts = (): Array<Post> => {
+/*
+ * Get the most recent 4 blog posts
+ */
+export const latestBlogs = (): Array<Post> => {
   const data: PostQuery = useStaticQuery(graphql`
     query Post {
-      allMdx(filter: { frontmatter: { type: { eq: "blog" } } }) {
+      allMdx(
+        filter: { frontmatter: { type: { eq: "blog" } } }
+        sort: { fields: [frontmatter___date], order: DESC }
+        limit: 4
+      ) {
         nodes {
           frontmatter {
             title
@@ -24,4 +31,3 @@ const usePosts = (): Array<Post> => {
   `);
   return data.allMdx.nodes.map(postMdx => makePost(postMdx));
 };
-export default usePosts;

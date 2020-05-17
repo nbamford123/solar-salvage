@@ -1,9 +1,14 @@
 import React from 'react';
 import { css } from '@emotion/core';
 
-import { BlogEntry } from './blogEntry';
+import { Blog } from './blog';
+import { Post } from '../types';
+import { ReadLink } from './readLink';
 
-export const BlogWrapper: React.FC<{}> = () => (
+export interface BlogWrapperProps {
+  posts: Array<Post>;
+}
+export const BlogWrapper: React.FC<BlogWrapperProps> = ({ posts }) => (
   <div
     css={css`
       background: #eee;
@@ -13,6 +18,9 @@ export const BlogWrapper: React.FC<{}> = () => (
       padding: 0.5rem;
     `}
   >
-    <BlogEntry />
+    <Blog posts={posts} />
+    <ReadLink to="/blog" rel="news">
+      All News →
+    </ReadLink>
   </div>
 );

@@ -1,4 +1,5 @@
 const { createFilePath } = require(`gatsby-source-filesystem`);
+const { getComicPath } = require('./src/util/getComicPath');
 
 exports.onCreateNode = ({ getNode, node, actions }) => {
   const { createNodeField } = actions;
@@ -6,6 +7,8 @@ exports.onCreateNode = ({ getNode, node, actions }) => {
     node.internal.type === `Mdx` &&
     (node.frontmatter.type === 'comic' || node.frontmatter.type === 'blog')
   ) {
+    // Don't really want this for comics, it makes navigation too difficult, but it is a cool trick,
+    // so I'm leaving it here
     const slug = createFilePath({ node, getNode, basePath: `pages` });
     createNodeField({
       node,
@@ -74,7 +77,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const comics = comicPosts.data.allMdx.nodes;
   comics.forEach(comic => {
     actions.createPage({
-      path: `/comics/${comic.fields.slug}`,
+      path: getComicPath(comic.frontmatter.chapter, comic.frontmatter.page),
       component: require.resolve('./src/templates/comicTemplate.tsx'),
       context: {
         chapter: comic.frontmatter.chapter,
