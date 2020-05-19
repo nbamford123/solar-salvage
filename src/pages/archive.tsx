@@ -6,6 +6,7 @@ import Select from 'react-select';
 
 import Layout from '../components/layout';
 import { chapterSummary } from '../hooks/chapterSummary';
+import { getComicPath } from '../util/getComicPath';
 
 // TODO: Fix page indexing when chapter title pages (0) are added
 const Archive: React.FC<{}> = () => {
@@ -29,7 +30,7 @@ const Archive: React.FC<{}> = () => {
           key={chapter.chapter}
         >
           <Link
-            to={`${chapter.chapter}-1`}
+            to={getComicPath(chapter.chapter, 1)}
             css={css`
               margin: 1rem 1rem 0 0;
               width: 200px;
@@ -75,7 +76,7 @@ const Archive: React.FC<{}> = () => {
                 navigate((value as any).value)
               }
               options={Array.from(Array(chapter.pages), (_, index) => ({
-                value: `${chapter.chapter}-${index + 1}`,
+                value: getComicPath(chapter.chapter, index + 1),
                 label: `${index + 1}`,
               }))}
             />

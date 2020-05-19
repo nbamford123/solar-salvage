@@ -25,7 +25,7 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
   const chapterOptions = chapterInfo.map(chapter => (
     <option
       key={chapter.chapter}
-      value={getComicPath(chapter.chapter, 1)}
+      value={chapter.chapter}
     >{`${chapter.chapter} ${chapter.title}`}</option>
   ));
 
@@ -33,6 +33,7 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
   const myChapter = chapterInfo.find(
     chapterSummary => chapterSummary.chapter === chapter,
   ) || { chapter: 1, pages: 0 };
+
   // prev, next chapters, if they exist
   const prevChapter = chapterInfo.find(
     chapterSummary => chapterSummary.chapter === chapter - 1,
@@ -137,7 +138,7 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
         `}
         title={'Select chapter'}
         value={myChapter.chapter}
-        onChange={e => navigate(e.target.value)}
+        onChange={e => navigate(getComicPath(e.target.value, 1))}
       >
         {chapterOptions}
       </select>
