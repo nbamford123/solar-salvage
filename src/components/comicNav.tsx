@@ -1,5 +1,6 @@
+/** @jsx jsx */
 import React from 'react';
-import { css } from '@emotion/core';
+import { css, jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 import { Link, navigate } from 'gatsby';
 
@@ -11,17 +12,24 @@ export interface ComicNavProps {
   page: number;
 }
 
-// TODO: Fix this-- make stuff disabled when they don't make sense instead of changing functionality
-// Also, maybe tippy or a real tooltip?
-const NavLink = styled(Link)`
-  display: inline-block;
-  font-size: 1.25rem;
-  margin-right: 0.5rem;
-`;
+const baseLink = css({
+  display: 'inlineBlock',
+  fontSize: '1.25rem',
+  marginRight: '0.5rem',
+});
 
+const NavLink = styled(Link)(baseLink);
+const DisabledNavLink = styled.label(baseLink, {
+  color: 'lightgrey',
+  textDecoration: 'underline',
+});
+
+// TODO: Maybe tippy or a real tooltip?
 export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
+  // Fetch all the chapters
   const chapterInfo = chapterSummary();
-  // Get the chapters for the select nav
+
+  // Chapters for select nav
   const chapterOptions = chapterInfo.map(chapter => (
     <option
       key={chapter.chapter}
@@ -41,73 +49,66 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
   const nextChapter = chapterInfo.find(
     chapterSummary => chapterSummary.chapter === chapter + 1,
   );
-  // next page, maybe next chapter
-  const nextPageNav =
-    page + 1 > myChapter.pages
-      ? nextChapter
-        ? {
-            page: 1,
-            chapter: nextChapter.chapter,
-            text: 'Next chapter',
-          }
-        : {
-            page: page,
-            chapter: chapter,
-            text: 'Last page',
-          }
-      : {
-          page: page + 1,
-          chapter: chapter,
-          text: 'Next page',
-        };
 
-  // previous page, maybe previous chapter
-  const previousPageNav =
-    page - 1 < 1
-      ? prevChapter
-        ? {
-            page: prevChapter.pages,
-            chapter: prevChapter.chapter,
-            text: 'Previous chapter',
-          }
-        : {
-            page: page,
-            chapter: chapter,
-            text: 'First page',
-          }
-      : {
-          page: page - 1,
-          chapter: chapter,
-          text: 'Previous page',
-        };
+  const lastPage = page === myChapter.pages;
+  const firstPage = page === 1;
 
-  // Last page in chapter, or first page in next chapter if already there
-  const lastPageNav =
-    page === myChapter.pages
-      ? {
-          chapter: nextChapter ? nextChapter.chapter : chapter,
-          page: nextChapter ? 1 : page,
-          text: nextChapter ? 'Next chapter' : 'End of chapter',
+  // Navigation links
+  const beginningOfChapter = firstPage ? (
+    <DisabledNavLink title="Beginning of Chapter">&lt;&lt;</DisabledNavLink>
+  ) : (
+    <NavLink
+      title="Beginning of Chapter"
+      to={getComicPath(myChapter.chapter, 1)}
+    >
+      &lt;&lt;
+    </NavLink>
+  );
+  const prevPage =
+    firstPage && !prevChapter ? (
+      <DisabledNavLink title="Previous Page">&lt;</DisabledNavLink>
+    ) : (
+      <NavLink
+        title="Previous Page"
+        to={
+          firstPage
+            ? prevChapter
+              ? getComicPath(prevChapter.chapter, prevChapter.pages)
+              : ''
+            : getComicPath(myChapter.chapter, page - 1)
         }
-      : {
-          chapter: chapter,
-          page: myChapter.pages,
-          text: 'End of chapter',
-        };
-
-  // First page in chapter, or last page in previous chapter if already there
-  const firstPageNav =
-    page === 1
-      ? {
-          chapter: prevChapter ? prevChapter.chapter : chapter,
-          page: prevChapter ? prevChapter.pages : page,
-          text: prevChapter ? 'Previous chapter' : 'Beginning of chapter',
+      >
+        &lt;
+      </NavLink>
+    );
+  const nextPage =
+    lastPage && !nextChapter ? (
+      <DisabledNavLink title="Next Page">&gt;</DisabledNavLink>
+    ) : (
+      <NavLink
+        title="Next Page"
+        to={
+          lastPage
+            ? nextChapter
+              ? getComicPath(nextChapter.chapter, 1)
+              : ''
+            : getComicPath(myChapter.chapter, page + 1)
         }
-      : {
-          chapter: chapter,
-          page: 1,
-          text: 'Beginning of chapter',
-        };
+      >
+        &gt;
+      </NavLink>
+    );
+
+  const endOfChapter = lastPage ? (
+    <DisabledNavLink title="End of Chapter">&gt;&gt;</DisabledNavLink>
+  ) : (
+    <NavLink
+      title="End of Chapter"
+      to={getComicPath(myChapter.chapter, myChapter.pages)}
+    >
+      &gt;&gt;
+    </NavLink>
+  );
 
   return (
     <div
@@ -120,18 +121,8 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
         }
       `}
     >
-      <NavLink
-        title={firstPageNav.text}
-        to={getComicPath(firstPageNav.chapter, firstPageNav.page)}
-      >
-        &lt;&lt;
-      </NavLink>
-      <NavLink
-        title={previousPageNav.text}
-        to={getComicPath(previousPageNav.chapter, previousPageNav.page)}
-      >
-        &lt;
-      </NavLink>
+      {beginningOfChapter}
+      {prevPage}
       <select
         css={css`
           margin-right: 0.5rem;
@@ -142,18 +133,8 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
       >
         {chapterOptions}
       </select>
-      <NavLink
-        title={nextPageNav.text}
-        to={getComicPath(nextPageNav.chapter, nextPageNav.page)}
-      >
-        &gt;
-      </NavLink>
-      <NavLink
-        title={lastPageNav.text}
-        to={getComicPath(lastPageNav.chapter, lastPageNav.page)}
-      >
-        &gt;&gt;
-      </NavLink>
+      {nextPage}
+      {endOfChapter}
     </div>
   );
 };

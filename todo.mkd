@@ -1,14 +1,12 @@
 ## To Do
 
-* Blog navigation, blog preview on index, link on menu? 
-* update comic navigation-- central location for determining page slugs?
+* update comic navigation
 * Header with text instead of text in image
 * Bigger comic/layout sizes
 * define heights/widths somewhere central, like in types or consts
 * Sidebar items-- links? Ads?
 * font, color scheme, backgrounds, button art
 * Mobile version
-* fix naviagtion-- tippy for pop-ups?
 * search code for to-do
 * google ads? Webcomic ads?
 * comments?
