@@ -1,9 +1,7 @@
 ## To Do
 
-* update comic navigation
 * Header with text instead of text in image
-* Bigger comic/layout sizes
-* define heights/widths somewhere central, like in types or consts
+* Comic size in template should be moved to types.ts
 * Sidebar items-- links? Ads?
 * font, color scheme, backgrounds, button art
 * Mobile version

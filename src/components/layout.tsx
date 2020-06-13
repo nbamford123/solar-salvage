@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet';
 import Header from './header';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import { MainWrapper } from './mainWrapper';
+import { totalWidth } from '../types';
 
 export interface LayoutProps {
   children?: JSX.Element | Array<JSX.Element>;
@@ -84,7 +85,7 @@ const Layout: React.SFC<LayoutProps> = ({ children, page }) => {
           flex-direction: column;
           margin: 2rem auto;
           max-width: 90vw;
-          width: 980px;
+          width: ${totalWidth}px;
         `}
       >
         <>
