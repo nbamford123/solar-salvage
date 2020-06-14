@@ -8,8 +8,8 @@ import { MainWrapper } from './mainWrapper';
 import { totalWidth } from '../types';
 
 export interface LayoutProps {
-  children?: JSX.Element | Array<JSX.Element>;
-  page: JSX.Element;
+  children?: React.ReactNode;
+  page: React.ReactNode;
 }
 const Layout: React.SFC<LayoutProps> = ({ children, page }) => {
   const { title, description } = useSiteMetadata();
