@@ -5,7 +5,7 @@ import { Sidebar } from './sidebar';
 import { pageWidth } from '../types';
 
 interface MainWrapperProps {
-  page: JSX.Element;
+  page: React.ReactNode;
 }
 export const MainWrapper: React.FC<MainWrapperProps> = ({ page }) => (
   <div
