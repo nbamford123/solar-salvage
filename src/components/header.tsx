@@ -4,10 +4,12 @@ import { css } from '@emotion/core';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 
-// interface NavLinkProps extends GatsbyLinkProps<> {
-//   fontWeight: string;
-// }
-const NavLink = styled(Link)`
+import { totalWidth as headerWidth } from '../types';
+
+interface NavLinkProps {
+  fontWeight?: string;
+}
+const NavLink = styled(Link)<NavLinkProps>`
   color: #222;
   font-size: 1rem;
   font-weight: ${props => props.fontWeight || 'normal'};
@@ -25,12 +27,13 @@ const NavLink = styled(Link)`
   }
 `;
 
+// Bummer, can't use variables here, but height and width are defined in types.ts
 const headerImage = () => {
   const { image } = useStaticQuery(graphql`
     query {
-      image: file(relativePath: { eq: "solsal_banner_05.jpg" }) {
+      image: file(relativePath: { eq: "headerbackground.jpg" }) {
         sharp: childImageSharp {
-          fixed(width: 980, height: 120) {
+          fixed(width: 1056, height: 200) {
             ...GatsbyImageSharpFixed
           }
         }
@@ -47,14 +50,14 @@ const headerImage = () => {
   );
 };
 
-const Header = () => (
+export const Header = () => (
   <header
     css={css`
       background: #eee;
       border-bottom: 1px solid #ddd;
       display: flex;
       flex-direction: column;
-      width: 980px;
+      width: ${headerWidth}px;
       margin: auto;
       padding-bottom: 0.5rem;
     `}

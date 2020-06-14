@@ -2,13 +2,14 @@ import React from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 
-// vertical spacing between the boxes should be controlled from here-- every descendent except lastOf could have margin-bottom
+import { sidebarContentWidth } from '../types';
+
 const ContentBox = styled.div`
   background: white;
   height: 300px;
-  width: 300px;
-  margin: 0.5rem;
+  width: ${sidebarContentWidth}px;
 `;
+
 export const Sidebar: React.FC<{}> = () => {
   return (
     <div
@@ -20,7 +21,7 @@ export const Sidebar: React.FC<{}> = () => {
         flex-direction: column;
         justify-content: flex-start;
         margin: 0 0.5rem;
-        width: 100%;
+        padding: 0.5rem;
       `}
     >
       <ContentBox />

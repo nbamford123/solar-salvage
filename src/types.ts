@@ -1,5 +1,29 @@
 import { FixedObject } from 'gatsby-image';
 
+//
+// Widths for main elements page
+//
+
+// Comic width will be 700, make all of the pages this width
+export const pageContentWidth = 700;
+
+// Comic image plus .5 rem x padding
+// 700 + 18 = 718
+export const pageWidth = 718;
+
+// Sidebar content is 300 width
+export const sidebarContentWidth = 300;
+
+// Total sidebar width .5rem padding, 1px border, and .5rem margin
+// sideBarContent + 18 + 2 + 18 = 340
+export const sidebarWidth = 338;
+
+// The whole site
+export const totalWidth = pageWidth + sidebarWidth;
+
+// Header height
+export const headerHeight = 200;
+
 export type GatsbyFixedImage = {
   // eslint-disable-next-line @typescript-eslint/camelcase
   sharp?: { fixed?: FixedObject | FixedObject[] };
