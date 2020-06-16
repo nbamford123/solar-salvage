@@ -5,7 +5,7 @@ import BackgroundImage from 'gatsby-background-image';
 
 // Too much of a pain in the ass to deal with this for import
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const title = require('../../images/title.svg');
+import { SolarSalvageTitle } from './title';
 
 // import { totalWidth as headerWidth } from '../types';
 
@@ -57,12 +57,8 @@ export const Hero = () => {
   return (
     <ImageBackground Tag="section" fluid={image.sharp.fluid} fadeIn="soft">
       <TextBox>
-        <img
-          style={{ width: 300, height: 100 }}
-          src={title}
-          alt="Solar Salvage"
-        />
-        ;<p>New pages M W F</p>
+        <SolarSalvageTitle />
+        <p>New pages M W F</p>
       </TextBox>
     </ImageBackground>
   );
