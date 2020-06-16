@@ -3,6 +3,8 @@ import { Global, css } from '@emotion/core';
 import { Helmet } from 'react-helmet';
 
 import Header from './header';
+import { Hero } from './hero';
+
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import { MainWrapper } from './mainWrapper';
 import { totalWidth } from '../types';
@@ -78,6 +80,7 @@ const Layout: React.SFC<LayoutProps> = ({ children, page }) => {
         <title>{title}</title>
         <meta name="description" content={description} />
       </Helmet>
+      <Hero />
       <Header />
       <main
         css={css`

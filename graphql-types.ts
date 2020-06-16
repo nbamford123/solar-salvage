@@ -2000,6 +2000,8 @@ export type QueryAllSitePageArgs = {
 export type QuerySiteArgs = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
+  port?: Maybe<IntQueryOperatorInput>;
+  host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -2111,6 +2113,8 @@ export type QueryAllSitePluginArgs = {
 export type Site = Node & {
   buildTime?: Maybe<Scalars['Date']>;
   siteMetadata?: Maybe<SiteSiteMetadata>;
+  port?: Maybe<Scalars['Int']>;
+  host?: Maybe<Scalars['String']>;
   polyfill?: Maybe<Scalars['Boolean']>;
   pathPrefix?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
@@ -2313,6 +2317,8 @@ export type SiteFieldsEnum =
   'siteMetadata___title' |
   'siteMetadata___description' |
   'siteMetadata___author' |
+  'port' |
+  'host' |
   'polyfill' |
   'pathPrefix' |
   'id' |
@@ -2405,6 +2411,8 @@ export type SiteFieldsEnum =
 export type SiteFilterInput = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
+  port?: Maybe<IntQueryOperatorInput>;
+  host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -3032,6 +3040,11 @@ export type Unnamed_1_QueryVariables = {};
 
 export type Unnamed_1_Query = { image?: Maybe<{ sharp?: Maybe<{ fixed?: Maybe<GatsbyImageSharpFixedFragment> }> }> };
 
+export type Unnamed_2_QueryVariables = {};
+
+
+export type Unnamed_2_Query = { image?: Maybe<{ sharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }> };
+
 export type ChapterInfoQueryVariables = {};
 
 
@@ -3062,24 +3075,24 @@ export type LatestComicQuery = { allMdx: { nodes: Array<(
       )>, fields?: Maybe<Pick<MdxFields, 'slug'>> }
     )> } };
 
-export type Unnamed_2_QueryVariables = {
+export type Unnamed_3_QueryVariables = {
   skip: Scalars['Int'];
   limit: Scalars['Int'];
 };
 
 
-export type Unnamed_2_Query = { allMdx: { edges: Array<{ node: (
+export type Unnamed_3_Query = { allMdx: { edges: Array<{ node: (
         Pick<Mdx, 'body'>
         & { fields?: Maybe<Pick<MdxFields, 'slug'>>, frontmatter?: Maybe<Pick<MdxFrontmatter, 'title' | 'author'>> }
       ) }> } };
 
-export type Unnamed_3_QueryVariables = {
+export type Unnamed_4_QueryVariables = {
   chapter: Scalars['Int'];
   page: Scalars['Int'];
 };
 
 
-export type Unnamed_3_Query = { mdx?: Maybe<(
+export type Unnamed_4_Query = { mdx?: Maybe<(
     Pick<Mdx, 'body'>
     & { frontmatter?: Maybe<(
       Pick<MdxFrontmatter, 'chapter' | 'page' | 'posted'>
