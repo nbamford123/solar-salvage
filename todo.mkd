@@ -1,6 +1,8 @@
 ## To Do
 
-* Header with text instead of text in image
+* Header with text instead of text in image-- background image
+* about/archive pages wrong width
+* Disable the graphql types build
 * Comic size in template should be moved to types.ts
 * Sidebar items-- links? Ads?
 * font, color scheme, backgrounds, button art
