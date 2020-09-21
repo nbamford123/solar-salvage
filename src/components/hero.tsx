@@ -1,13 +1,12 @@
 import React from 'react';
+import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { graphql, useStaticQuery } from 'gatsby';
 import BackgroundImage from 'gatsby-background-image';
 
 // Too much of a pain in the ass to deal with this for import
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 import { SolarSalvageTitle } from './title';
-
-// import { totalWidth as headerWidth } from '../types';
+import { totalWidth as headerWidth } from '../types';
 
 const ImageBackground = styled(BackgroundImage)`
   background-position: top 20% center;
@@ -22,9 +21,9 @@ const TextBox = styled('div')`
   display: flex;
   flex-direction: column;
   height: 100%;
-  justify-content: flex-end;
-  padding: 0 calc((100vw - 550px) / 2) 2rem;
-  width: 100%;
+  justify-content: center;
+  margin: auto;
+  max-width: ${headerWidth}px;
 
   h1 {
     text-shadow: 1px 1px 3px #eeddff66;
@@ -57,8 +56,17 @@ export const Hero = () => {
   return (
     <ImageBackground Tag="section" fluid={image.sharp.fluid} fadeIn="soft">
       <TextBox>
-        <SolarSalvageTitle />
-        <p>New pages M W F</p>
+        <div
+          css={css`
+            margin: auto;
+          `}
+        >
+          <SolarSalvageTitle />
+        </div>{' '}
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <p>A science fiction webcomic</p>
+          <p>New pages M W F</p>
+        </div>
       </TextBox>
     </ImageBackground>
   );

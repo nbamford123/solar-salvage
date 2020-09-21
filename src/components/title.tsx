@@ -2,9 +2,9 @@ import * as React from 'react';
 
 export const SolarSalvageTitle = () => (
   <svg
-    width={688.278}
-    height={405.284}
-    viewBox="0 0 182.107 107.231"
+    width={185}
+    height={105}
+    // viewBox="0 0 182.107 107.231"
     // {...props}
   >
     <defs>

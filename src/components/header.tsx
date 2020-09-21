@@ -33,7 +33,7 @@ export const Header = () => (
       border-bottom: 1px solid #ddd;
       display: flex;
       justify-content: space-between;
-      width: ${headerWidth}px;
+      max-width: ${headerWidth}px;
       margin: auto;
       padding-bottom: 0.5rem;
     `}
