@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import { graphql, useStaticQuery } from 'gatsby';
 import BackgroundImage from 'gatsby-background-image';
 
-// Too much of a pain in the ass to deal with this for import
 import { SolarSalvageTitle } from './title';
 import { totalWidth as headerWidth } from '../types';
 
@@ -21,26 +20,21 @@ const TextBox = styled('div')`
   display: flex;
   flex-direction: column;
   height: 100%;
-  justify-content: center;
+  justify-content: space-between;
   margin: auto;
   max-width: ${headerWidth}px;
+  padding: 0.5rem;
 
   h1 {
     text-shadow: 1px 1px 3px #eeddff66;
     font-size: 2.25rem;
   }
 
-  p,
-  a {
-    color: #222;
+  p {
+    color: white;
     margin-top: 0;
   }
-
-  a {
-    margin-top: 0.5rem;
-  }
 `;
-
 export const Hero = () => {
   const { image } = useStaticQuery(graphql`
     query {
@@ -58,14 +52,21 @@ export const Hero = () => {
       <TextBox>
         <div
           css={css`
-            margin: auto;
+            margin-right: 0;
           `}
         >
           <SolarSalvageTitle />
         </div>{' '}
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <p>A science fiction webcomic</p>
-          <p>New pages M W F</p>
+        <div
+          css={css`
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0;
+          `}
+        >
+          <p>A SCIENCE FICTION WEBCOMIC</p>
+          <p>NEW PAGES M W F</p>
         </div>
       </TextBox>
     </ImageBackground>

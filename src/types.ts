@@ -5,18 +5,18 @@ import { FixedObject } from 'gatsby-image';
 //
 
 // Comic width will be 700, make all of the pages this width
-export const pageContentWidth = 700;
+export const pageContentWidth = 900;
 
-// Comic image plus .5 rem x padding
-// 700 + 18 = 718
-export const pageWidth = 718;
+// Comic image plus .5 rem on each side
+// 900 + 16 = 918
+export const pageWidth = pageContentWidth + 16;
 
 // Sidebar content is 300 width
 export const sidebarContentWidth = 300;
 
-// Total sidebar width .5rem padding, 1px border, and .5rem margin
-// sideBarContent + 18 + 2 + 18 = 340
-export const sidebarWidth = 338;
+// Total sidebar width + .5rem padding on each side, 1px border, and .5rem margin on each side
+// sideBarContent + 16 + 2 + 16 = 334
+export const sidebarWidth = sidebarContentWidth + 16 + 2 + 16;
 
 // The whole site
 export const totalWidth = pageWidth + sidebarWidth;
