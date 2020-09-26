@@ -9,7 +9,12 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
-    'gatsby-plugin-ts',
+    {
+      resolve: 'gatsby-plugin-ts',
+      options: {
+        codegen: false,
+      },
+    },
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
