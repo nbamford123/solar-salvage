@@ -17,8 +17,8 @@ export interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children, page }) => {
   const { title, description } = useSiteMetadata();
   return (
-    <>
-      {/* <Global
+    // <>      {
+    /* <Global
         styles={css`
           * {
             box-sizing: border-box;
@@ -26,7 +26,7 @@ const Layout: React.FC<LayoutProps> = ({ children, page }) => {
           }
 
           /* More info: https://bit.ly/2PsCnzk */
-      /*  * + * {
+    /*  * + * {
             margin-top: 1rem;
           }
 
@@ -48,7 +48,7 @@ const Layout: React.FC<LayoutProps> = ({ children, page }) => {
             line-height: 1.4;
 
             /* remove margin for the main div that Gatsby mounts into */
-      /*  > div {
+    /*  > div {
               margin-top: 0;
             }
 
@@ -75,33 +75,33 @@ const Layout: React.FC<LayoutProps> = ({ children, page }) => {
             }
           }
         `}
-      /> */}
-      <Helmet>
-        <html lang="en" />
-        <title>{title}</title>
-        <meta name="description" content={description} />
-      </Helmet>
-      <ThemeProvider theme={createTheme()}>
-        <Arwes>
-          <Hero />
-          <Header />
-          <main
-            css={css`
-              display: flex;
-              flex-direction: column;
-              margin: 2rem auto;
-              max-width: 90vw;
-              width: ${totalWidth}px;
-            `}
-          >
-            <>
-              <MainWrapper page={page} />
-              {children}
-            </>
-          </main>
-        </Arwes>
-      </ThemeProvider>
-    </>
+      /> */
+    //}
+    <ThemeProvider theme={createTheme()}>
+      <Arwes>
+        <Helmet>
+          <html lang="en" />
+          <title>{title}</title>
+          <meta name="description" content={description} />
+        </Helmet>
+        <Hero />
+        <Header />
+        <main
+          css={css`
+            display: flex;
+            flex-direction: column;
+            margin: 2rem auto;
+            max-width: 90vw;
+            width: ${totalWidth}px;
+          `}
+        >
+          <>
+            <MainWrapper page={page} />
+            {children}
+          </>
+        </main>
+      </Arwes>
+    </ThemeProvider>
   );
 };
 export default Layout;
