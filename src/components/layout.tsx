@@ -1,12 +1,13 @@
 import React from 'react';
 import { Global, css } from '@emotion/core';
 import { Helmet } from 'react-helmet';
-import { Arwes, ThemeProvider, createTheme } from 'arwes';
+import { Arwes, Col, Row, ThemeProvider, createTheme } from 'arwes';
 
 import Header from './header';
 import { Hero } from './hero';
 
 import useSiteMetadata from '../hooks/useSiteMetadata';
+import { Sidebar } from './sidebar';
 import { MainWrapper } from './mainWrapper';
 import { totalWidth } from '../types';
 
@@ -36,7 +37,7 @@ const Layout: React.FC<LayoutProps> = ({ children, page }) => {
           *,
           *:before,
           *:after {
-            box-sizing: inherit;
+            box-sizing: inherit;graphql-codegen
           }
           html,
           body {
@@ -86,20 +87,13 @@ const Layout: React.FC<LayoutProps> = ({ children, page }) => {
         </Helmet>
         <Hero />
         <Header />
-        <main
-          css={css`
-            display: flex;
-            flex-direction: column;
-            margin: 2rem auto;
-            max-width: 90vw;
-            width: ${totalWidth}px;
-          `}
-        >
-          <>
-            <MainWrapper page={page} />
-            {children}
-          </>
-        </main>
+        <Row>
+          <Col s={8}>{page}</Col>
+          <Col s={2}>
+            <Sidebar />
+          </Col>
+        </Row>
+        <Row>{children}</Row>
       </Arwes>
     </ThemeProvider>
   );
