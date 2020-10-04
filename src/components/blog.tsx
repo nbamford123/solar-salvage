@@ -12,10 +12,10 @@ export const Blog: React.FC<BlogProps> = ({ posts }) => {
   return (
     <div
       css={css`
-        background: white;
-        display: flex;
-        flex-direction: column;
-        padding: 0.5rem;
+        // background: white;
+        // display: flex;
+        // flex-direction: column;
+        // padding: 0.5rem;
       `}
     >
       <h2>News</h2>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Project } from 'arwes';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 
@@ -14,19 +15,16 @@ export const Sidebar: React.FC<{}> = () => {
   return (
     <div
       css={css`
-        align-items: center;
-        background: #eee;
-        border: 1px solid black;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        margin: 0 0.5rem;
-        padding: 0.5rem;
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: space-around;
       `}
     >
-      <ContentBox />
-      <ContentBox />
-      <ContentBox />
+      <Project header="Ad"></Project>
+      <Project header="Links">
+        <a href="https://www.girlgeniusonline.com/">Girl Genius</a>
+      </Project>
+      <Project header="Some other shit"></Project>
     </div>
   );
 };

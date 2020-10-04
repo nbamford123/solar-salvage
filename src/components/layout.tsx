@@ -15,6 +15,13 @@ export interface LayoutProps {
   children?: React.ReactNode;
   page: React.ReactNode;
 }
+const myTheme = {
+  typography: {
+    headerFontFamily: '"Electrolize", "sans-serif"',
+    fontFamily: '"Titillium Web", "sans-serif"',
+  },
+};
+
 const Layout: React.FC<LayoutProps> = ({ children, page }) => {
   const { title, description } = useSiteMetadata();
   return (
@@ -78,18 +85,18 @@ const Layout: React.FC<LayoutProps> = ({ children, page }) => {
         `}
       /> */
     //}
-    <ThemeProvider theme={createTheme()}>
+    <ThemeProvider theme={createTheme(myTheme)}>
       <Arwes>
         <Helmet>
           <html lang="en" />
           <title>{title}</title>
           <meta name="description" content={description} />
         </Helmet>
-        <Hero />
+        {/* <Hero /> */}
         <Header />
         <Row>
           <Col s={8}>{page}</Col>
-          <Col s={2}>
+          <Col s={4}>
             <Sidebar />
           </Col>
         </Row>
