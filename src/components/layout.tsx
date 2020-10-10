@@ -1,7 +1,7 @@
 import React from 'react';
 import { Global, css } from '@emotion/core';
 import { Helmet } from 'react-helmet';
-import { Arwes, Col, Row, ThemeProvider, createTheme } from 'arwes';
+import { Arwes, Col, Row, Frame, ThemeProvider, createTheme } from 'arwes';
 
 import Header from './header';
 import { Hero } from './hero';
@@ -9,7 +9,7 @@ import { Hero } from './hero';
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import { Sidebar } from './sidebar';
 import { MainWrapper } from './mainWrapper';
-import { totalWidth } from '../types';
+import { pageWidth } from '../types';
 
 export interface LayoutProps {
   children?: React.ReactNode;
@@ -95,8 +95,22 @@ const Layout: React.FC<LayoutProps> = ({ children, page }) => {
         {/* <Hero /> */}
         <Header />
         <Row>
-          <Col s={8}>{page}</Col>
-          <Col s={4}>
+          <Col s={12} xl={9} offset={['l0', 'xl1']}>
+            <Frame
+              animate
+              level={1}
+              corners={3}
+              css={css`
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+                max-width: ${pageWidth};
+              `}
+            >
+              {page}
+            </Frame>
+          </Col>
+          <Col l={0} xl={2}>
             <Sidebar />
           </Col>
         </Row>

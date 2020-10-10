@@ -2,7 +2,6 @@ import React from 'react';
 import { css } from '@emotion/core';
 import Image from 'gatsby-image';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import { Frame } from 'arwes';
 
 import { ComicNav } from './comicNav';
 import { Comic } from '../types';
@@ -12,16 +11,7 @@ export interface ComicWrapperProps {
 }
 export const ComicWrapper: React.FC<ComicWrapperProps> = ({ comic }) => {
   return (
-    <Frame
-      animate
-      level={1}
-      corners={3}
-      css={css`
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      `}
-    >
+    <>
       <Image
         css={css`
           * {
@@ -40,6 +30,6 @@ export const ComicWrapper: React.FC<ComicWrapperProps> = ({ comic }) => {
         <ComicNav chapter={comic.chapter} page={comic.page} />
       </div>
       <MDXRenderer>{comic.note}</MDXRenderer>
-    </Frame>
+    </>
   );
 };

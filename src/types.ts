@@ -4,7 +4,7 @@ import { FixedObject } from 'gatsby-image';
 // Widths for main elements page
 //
 
-// Comic width will be 700, make all of the pages this width
+// Comic width will be 900, make all of the pages this width
 export const pageContentWidth = 900;
 
 // Comic image plus .5 rem on each side

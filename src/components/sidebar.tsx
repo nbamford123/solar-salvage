@@ -1,5 +1,5 @@
 import React from 'react';
-import { Project } from 'arwes';
+import { Link, Project } from 'arwes';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 
@@ -22,7 +22,7 @@ export const Sidebar: React.FC<{}> = () => {
     >
       <Project header="Ad"></Project>
       <Project header="Links">
-        <a href="https://www.girlgeniusonline.com/">Girl Genius</a>
+        <Link href="https://www.girlgeniusonline.com/">Girl Genius</Link>
       </Project>
       <Project header="Some other shit"></Project>
     </div>
