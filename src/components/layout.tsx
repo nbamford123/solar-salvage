@@ -93,7 +93,7 @@ const Layout: React.FC<LayoutProps> = ({ children, page }) => {
           <meta name="description" content={description} />
         </Helmet>
         {/* <Hero /> */}
-        <Row col s={12} xl={9} offset={['l0', 'xl1']}>
+        <Row>
           <Header />
         </Row>
         <Row>

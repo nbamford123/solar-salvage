@@ -1,7 +1,13 @@
 import React from 'react';
 
+import {
+  AiOutlineCalendar,
+  AiOutlineFileText,
+  AiOutlineFolderOpen,
+  AiOutlineQuestionCircle,
+} from 'react-icons/ai';
 import { css } from '@emotion/core';
-import { Header as ArwesHeader, Col, Row, Words, withStyles } from 'arwes';
+import { Header as ArwesHeader, Heading, withStyles } from 'arwes';
 import { Link } from 'gatsby';
 import { rgba } from 'polished';
 
@@ -12,6 +18,7 @@ import { SolarSalvageTitle } from './title';
 const linkStyles = (theme: any) => ({
   root: {
     color: theme.color.control.base,
+    fontSize: '1rem',
     textShadow: `0 0 ${theme.shadowLength}px ${rgba(
       theme.color.control.base,
       theme.alpha,
@@ -34,6 +41,10 @@ const linkStyles = (theme: any) => ({
   },
 });
 
+const HeadingText = ({ children }: { children: React.ReactNode }) => (
+  <Heading node="h3">{children}</Heading>
+);
+
 const NavLink = withStyles(linkStyles)(
   ({
     classes,
@@ -50,18 +61,18 @@ const NavLink = withStyles(linkStyles)(
     </Link>
   ),
 );
-
+const iconCss = css`
+  position: relative;
+  top: 2px;
+`;
 export const Header: React.FC = () => (
-  <ArwesHeader
-    css={css`
-      max-width: ${pageWidth}px;
-    `}
-    title="Solar Salvage"
-  >
+  <ArwesHeader title="Solar Salvage">
     <div
       css={css`
         display: flex;
         flex-direction: column;
+        margin: auto;
+        width: ${pageWidth}px;
       `}
     >
       <div
@@ -71,12 +82,22 @@ export const Header: React.FC = () => (
           justify-content: space-between;
         `}
       >
-        <SolarSalvageTitle />
+        <Link to="/">
+          <SolarSalvageTitle />
+        </Link>
         <nav>
-          <NavLink to="/">LATEST PAGE</NavLink>
-          <NavLink to="/blog">NEWS</NavLink>
-          <NavLink to="/about">ABOUT</NavLink>
-          <NavLink to="/archive">ARCHIVE</NavLink>
+          <NavLink to="/">
+            <AiOutlineCalendar css={iconCss} /> LATEST PAGE
+          </NavLink>
+          <NavLink to="/blog">
+            <AiOutlineFileText css={iconCss} /> NEWS
+          </NavLink>
+          <NavLink to="/about">
+            <AiOutlineQuestionCircle css={iconCss} /> ABOUT
+          </NavLink>
+          <NavLink to="/archive">
+            <AiOutlineFolderOpen css={iconCss} /> ARCHIVE
+          </NavLink>
         </nav>
       </div>
       <div
@@ -86,8 +107,8 @@ export const Header: React.FC = () => (
           justify-content: space-between;
         `}
       >
-        <Words>A SCIENCE FICTION WEBCOMIC</Words>
-        <Words>UPDATES M W F</Words>
+        <HeadingText>A SCIENCE FICTION WEBCOMIC</HeadingText>
+        <HeadingText>UPDATES M W F</HeadingText>
       </div>
     </div>
   </ArwesHeader>
