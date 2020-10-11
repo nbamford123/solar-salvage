@@ -39,8 +39,7 @@ const ComicTemplate: React.FC<ComicTemplateProps> = ({
 }) => {
   const comic = makeComic(comicMdx);
   const page = <ComicWrapper comic={comic} />;
-  return <Layout
-   page={page} />;
+  return <Layout page={page} />;
 };
 
 export default ComicTemplate;

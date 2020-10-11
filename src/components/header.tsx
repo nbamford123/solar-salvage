@@ -1,76 +1,98 @@
 import React from 'react';
-import styled from '@emotion/styled';
+
 import { css } from '@emotion/core';
+import { Header as ArwesHeader, Col, Row, Words, withStyles } from 'arwes';
 import { Link } from 'gatsby';
-import { Header as ArwesHeader, Col, Row, Words } from 'arwes';
-import { withTheme } from 'theming';
+import { rgba } from 'polished';
 
 import { pageWidth } from '../types';
-
 import { SolarSalvageTitle } from './title';
 
-interface NavLinkProps {
-  fontWeight?: string;
-}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const linkStyles = (theme: any) => ({
+  root: {
+    color: theme.color.control.base,
+    textShadow: `0 0 ${theme.shadowLength}px ${rgba(
+      theme.color.control.base,
+      theme.alpha,
+    )}`,
+    marginRight: '1rem',
+    transition: `color ${theme.animTime}ms ease-out`,
+    textDecoration: 'none',
+    cursor: 'pointer',
 
-export interface HeaderProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  theme: any;
-}
-export const Header: React.FC<HeaderProps> = ({ theme }) => {
-  const NavLink = styled(Link)<NavLinkProps>`
-    color: theme.color.control.base;
-    textShadow: 0 0 ${theme.shadowLength}px rgba(${theme.color.control.base}, ${theme.alpha})
-    transition: color ${theme.animTime}ms ease-out;
-    textDecoration: 'none';
-    cursor: 'pointer';
+    '&:hover': {
+      color: theme.color.control.light,
+    },
+    // doesn't work
+    // '&.current-page': {
+    //   borderBottom: '2px solid #222',
+    // },
+    '&:last-of-type': {
+      marginRight: '0',
+    },
+  },
+});
 
-    &:hover: {
-      color: ${theme.color.control.light};
-    }
-    &.current-page {
-      border-bottom: 2px solid #222;
-    }
-    &:last-of-type {
-      margin-right: 0;
-    }
-  `;
-  return (
-    <ArwesHeader
+const NavLink = withStyles(linkStyles)(
+  ({
+    classes,
+    children,
+    to,
+  }: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    classes: any;
+    children: React.ReactNode;
+    to: string;
+  }) => {
+    console.log(classes);
+    return (
+      <Link className={classes.root} to={to}>
+        {children}
+      </Link>
+    );
+  },
+);
+
+export const Header: React.FC = () => (
+  <ArwesHeader
+    css={css`
+      max-width: ${pageWidth}px;
+    `}
+    title="Solar Salvage"
+  >
+    <div
       css={css`
-        max-width: ${pageWidth}px;
+        display: flex;
+        flex-direction: column;
       `}
-      title="Solar Salvage"
     >
-      <Row>
-        <Col s={4}>
-          <SolarSalvageTitle />
-        </Col>
-        <Col s={4}>
-          <Words>A SCIENCE FICTION WEBCOMIC</Words>
-        </Col>
-        <Col s={4}>
-          <Words>UPDATES M W F</Words>
-        </Col>
-      </Row>
-      <Row>
+      <div
+        css={css`
+          align-items: center;
+          display: flex;
+          justify-content: space-between;
+        `}
+      >
+        <SolarSalvageTitle />
         <nav>
-          <NavLink to="/" activeClassName="current-page">
-            LATEST PAGE
-          </NavLink>
-          <NavLink to="/blog" activeClassName="current-page">
-            NEWS
-          </NavLink>
-          <NavLink to="/about" activeClassName="current-page">
-            ABOUT
-          </NavLink>
-          <NavLink to="/archive" activeClassName="current-page">
-            ARCHIVE
-          </NavLink>
+          <NavLink to="/">LATEST PAGE</NavLink>
+          <NavLink to="/blog">NEWS</NavLink>
+          <NavLink to="/about">ABOUT</NavLink>
+          <NavLink to="/archive">ARCHIVE</NavLink>
         </nav>
-      </Row>
-    </ArwesHeader>
-  );
-};
-
+      </div>
+      <div
+        css={css`
+          align-items: center;
+          display: flex;
+          justify-content: space-between;
+        `}
+      >
+        <Words>A SCIENCE FICTION WEBCOMIC</Words>
+        <Words>UPDATES M W F</Words>
+      </div>
+    </div>
+  </ArwesHeader>
+);
 export default Header;

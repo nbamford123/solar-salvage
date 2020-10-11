@@ -93,7 +93,9 @@ const Layout: React.FC<LayoutProps> = ({ children, page }) => {
           <meta name="description" content={description} />
         </Helmet>
         {/* <Hero /> */}
-        <Header />
+        <Row col s={12} xl={9} offset={['l0', 'xl1']}>
+          <Header />
+        </Row>
         <Row>
           <Col s={12} xl={9} offset={['l0', 'xl1']}>
             <Frame
@@ -104,7 +106,7 @@ const Layout: React.FC<LayoutProps> = ({ children, page }) => {
                 align-items: center;
                 display: flex;
                 flex-direction: column;
-                max-width: ${pageWidth};
+                max-width: ${pageWidth}px;
               `}
             >
               {page}
