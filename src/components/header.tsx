@@ -44,14 +44,11 @@ const NavLink = withStyles(linkStyles)(
     classes: any;
     children: React.ReactNode;
     to: string;
-  }) => {
-    console.log(classes);
-    return (
-      <Link className={classes.root} to={to}>
-        {children}
-      </Link>
-    );
-  },
+  }) => (
+    <Link className={classes.root} to={to}>
+      {children}
+    </Link>
+  ),
 );
 
 export const Header: React.FC = () => (
