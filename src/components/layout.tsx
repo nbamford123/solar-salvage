@@ -106,6 +106,8 @@ const Layout: React.FC<LayoutProps> = ({ children, page }) => {
                 align-items: center;
                 display: flex;
                 flex-direction: column;
+                padding-bottom: 0.5rem;
+                padding-top: 0.5rem;
                 max-width: ${pageWidth}px;
               `}
             >
