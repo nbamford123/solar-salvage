@@ -60,10 +60,10 @@ export const chapterSummary = (): ChapterSummary[] => {
       : pv;
   }, {});
 
-  const chapters =
-    (data.chapters.nodes.length &&
-      data.chapters.nodes[0]?.frontmatter?.chapters) ||
-    [];
+  const chapters: Array<ChapterSummary> = (data.chapters.nodes.length
+    ? data.chapters.nodes[0].frontmatter?.chapters ?? []
+    : []
+  ).filter(c => c) as Array<ChapterSummary>;
 
   const chapterSummary = chapters.reduce(
     (pv: Array<ChapterSummary>, cv: ChapterMdx | null) => [

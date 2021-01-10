@@ -26,18 +26,18 @@ export const headerHeight = 200;
 
 export type GatsbyFixedImage = {
   // eslint-disable-next-line @typescript-eslint/camelcase
-  sharp?: { fixed?: FixedObject | FixedObject[] };
+  sharp?: { fixed?: FixedObject | FixedObject[] | undefined };
 };
 
 export interface PostMdx {
   frontmatter?: {
-    title: string;
-    author: string;
-    date: Date;
-  };
+    title?: string | null;
+    author?: string | null;
+    date?: Date;
+  } | null;
   fields?: {
-    slug: string;
-  };
+    slug?: string | null;
+  } | null;
   body: string;
 }
 
@@ -68,14 +68,14 @@ export interface Comic {
 
 export interface ComicMdx {
   frontmatter?: {
-    chapter?: number;
-    page?: number;
+    chapter?: number | null;
+    page?: number | null;
     posted?: Date;
     comic?: GatsbyFixedImage;
   } | null;
   fields?: {
-    slug?: string;
-  };
+    slug?: string | null;
+  } | null;
   body: string;
 }
 

@@ -12,7 +12,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-ts',
       options: {
-        codegen: false,
+        codegen: true,
       },
     },
     {

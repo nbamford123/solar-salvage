@@ -46,7 +46,7 @@ const Archive: React.FC<{}> = () => {
                   align-self: flex-start;
                 }
               `}
-              fixed={chapter?.thumb?.sharp?.fixed}
+              fixed={chapter?.thumb?.sharp?.fixed ?? []}
               alt={chapter.chapter.toString()}
             />
           </Link>

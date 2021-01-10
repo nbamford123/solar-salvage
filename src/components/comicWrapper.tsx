@@ -18,7 +18,7 @@ export const ComicWrapper: React.FC<ComicWrapperProps> = ({ comic }) => {
             margin-top: 0;
           }
         `}
-        fixed={comic.comic?.sharp?.fixed ?? undefined}
+        fixed={comic.comic?.sharp?.fixed ?? []}
         alt={comic.page.toString()}
       />
       <div
