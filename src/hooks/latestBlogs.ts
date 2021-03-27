@@ -1,6 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby';
 import {
-  // eslint-disable-next-line @typescript-eslint/camelcase
   PostQuery,
 } from '../../graphql-types';
 import { makePost, Post } from '../types';
@@ -29,5 +28,5 @@ export const latestBlogs = (): Array<Post> => {
       }
     }
   `);
-  return data.allMdx.nodes.map(postMdx => makePost(postMdx));
+  return data.allMdx.nodes.map((postMdx) => makePost(postMdx));
 };

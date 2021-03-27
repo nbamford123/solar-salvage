@@ -1,7 +1,6 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
 import {
-  // eslint-disable-next-line @typescript-eslint/camelcase
   ChapterInfoQuery,
 } from '../../graphql-types';
 import { ChapterMdx, ChapterSummary } from '../types';
@@ -63,7 +62,7 @@ export const chapterSummary = (): ChapterSummary[] => {
   const chapters: Array<ChapterSummary> = (data.chapters.nodes.length
     ? data.chapters.nodes[0].frontmatter?.chapters ?? []
     : []
-  ).filter(c => c) as Array<ChapterSummary>;
+  ).filter((c) => c) as Array<ChapterSummary>;
 
   const chapterSummary = chapters.reduce(
     (pv: Array<ChapterSummary>, cv: ChapterMdx | null) => [

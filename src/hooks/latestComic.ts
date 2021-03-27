@@ -1,7 +1,6 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
 import {
-  // eslint-disable-next-line @typescript-eslint/camelcase
   LatestComicQuery,
 } from '../../graphql-types';
 import { Comic, makeComic } from '../types';

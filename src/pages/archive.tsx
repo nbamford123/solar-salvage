@@ -21,7 +21,7 @@ const Archive: React.FC<{}> = () => {
       `}
     >
       <h1>Archive</h1>
-      {chapters.map(chapter => (
+      {chapters.map((chapter) => (
         <div
           css={css`
             max-width: 640px;

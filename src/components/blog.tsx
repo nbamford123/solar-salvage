@@ -19,7 +19,7 @@ export const Blog: React.FC<BlogProps> = ({ posts }) => {
       `}
     >
       <h2>News</h2>
-      {posts.map(post => (
+      {posts.map((post) => (
         <BlogEntry key={post.slug} post={post} />
       ))}
     </div>

@@ -25,7 +25,6 @@ export const totalWidth = pageWidth + sidebarWidth;
 export const headerHeight = 200;
 
 export type GatsbyFixedImage = {
-  // eslint-disable-next-line @typescript-eslint/camelcase
   sharp?: { fixed?: FixedObject | FixedObject[] | undefined };
 };
 
