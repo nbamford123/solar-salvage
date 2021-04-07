@@ -1,14 +1,14 @@
 import React from 'react';
-import { Global, css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { Helmet } from 'react-helmet';
 import { Arwes, Col, Row, Frame, ThemeProvider, createTheme } from 'arwes';
 
 import Header from './header';
-import { Hero } from './hero';
+// import { Hero } from './hero';
 
-import useSiteMetadata from '../hooks/useSiteMetadata';
+import { useSiteMetadata } from '../hooks/useSiteMetadata';
 import { Sidebar } from './sidebar';
-import { MainWrapper } from './mainWrapper';
+// import { MainWrapper } from './mainWrapper';
 import { pageWidth } from '../types';
 
 export interface LayoutProps {

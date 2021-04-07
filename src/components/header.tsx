@@ -6,7 +6,7 @@ import {
   AiOutlineFolderOpen,
   AiOutlineQuestionCircle,
 } from 'react-icons/ai';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { Header as ArwesHeader, Heading, withStyles } from 'arwes';
 import { Link } from 'gatsby';
 import { rgba } from 'polished';

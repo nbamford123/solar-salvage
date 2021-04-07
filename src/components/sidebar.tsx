@@ -1,17 +1,16 @@
-import React from 'react';
 import { Link, Project } from 'arwes';
-import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+// import styled from '@emotion/styled';
 
-import { sidebarContentWidth } from '../types';
+// import { sidebarContentWidth } from '../types';
 
-const ContentBox = styled.div`
-  background: white;
-  height: 300px;
-  width: ${sidebarContentWidth}px;
-`;
+// const ContentBox = styled.div`
+//   background: white;
+//   height: 300px;
+//   width: ${sidebarContentWidth}px;
+// `;
 
-export const Sidebar: React.FC<{}> = () => {
+export const Sidebar: React.FC = () => {
   return (
     <div
       css={css`

@@ -1,5 +1,3 @@
-import React from 'react';
-import { css } from '@emotion/core';
 import { Frame } from 'arwes';
 import { Blog } from './blog';
 import { Post } from '../types';

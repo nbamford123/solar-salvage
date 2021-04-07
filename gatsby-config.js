@@ -10,12 +10,6 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {
-      resolve: 'gatsby-plugin-ts',
-      options: {
-        codegen: true,
-      },
-    },
-    {
       resolve: 'gatsby-plugin-mdx',
       options: {
         defaultLayouts: {
@@ -50,15 +44,6 @@ module.exports = {
       options: {
         name: 'chapter-thumbs',
         path: 'comics/chapter-images',
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-webpack-bundle-analyzer',
-      options: {
-        production: true,
-        disable: !process.env.ANALYZE_BUNDLE_SIZE,
-        generateStatsFile: true,
-        analyzerMode: 'static',
       },
     },
   ],

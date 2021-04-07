@@ -1,16 +1,15 @@
-import React from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import Image from 'gatsby-image';
 import { Link, navigate } from 'gatsby';
 import Select from 'react-select';
 
 import Layout from '../components/layout';
-import { chapterSummary } from '../hooks/chapterSummary';
+import { useChapterSummaries } from '../hooks/useChapterSummaries';
 import { getComicPath } from '../util/getComicPath';
 
 // TODO: Fix page indexing when chapter title pages (0) are added
-const Archive: React.FC<{}> = () => {
-  const chapters = chapterSummary();
+const Archive: React.FC = () => {
+  const chapters = useChapterSummaries();
   const page = (
     <div
       css={css`

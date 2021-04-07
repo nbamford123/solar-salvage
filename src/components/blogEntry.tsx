@@ -1,5 +1,4 @@
-import React from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { Project } from 'arwes';
 import { Post } from '../types';

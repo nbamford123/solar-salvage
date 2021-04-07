@@ -1,10 +1,10 @@
 import React from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { Link } from 'gatsby';
 
 import Layout from '../components/layout';
 
-const About: React.FC<{}> = () => (
+const About: React.FC = () => (
   <Layout
     page={
       <div

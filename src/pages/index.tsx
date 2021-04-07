@@ -1,16 +1,14 @@
-import React from 'react';
-
 import { BlogWrapper } from '../components/blogWrapper';
 import { ComicWrapper } from '../components/comicWrapper';
 import Layout from '../components/layout';
 
-import { latestComic } from '../hooks/latestComic';
-import { latestBlogs } from '../hooks/latestBlogs';
+import { useLatestComic } from '../hooks/useLatestComic';
+import { useLatestBlogs } from '../hooks/useLatestBlogs';
 
-const Index = () => {
-  const comic = latestComic();
+const Index: React.FC = () => {
+  const comic = useLatestComic();
   // Most recent news for the front page
-  const posts = latestBlogs();
+  const posts = useLatestBlogs();
 
   const page = <ComicWrapper comic={comic} />;
 

@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import React from 'react';
-import { css, jsx } from '@emotion/core';
+import { css, jsx } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link, navigate } from 'gatsby';
 
-import { chapterSummary } from '../hooks/chapterSummary';
-import { getComicPath } from '../util/getComicPath';
+import { useChapterSummaries } from '@/hooks/useChapterSummaries';
+import { getComicPath } from '@/util/getComicPath';
 
 export interface ComicNavProps {
   chapter: number;
@@ -27,7 +27,7 @@ const DisabledNavLink = styled.label(baseLink, {
 // TODO: Maybe tippy or a real tooltip?
 export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
   // Fetch all the chapters
-  const chapterInfo = chapterSummary();
+  const chapterInfo = useChapterSummaries();
 
   // Chapters for select nav
   const chapterOptions = chapterInfo.map((chapter) => (

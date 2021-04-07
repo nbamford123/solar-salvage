@@ -1,17 +1,25 @@
 // tsconfig.json
 {
   "compilerOptions": {
-    "module": "ESNext",
-    "target": "esnext",
+    "allowJs": true,
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "isolatedModules": true,
     "jsx": "preserve",
     "lib": ["dom", "esnext"],
-    "strict": true,
-    "noEmit": true,
+    "module": "ESNext",
     "moduleResolution": "node",
-    "isolatedModules": true,
-    "esModuleInterop": true,
+    "noEmit": true,
     "noUnusedLocals": false,
-    "allowJs": true
+    "paths": {
+      "@/components/*": ["src/components/*"],
+      "@/hooks/*": ["src/hooks/*"],
+      "@/templates/*": ["src/templates/*"],
+      "@/util/*": ["src/util/*"]
+    },
+    "strict": true,
+    "target": "es5",
+    "types": ["node", "@emotion/react/types/css-prop"]
   },
   "exclude": ["node_modules", "public", ".cache"]
 }

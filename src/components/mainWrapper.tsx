@@ -1,5 +1,4 @@
-import React from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 
 import { Sidebar } from './sidebar';
 import { pageWidth } from '../types';

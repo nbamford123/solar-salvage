@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { graphql, useStaticQuery } from 'gatsby';
 import BackgroundImage from 'gatsby-background-image';
@@ -35,7 +35,7 @@ const TextBox = styled('div')`
     margin-top: 0;
   }
 `;
-export const Hero = () => {
+export const Hero: React.FC = () => {
   const { image } = useStaticQuery(graphql`
     query {
       image: file(relativePath: { eq: "headerbackground.jpg" }) {
