@@ -4,8 +4,8 @@ import { css, jsx } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link, navigate } from 'gatsby';
 
-import { useChapterSummaries } from '@/hooks/useChapterSummaries';
-import { getComicPath } from '@/util/getComicPath';
+import { useChapterSummaries } from '../hooks/useChapterSummaries';
+import { getComicPath } from '../util/getComicPath';
 
 export interface ComicNavProps {
   chapter: number;
