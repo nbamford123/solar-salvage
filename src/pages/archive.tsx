@@ -62,12 +62,6 @@ const Archive: React.FC = () => {
             </h2>
             <p>{chapter.synopsis}</p>
             <Select
-              css={css`
-                margin-top: 1rem;
-                * {
-                  margin-top: 0;
-                }
-              `}
               placeholder="Jump to page"
               onChange={(value, action) =>
                 action.action === 'select-option' &&

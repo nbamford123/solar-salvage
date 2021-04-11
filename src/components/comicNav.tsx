@@ -1,28 +1,33 @@
 /** @jsx jsx */
 import React from 'react';
 import { css, jsx } from '@emotion/react';
-import styled from '@emotion/styled';
-import { Link, navigate } from 'gatsby';
+import { navigate } from 'gatsby';
+import {
+  AiOutlineLeft,
+  AiOutlineDoubleLeft,
+  AiOutlineRight,
+  AiOutlineDoubleRight,
+} from 'react-icons/ai';
 
-import { useChapterSummaries } from '../hooks/useChapterSummaries';
+import { ComicNavSelect } from './comicNavSelect';
 import { getComicPath } from '../util/getComicPath';
+import { NavLink } from './navLink';
+import { useChapterSummaries } from '../hooks/useChapterSummaries';
 
 export interface ComicNavProps {
   chapter: number;
   page: number;
 }
 
-const baseLink = css({
-  display: 'inlineBlock',
-  fontSize: '1.25rem',
-  marginRight: '0.5rem',
-});
-
-const NavLink = styled(Link)(baseLink);
-const DisabledNavLink = styled.label(baseLink, {
-  color: 'lightgrey',
-  textDecoration: 'underline',
-});
+const ComicNavLink: React.FC<{
+  disabled?: boolean;
+  title: string;
+  to: string;
+}> = ({ children, ...rest }) => (
+  <NavLink fontSize="2.5rem" {...rest}>
+    {children}
+  </NavLink>
+);
 
 // TODO: Maybe tippy or a real tooltip?
 export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
@@ -54,60 +59,56 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
   const firstPage = page === 1;
 
   // Navigation links
-  const beginningOfChapter = firstPage ? (
-    <DisabledNavLink title="Beginning of Chapter">&lt;&lt;</DisabledNavLink>
-  ) : (
-    <NavLink
+  const beginningOfChapter = (
+    <ComicNavLink
+      disabled={firstPage}
       title="Beginning of Chapter"
       to={getComicPath(myChapter.chapter, 1)}
     >
-      &lt;&lt;
-    </NavLink>
+      <AiOutlineDoubleLeft />
+    </ComicNavLink>
   );
-  const prevPage =
-    firstPage && !prevChapter ? (
-      <DisabledNavLink title="Previous Page">&lt;</DisabledNavLink>
-    ) : (
-      <NavLink
-        title="Previous Page"
-        to={
-          firstPage
-            ? prevChapter
-              ? getComicPath(prevChapter.chapter, prevChapter.pages)
-              : ''
-            : getComicPath(myChapter.chapter, page - 1)
-        }
-      >
-        &lt;
-      </NavLink>
-    );
-  const nextPage =
-    lastPage && !nextChapter ? (
-      <DisabledNavLink title="Next Page">&gt;</DisabledNavLink>
-    ) : (
-      <NavLink
-        title="Next Page"
-        to={
-          lastPage
-            ? nextChapter
-              ? getComicPath(nextChapter.chapter, 1)
-              : ''
-            : getComicPath(myChapter.chapter, page + 1)
-        }
-      >
-        &gt;
-      </NavLink>
-    );
 
-  const endOfChapter = lastPage ? (
-    <DisabledNavLink title="End of Chapter">&gt;&gt;</DisabledNavLink>
-  ) : (
-    <NavLink
+  const prevPage = (
+    <ComicNavLink
+      disabled={firstPage && !prevChapter}
+      title="Previous Page"
+      to={
+        firstPage
+          ? prevChapter
+            ? getComicPath(prevChapter.chapter, prevChapter.pages)
+            : ''
+          : getComicPath(myChapter.chapter, page - 1)
+      }
+    >
+      <AiOutlineLeft />
+    </ComicNavLink>
+  );
+
+  const nextPage = (
+    <ComicNavLink
+      disabled={lastPage && !nextChapter}
+      title="Next Page"
+      to={
+        lastPage
+          ? nextChapter
+            ? getComicPath(nextChapter.chapter, 1)
+            : ''
+          : getComicPath(myChapter.chapter, page + 1)
+      }
+    >
+      <AiOutlineRight />
+    </ComicNavLink>
+  );
+
+  const endOfChapter = (
+    <ComicNavLink
+      disabled={lastPage}
       title="End of Chapter"
       to={getComicPath(myChapter.chapter, myChapter.pages)}
     >
-      &gt;&gt;
-    </NavLink>
+      <AiOutlineDoubleRight />
+    </ComicNavLink>
   );
 
   return (
@@ -116,23 +117,18 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        * {
-          margin-top: 0;
-        }
+        margin-top: 0.25rem;
       `}
     >
       {beginningOfChapter}
       {prevPage}
-      <select
-        css={css`
-          margin-right: 0.5rem;
-        `}
+      <ComicNavSelect
         title={'Select chapter'}
         value={myChapter.chapter}
         onChange={(e) => navigate(getComicPath(e.target.value, 1))}
       >
         {chapterOptions}
-      </select>
+      </ComicNavSelect>
       {nextPage}
       {endOfChapter}
     </div>

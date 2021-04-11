@@ -1,4 +1,4 @@
-import { Link, Project } from 'arwes';
+import { Project } from 'arwes';
 import { css } from '@emotion/react';
 // import styled from '@emotion/styled';
 
@@ -14,14 +14,15 @@ export const Sidebar: React.FC = () => {
   return (
     <div
       css={css`
-        // display: flex;
-        // flex-direction: column;
-        // justify-content: space-around;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: space-around;
       `}
     >
       <Project header="Ad"></Project>
       <Project header="Links">
-        <Link href="https://www.girlgeniusonline.com/">Girl Genius</Link>
+        <a href="https://www.girlgeniusonline.com/">Girl Genius</a>
       </Project>
       <Project header="Some other shit"></Project>
     </div>

@@ -1,3 +1,4 @@
+import React from 'react';
 import { BlogWrapper } from '../components/blogWrapper';
 import { ComicWrapper } from '../components/comicWrapper';
 import Layout from '../components/layout';

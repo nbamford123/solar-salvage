@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {
   AiOutlineCalendar,
   AiOutlineFileText,
@@ -7,64 +5,29 @@ import {
   AiOutlineQuestionCircle,
 } from 'react-icons/ai';
 import { css } from '@emotion/react';
-import { Header as ArwesHeader, Heading, withStyles } from 'arwes';
+import { Header as ArwesHeader, Heading } from 'arwes';
 import { Link } from 'gatsby';
-import { rgba } from 'polished';
-
-import { pageWidth } from '../types';
+import { NavLink } from './navLink';
 import { SolarSalvageTitle } from './title';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const linkStyles = (theme: any) => ({
-  root: {
-    color: theme.color.control.base,
-    fontSize: '1rem',
-    textShadow: `0 0 ${theme.shadowLength}px ${rgba(
-      theme.color.control.base,
-      theme.alpha,
-    )}`,
-    marginRight: '1rem',
-    transition: `color ${theme.animTime}ms ease-out`,
-    textDecoration: 'none',
-    cursor: 'pointer',
-
-    '&:hover': {
-      color: theme.color.control.light,
-    },
-    // doesn't work
-    // '&.current-page': {
-    //   borderBottom: '2px solid #222',
-    // },
-    '&:last-of-type': {
-      marginRight: '0',
-    },
-  },
-});
+import { totalWidth } from '../types';
 
 const HeadingText = ({ children }: { children: React.ReactNode }) => (
   <Heading node="h3">{children}</Heading>
 );
 
-const NavLink = withStyles(linkStyles)(
-  ({
-    classes,
-    children,
-    to,
-  }: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    classes: any;
-    children: React.ReactNode;
-    to: string;
-  }) => (
-    <Link className={classes.root} to={to}>
-      {children}
-    </Link>
-  ),
-);
 const iconCss = css`
   position: relative;
   top: 2px;
 `;
+const HeaderNavLink: React.FC<{ to: string }> = ({ children, to }) => (
+  <NavLink
+    header
+    to={to}
+  >
+    {children}
+  </NavLink>
+);
+
 export const Header: React.FC = () => (
   <ArwesHeader title="Solar Salvage">
     <div
@@ -72,7 +35,7 @@ export const Header: React.FC = () => (
         display: flex;
         flex-direction: column;
         margin: auto;
-        width: ${pageWidth}px;
+        max-width: ${totalWidth}px;
       `}
     >
       <div
@@ -86,18 +49,18 @@ export const Header: React.FC = () => (
           <SolarSalvageTitle />
         </Link>
         <nav>
-          <NavLink to="/">
+          <HeaderNavLink to="/">
             <AiOutlineCalendar css={iconCss} /> LATEST PAGE
-          </NavLink>
-          <NavLink to="/blog">
+          </HeaderNavLink>
+          <HeaderNavLink to="/blog">
             <AiOutlineFileText css={iconCss} /> NEWS
-          </NavLink>
-          <NavLink to="/about">
+          </HeaderNavLink>
+          <HeaderNavLink to="/about">
             <AiOutlineQuestionCircle css={iconCss} /> ABOUT
-          </NavLink>
-          <NavLink to="/archive">
+          </HeaderNavLink>
+          <HeaderNavLink to="/archive">
             <AiOutlineFolderOpen css={iconCss} /> ARCHIVE
-          </NavLink>
+          </HeaderNavLink>
         </nav>
       </div>
       <div
