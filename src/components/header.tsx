@@ -20,10 +20,7 @@ const iconCss = css`
   top: 2px;
 `;
 const HeaderNavLink: React.FC<{ to: string }> = ({ children, to }) => (
-  <NavLink
-    header
-    to={to}
-  >
+  <NavLink header to={to}>
     {children}
   </NavLink>
 );

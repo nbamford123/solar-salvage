@@ -3,7 +3,9 @@ import { Link } from 'gatsby';
 import { rgba } from 'polished';
 import { withStyles } from 'arwes';
 
-const rootStyles = (theme: any) => ({
+import { ArwesTheme } from '../types';
+
+const rootStyles = (theme: ArwesTheme) => ({
   color: theme.color.control.base,
   cursor: 'pointer',
   lineHeight: 1,
@@ -16,9 +18,19 @@ const rootStyles = (theme: any) => ({
   '&:hover': {
     color: theme.color.control.light,
   },
+  '& > svg': {
+    filter: `drop-shadow(0 0 ${theme.shadowLength}px ${rgba(
+      theme.color.control.base,
+      theme.alpha,
+    )})`,
+    '&:hover': {
+      filter: 'none',
+    },
+    transition: `filter ${theme.animTime}ms ease-out`,
+  },
 });
 
-const linkStyles = (theme: unknown) => ({
+const linkStyles = (theme: ArwesTheme) => ({
   root: {
     ...rootStyles(theme),
     // doesn't work
@@ -28,6 +40,7 @@ const linkStyles = (theme: unknown) => ({
   },
   header: {
     ...rootStyles(theme),
+    '& > svg': {},
     marginRight: '1rem',
     '&:last-of-type': {
       marginRight: 0,

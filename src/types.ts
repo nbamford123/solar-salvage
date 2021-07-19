@@ -95,6 +95,13 @@ export interface ChapterSummary {
   writtenBy: string;
 }
 
+export interface ArwesTheme {
+  color: { control: { base: string | number; light: string } };
+  shadowLength: number;
+  alpha: number | undefined;
+  animTime: number;
+}
+
 export const makeComic = (mdx: ComicMdx): Comic => ({
   chapter: mdx.frontmatter?.chapter || 0,
   page: mdx.frontmatter?.page || 0,

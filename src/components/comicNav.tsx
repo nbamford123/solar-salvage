@@ -9,7 +9,7 @@ import {
   AiOutlineDoubleRight,
 } from 'react-icons/ai';
 
-import { ComicNavSelect } from './comicNavSelect';
+import { ArwesSelect } from './arwesSelect';
 import { getComicPath } from '../util/getComicPath';
 import { NavLink } from './navLink';
 import { useChapterSummaries } from '../hooks/useChapterSummaries';
@@ -35,12 +35,11 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
   const chapterInfo = useChapterSummaries();
 
   // Chapters for select nav
-  const chapterOptions = chapterInfo.map((chapter) => (
-    <option
-      key={chapter.chapter}
-      value={chapter.chapter}
-    >{`${chapter.chapter} ${chapter.title}`}</option>
-  ));
+  const chapterOptions = chapterInfo.map((chapterInfo) => ({
+    value: chapterInfo.chapter,
+    name: `CHAPTER ${chapterInfo.chapter}: ${chapterInfo.title.toUpperCase()}`,
+    disabled: chapterInfo.chapter === chapter,
+  }));
 
   // Current chapter
   const myChapter = chapterInfo.find(
@@ -118,17 +117,19 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
         align-items: center;
         justify-content: space-between;
         margin-top: 0.25rem;
+        margin-bottom: 2rem;
       `}
     >
       {beginningOfChapter}
       {prevPage}
-      <ComicNavSelect
+      <ArwesSelect
         title={'Select chapter'}
-        value={myChapter.chapter}
-        onChange={(e) => navigate(getComicPath(e.target.value, 1))}
-      >
-        {chapterOptions}
-      </ComicNavSelect>
+        value={chapterOptions.find(
+          (chapter) => chapter.value === myChapter.chapter,
+        )}
+        onChange={(value: number) => navigate(getComicPath(value, 1))}
+        options={chapterOptions}
+      />
       {nextPage}
       {endOfChapter}
     </div>
