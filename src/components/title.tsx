@@ -1,9 +1,7 @@
-import * as React from 'react';
-
-export const SolarSalvageTitle = () => (
+export const SolarSalvageTitle: React.FC = () => (
   <svg
-    width={300}
-    height={150}
+    width={200}
+    height={100}
     viewBox="0 0 182.107 107.231"
     // {...props}
   >

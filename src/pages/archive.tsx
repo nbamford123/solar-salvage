@@ -1,16 +1,15 @@
-import React from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import Image from 'gatsby-image';
 import { Link, navigate } from 'gatsby';
 import Select from 'react-select';
 
 import Layout from '../components/layout';
-import { chapterSummary } from '../hooks/chapterSummary';
+import { useChapterSummaries } from '../hooks/useChapterSummaries';
 import { getComicPath } from '../util/getComicPath';
 
 // TODO: Fix page indexing when chapter title pages (0) are added
-const Archive: React.FC<{}> = () => {
-  const chapters = chapterSummary();
+const Archive: React.FC = () => {
+  const chapters = useChapterSummaries();
   const page = (
     <div
       css={css`
@@ -21,7 +20,7 @@ const Archive: React.FC<{}> = () => {
       `}
     >
       <h1>Archive</h1>
-      {chapters.map(chapter => (
+      {chapters.map((chapter) => (
         <div
           css={css`
             max-width: 640px;
@@ -46,7 +45,7 @@ const Archive: React.FC<{}> = () => {
                   align-self: flex-start;
                 }
               `}
-              fixed={chapter?.thumb?.sharp?.fixed}
+              fixed={chapter?.thumb?.sharp?.fixed ?? []}
               alt={chapter.chapter.toString()}
             />
           </Link>
@@ -63,12 +62,6 @@ const Archive: React.FC<{}> = () => {
             </h2>
             <p>{chapter.synopsis}</p>
             <Select
-              css={css`
-                margin-top: 1rem;
-                * {
-                  margin-top: 0;
-                }
-              `}
               placeholder="Jump to page"
               onChange={(value, action) =>
                 action.action === 'select-option' &&

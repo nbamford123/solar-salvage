@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import Image from 'gatsby-image';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
@@ -9,23 +9,11 @@ import { Comic } from '../types';
 export interface ComicWrapperProps {
   comic: Comic;
 }
-export const ComicWrapper: React.SFC<ComicWrapperProps> = ({ comic }) => {
+export const ComicWrapper: React.FC<ComicWrapperProps> = ({ comic }) => {
   return (
-    <div
-      css={css`
-        background: white;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      `}
-    >
+    <>
       <Image
-        css={css`
-          * {
-            margin-top: 0;
-          }
-        `}
-        fixed={comic.comic?.sharp?.fixed ?? undefined}
+        fixed={comic.comic?.sharp?.fixed ?? []}
         alt={comic.page.toString()}
       />
       <div
@@ -37,6 +25,6 @@ export const ComicWrapper: React.SFC<ComicWrapperProps> = ({ comic }) => {
         <ComicNav chapter={comic.chapter} page={comic.page} />
       </div>
       <MDXRenderer>{comic.note}</MDXRenderer>
-    </div>
+    </>
   );
 };

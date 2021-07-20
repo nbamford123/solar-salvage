@@ -75,7 +75,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   }
 
   const comics = comicPosts.data.allMdx.nodes;
-  comics.forEach(comic => {
+  comics.forEach((comic) => {
     actions.createPage({
       path: getComicPath(comic.frontmatter.chapter, comic.frontmatter.page),
       component: require.resolve('./src/templates/comicTemplate.tsx'),

@@ -9,7 +9,6 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
-    'gatsby-plugin-ts',
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
@@ -45,15 +44,6 @@ module.exports = {
       options: {
         name: 'chapter-thumbs',
         path: 'comics/chapter-images',
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-webpack-bundle-analyzer',
-      options: {
-        production: true,
-        disable: !process.env.ANALYZE_BUNDLE_SIZE,
-        generateStatsFile: true,
-        analyzerMode: 'static',
       },
     },
   ],

@@ -22,6 +22,7 @@ export const query = graphql`
           frontmatter {
             title
             author
+            date
           }
           body
         }
@@ -41,7 +42,7 @@ const BlogListTemplate: React.FC<BlogListTemplateProps> = ({
   pageContext,
   data,
 }) => {
-  const posts = data.allMdx.edges.map(edge => makePost(edge.node));
+  const posts = data.allMdx.edges.map((edge) => makePost(edge.node));
 
   const { currentPage, numPages } = pageContext;
   const isFirst = currentPage === 1;

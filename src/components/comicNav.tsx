@@ -1,113 +1,113 @@
 /** @jsx jsx */
 import React from 'react';
-import { css, jsx } from '@emotion/core';
-import styled from '@emotion/styled';
-import { Link, navigate } from 'gatsby';
+import { css, jsx } from '@emotion/react';
+import { navigate } from 'gatsby';
+import {
+  AiOutlineLeft,
+  AiOutlineDoubleLeft,
+  AiOutlineRight,
+  AiOutlineDoubleRight,
+} from 'react-icons/ai';
 
-import { chapterSummary } from '../hooks/chapterSummary';
+import { ArwesSelect } from './arwesSelect';
 import { getComicPath } from '../util/getComicPath';
+import { NavLink } from './navLink';
+import { useChapterSummaries } from '../hooks/useChapterSummaries';
 
 export interface ComicNavProps {
   chapter: number;
   page: number;
 }
 
-const baseLink = css({
-  display: 'inlineBlock',
-  fontSize: '1.25rem',
-  marginRight: '0.5rem',
-});
-
-const NavLink = styled(Link)(baseLink);
-const DisabledNavLink = styled.label(baseLink, {
-  color: 'lightgrey',
-  textDecoration: 'underline',
-});
+const ComicNavLink: React.FC<{
+  disabled?: boolean;
+  title: string;
+  to: string;
+}> = ({ children, ...rest }) => (
+  <NavLink fontSize="2.5rem" {...rest}>
+    {children}
+  </NavLink>
+);
 
 // TODO: Maybe tippy or a real tooltip?
 export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
   // Fetch all the chapters
-  const chapterInfo = chapterSummary();
+  const chapterInfo = useChapterSummaries();
 
   // Chapters for select nav
-  const chapterOptions = chapterInfo.map(chapter => (
-    <option
-      key={chapter.chapter}
-      value={chapter.chapter}
-    >{`${chapter.chapter} ${chapter.title}`}</option>
-  ));
+  const chapterOptions = chapterInfo.map((chapterInfo) => ({
+    value: chapterInfo.chapter,
+    name: `CHAPTER ${chapterInfo.chapter}: ${chapterInfo.title.toUpperCase()}`,
+    disabled: chapterInfo.chapter === chapter,
+  }));
 
   // Current chapter
   const myChapter = chapterInfo.find(
-    chapterSummary => chapterSummary.chapter === chapter,
+    (chapterSummary) => chapterSummary.chapter === chapter,
   ) || { chapter: 1, pages: 0 };
 
   // prev, next chapters, if they exist
   const prevChapter = chapterInfo.find(
-    chapterSummary => chapterSummary.chapter === chapter - 1,
+    (chapterSummary) => chapterSummary.chapter === chapter - 1,
   );
   const nextChapter = chapterInfo.find(
-    chapterSummary => chapterSummary.chapter === chapter + 1,
+    (chapterSummary) => chapterSummary.chapter === chapter + 1,
   );
 
   const lastPage = page === myChapter.pages;
   const firstPage = page === 1;
 
   // Navigation links
-  const beginningOfChapter = firstPage ? (
-    <DisabledNavLink title="Beginning of Chapter">&lt;&lt;</DisabledNavLink>
-  ) : (
-    <NavLink
+  const beginningOfChapter = (
+    <ComicNavLink
+      disabled={firstPage}
       title="Beginning of Chapter"
       to={getComicPath(myChapter.chapter, 1)}
     >
-      &lt;&lt;
-    </NavLink>
+      <AiOutlineDoubleLeft />
+    </ComicNavLink>
   );
-  const prevPage =
-    firstPage && !prevChapter ? (
-      <DisabledNavLink title="Previous Page">&lt;</DisabledNavLink>
-    ) : (
-      <NavLink
-        title="Previous Page"
-        to={
-          firstPage
-            ? prevChapter
-              ? getComicPath(prevChapter.chapter, prevChapter.pages)
-              : ''
-            : getComicPath(myChapter.chapter, page - 1)
-        }
-      >
-        &lt;
-      </NavLink>
-    );
-  const nextPage =
-    lastPage && !nextChapter ? (
-      <DisabledNavLink title="Next Page">&gt;</DisabledNavLink>
-    ) : (
-      <NavLink
-        title="Next Page"
-        to={
-          lastPage
-            ? nextChapter
-              ? getComicPath(nextChapter.chapter, 1)
-              : ''
-            : getComicPath(myChapter.chapter, page + 1)
-        }
-      >
-        &gt;
-      </NavLink>
-    );
 
-  const endOfChapter = lastPage ? (
-    <DisabledNavLink title="End of Chapter">&gt;&gt;</DisabledNavLink>
-  ) : (
-    <NavLink
+  const prevPage = (
+    <ComicNavLink
+      disabled={firstPage && !prevChapter}
+      title="Previous Page"
+      to={
+        firstPage
+          ? prevChapter
+            ? getComicPath(prevChapter.chapter, prevChapter.pages)
+            : ''
+          : getComicPath(myChapter.chapter, page - 1)
+      }
+    >
+      <AiOutlineLeft />
+    </ComicNavLink>
+  );
+
+  const nextPage = (
+    <ComicNavLink
+      disabled={lastPage && !nextChapter}
+      title="Next Page"
+      to={
+        lastPage
+          ? nextChapter
+            ? getComicPath(nextChapter.chapter, 1)
+            : ''
+          : getComicPath(myChapter.chapter, page + 1)
+      }
+    >
+      <AiOutlineRight />
+    </ComicNavLink>
+  );
+
+  const endOfChapter = (
+    <ComicNavLink
+      disabled={lastPage}
       title="End of Chapter"
       to={getComicPath(myChapter.chapter, myChapter.pages)}
     >
-      &gt;&gt;
-    </NavLink>
+      <AiOutlineDoubleRight />
+    </ComicNavLink>
   );
 
   return (
@@ -116,23 +116,20 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        * {
-          margin-top: 0;
-        }
+        margin-top: 0.25rem;
+        margin-bottom: 2rem;
       `}
     >
       {beginningOfChapter}
       {prevPage}
-      <select
-        css={css`
-          margin-right: 0.5rem;
-        `}
+      <ArwesSelect
         title={'Select chapter'}
-        value={myChapter.chapter}
-        onChange={e => navigate(getComicPath(e.target.value, 1))}
-      >
-        {chapterOptions}
-      </select>
+        value={chapterOptions.find(
+          (chapter) => chapter.value === myChapter.chapter,
+        )}
+        onChange={(value: number) => navigate(getComicPath(value, 1))}
+        options={chapterOptions}
+      />
       {nextPage}
       {endOfChapter}
     </div>

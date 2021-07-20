@@ -1,58 +1,76 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import { css } from '@emotion/core';
+import {
+  AiOutlineCalendar,
+  AiOutlineFileText,
+  AiOutlineFolderOpen,
+  AiOutlineQuestionCircle,
+} from 'react-icons/ai';
+import { css } from '@emotion/react';
+import { Header as ArwesHeader, Heading } from 'arwes';
 import { Link } from 'gatsby';
+import { NavLink } from './navLink';
+import { SolarSalvageTitle } from './title';
+import { totalWidth } from '../types';
 
-import { totalWidth as headerWidth } from '../types';
-
-interface NavLinkProps {
-  fontWeight?: string;
-}
-const NavLink = styled(Link)<NavLinkProps>`
-  color: #222;
-  font-size: 1rem;
-  font-weight: ${props => props.fontWeight || 'normal'};
-  line-height: 1;
-  margin: 0 0.5rem 0 0;
-  padding: 0.25rem;
-  text-decoration: none;
-
-  &.current-page {
-    border-bottom: 2px solid #222;
-  }
-
-  &:last-of-type {
-    margin-right: 0;
-  }
-`;
-
-export const Header = () => (
-  <header
-    css={css`
-      background: #eee;
-      border-bottom: 1px solid #ddd;
-      display: flex;
-      justify-content: space-between;
-      max-width: ${headerWidth}px;
-      margin: auto;
-      padding-bottom: 0.5rem;
-    `}
-  >
-    <nav>
-      <NavLink to="/" activeClassName="current-page">
-        LATEST PAGE
-      </NavLink>
-      <NavLink to="/blog" activeClassName="current-page">
-        NEWS
-      </NavLink>
-      <NavLink to="/about" activeClassName="current-page">
-        ABOUT
-      </NavLink>
-      <NavLink to="/archive" activeClassName="current-page">
-        ARCHIVE
-      </NavLink>
-    </nav>
-  </header>
+const HeadingText = ({ children }: { children: React.ReactNode }) => (
+  <Heading node="h3">{children}</Heading>
 );
 
+const iconCss = css`
+  position: relative;
+  top: 2px;
+`;
+const HeaderNavLink: React.FC<{ to: string }> = ({ children, to }) => (
+  <NavLink header to={to}>
+    {children}
+  </NavLink>
+);
+
+export const Header: React.FC = () => (
+  <ArwesHeader title="Solar Salvage">
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        max-width: ${totalWidth}px;
+      `}
+    >
+      <div
+        css={css`
+          align-items: center;
+          display: flex;
+          justify-content: space-between;
+        `}
+      >
+        <Link to="/">
+          <SolarSalvageTitle />
+        </Link>
+        <nav>
+          <HeaderNavLink to="/">
+            <AiOutlineCalendar css={iconCss} /> LATEST PAGE
+          </HeaderNavLink>
+          <HeaderNavLink to="/blog">
+            <AiOutlineFileText css={iconCss} /> NEWS
+          </HeaderNavLink>
+          <HeaderNavLink to="/about">
+            <AiOutlineQuestionCircle css={iconCss} /> ABOUT
+          </HeaderNavLink>
+          <HeaderNavLink to="/archive">
+            <AiOutlineFolderOpen css={iconCss} /> ARCHIVE
+          </HeaderNavLink>
+        </nav>
+      </div>
+      <div
+        css={css`
+          align-items: center;
+          display: flex;
+          justify-content: space-between;
+        `}
+      >
+        <HeadingText>A SCIENCE FICTION WEBCOMIC</HeadingText>
+        <HeadingText>UPDATES M W F</HeadingText>
+      </div>
+    </div>
+  </ArwesHeader>
+);
 export default Header;

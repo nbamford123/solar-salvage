@@ -1,9 +1,6 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
-import {
-  // eslint-disable-next-line @typescript-eslint/camelcase
-  ChapterInfoQuery,
-} from '../../graphql-types';
+import { ChapterInfoQuery } from '../../graphql-types';
 import { ChapterMdx, ChapterSummary } from '../types';
 
 interface PageMdx {
@@ -17,7 +14,7 @@ interface PageMap {
 }
 
 // Get comics and chapters and return chapter info array
-export const chapterSummary = (): ChapterSummary[] => {
+export const useChapterSummaries = (): ChapterSummary[] => {
   const data: ChapterInfoQuery = useStaticQuery(graphql`
     query ChapterInfo {
       pages: allMdx(filter: { frontmatter: { type: { eq: "comic" } } }) {
@@ -50,6 +47,7 @@ export const chapterSummary = (): ChapterSummary[] => {
     }
   `);
 
+  // It seems kind of pointless to generate this every time you need a summary, also I bet graphql could do it
   const pageMap = data.pages.nodes.reduce((pv: PageMap, cv: PageMdx) => {
     const chapter = cv?.frontmatter?.chapter;
     return chapter
@@ -60,10 +58,10 @@ export const chapterSummary = (): ChapterSummary[] => {
       : pv;
   }, {});
 
-  const chapters =
-    (data.chapters.nodes.length &&
-      data.chapters.nodes[0]?.frontmatter?.chapters) ||
-    [];
+  const chapters: Array<ChapterSummary> = (data.chapters.nodes.length
+    ? data.chapters.nodes[0].frontmatter?.chapters ?? []
+    : []
+  ).filter((c) => c) as Array<ChapterSummary>;
 
   const chapterSummary = chapters.reduce(
     (pv: Array<ChapterSummary>, cv: ChapterMdx | null) => [

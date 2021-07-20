@@ -1,12 +1,9 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
-import {
-  // eslint-disable-next-line @typescript-eslint/camelcase
-  LatestComicQuery,
-} from '../../graphql-types';
+import { LatestComicQuery } from '../../graphql-types';
 import { Comic, makeComic } from '../types';
 
-export const latestComic = (): Comic => {
+export const useLatestComic = (): Comic => {
   const data: LatestComicQuery = useStaticQuery(graphql`
     query LatestComic {
       allMdx(
