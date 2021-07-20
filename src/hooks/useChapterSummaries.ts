@@ -58,9 +58,10 @@ export const useChapterSummaries = (): ChapterSummary[] => {
       : pv;
   }, {});
 
-  const chapters: Array<ChapterSummary> = (data.chapters.nodes.length
-    ? data.chapters.nodes[0].frontmatter?.chapters ?? []
-    : []
+  const chapters: Array<ChapterSummary> = (
+    data.chapters.nodes.length
+      ? data.chapters.nodes[0].frontmatter?.chapters ?? []
+      : []
   ).filter((c) => c) as Array<ChapterSummary>;
 
   const chapterSummary = chapters.reduce(

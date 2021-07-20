@@ -6,7 +6,7 @@ import Layout from '../components/layout';
 import { ComicMdx, makeComic } from '../types';
 
 export const query = graphql`
-  query($chapter: Int!, $page: Int!) {
+  query ($chapter: Int!, $page: Int!) {
     mdx(
       frontmatter: {
         type: { eq: "comic" }
