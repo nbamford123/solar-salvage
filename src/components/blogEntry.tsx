@@ -1,5 +1,5 @@
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import { FrameLines } from '@arwes/core';
+import { Frame } from 'arwes';
 import { Post } from '../types';
 
 export interface BlogEntryProps {
@@ -7,8 +7,8 @@ export interface BlogEntryProps {
 }
 export const BlogEntry: React.FC<BlogEntryProps> = ({ post }) => (
   <article>
-    <FrameLines>
+    <Frame>
       <MDXRenderer>{post.body}</MDXRenderer>
-    </FrameLines>
+    </Frame>
   </article>
 );

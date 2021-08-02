@@ -33,23 +33,26 @@ const Layout: React.FC<LayoutProps> = ({ children, page }) => {
         <Row
           css={css`
             display: flex;
+            margin-top: 1rem;
             justify-content: center;
           `}
         >
-          <Col>
+          <Col
+            css={css`
+              align-items: center;
+              display: flex;
+              flex-direction: column;
+              max-width: ${pageWidth}px;
+            `}
+          >
             <Frame
               animate
+              css={css`
+                padding: 0.5rem;
+                width: 100%;
+              `}
               level={1}
               corners={3}
-              css={css`
-                  align-items: center;
-                  display: flex;
-                  flex-direction: column;
-                  padding-bottom: 0.5rem;
-                  padding-top: 0.5rem;
-                  max-width: ${pageWidth}px;
-                  >
-                `}
             >
               {page}
             </Frame>
