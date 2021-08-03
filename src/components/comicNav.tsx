@@ -80,7 +80,11 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
           : getComicPath(myChapter.chapter, page - 1)
       }
     >
-      <AiOutlineLeft />
+      <AiOutlineLeft
+        css={css`
+          margin-right: 1.5rem;
+        `}
+      />
     </ComicNavLink>
   );
 

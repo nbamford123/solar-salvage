@@ -8,7 +8,7 @@ import { FixedObject } from 'gatsby-image';
 export const pageContentWidth = 900;
 
 // Comic image plus .5 rem on each side
-// 900 + 16 = 918
+// 900 + 16 = 916
 export const pageWidth = pageContentWidth + 16;
 
 // Sidebar content is 300 width
@@ -18,7 +18,7 @@ export const sidebarContentWidth = 300;
 // sideBarContent + 16 + 2 + 16 = 334
 export const sidebarWidth = sidebarContentWidth + 16 + 2 + 16;
 
-// The whole site
+// The whole site 916 + 334 = 1250
 export const totalWidth = pageWidth + sidebarWidth;
 
 // Header height

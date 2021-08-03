@@ -2,7 +2,7 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "esModuleInterop": true,
     "isolatedModules": true,
     "jsx": "preserve",

@@ -86,9 +86,7 @@ const selectStyles = (theme: ArwesTheme) => {
     },
   };
 };
-export const ArwesSelect = withStyles(
-  selectStyles,
-)(
+export const ArwesSelect = withStyles(selectStyles)(
   ({
     classes,
     ...rest

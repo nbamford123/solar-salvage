@@ -7,7 +7,7 @@ import { ReadLink } from '../components/readLink';
 import { makePost, PostMdx } from '../types';
 
 export const query = graphql`
-  query($skip: Int!, $limit: Int!) {
+  query ($skip: Int!, $limit: Int!) {
     allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { type: { eq: "blog" } } }

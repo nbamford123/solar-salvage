@@ -79,6 +79,7 @@ export const NavLink = withStyles(linkStyles)(
         disabled ? classes.disabled : header ? classes.header : classes.root
       }
       css={css`
+        line-height: 0;
         font-size: ${fontSize};
       `}
       title={title}
