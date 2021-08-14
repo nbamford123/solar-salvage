@@ -11,15 +11,14 @@ export interface BlogProps {
 export const Blog: React.FC<BlogProps> = ({ posts }) => {
   return (
     <>
-      <h2
-        css={css`
-          margin-left: 2rem;
-        `}
-      >
-        News
-      </h2>
       {posts.map((post) => (
-        <BlogEntry key={post.slug} post={post} />
+        <BlogEntry
+          css={css`
+            margin-bottom: 0.5rem;
+          `}
+          key={post.slug}
+          post={post}
+        />
       ))}
     </>
   );
