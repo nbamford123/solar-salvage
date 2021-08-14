@@ -1,25 +1,17 @@
-import { Frame } from 'arwes';
-import { css } from '@emotion/react';
+import { Project } from 'arwes';
 
 import { Blog } from './blog';
-import { totalWidth, Post } from '../types';
 import { ReadLink } from './readLink';
+import { Post } from '../types';
 
 export interface BlogWrapperProps {
   posts: Array<Post>;
 }
 export const BlogWrapper: React.FC<BlogWrapperProps> = ({ posts }) => (
-  <Frame
-    animate
-    level={2}
-    corners={3}
-    css={css`
-      max-width: ${totalWidth}px;
-    `}
-  >
+  <Project header="News">
     <Blog posts={posts} />
     <ReadLink to="/blog" rel="news">
       All News →
     </ReadLink>
-  </Frame>
+  </Project>
 );

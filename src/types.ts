@@ -4,25 +4,26 @@ import { FixedObject } from 'gatsby-image';
 // Widths for main elements page
 //
 
-// Comic width will be 900, make all of the pages this width
-export const pageContentWidth = 900;
+// Comic width will be 900, make all of the pages this width + 2 x 8px padding
+export const PRIMARY_CONTENT_WIDTH = 916;
 
-// Comic image plus .5 rem on each side
-// 900 + 16 = 916
-export const pageWidth = pageContentWidth + 16;
+// Maybe I'm making this too fixed, it could have auto lr margins like the header
+// Grid cols have 2 x 10px horizontal padding
+// 916 + 20 = 936
+export const PRIMARY_COLUMN_WIDTH = PRIMARY_CONTENT_WIDTH + 16;
 
 // Sidebar content is 300 width
-export const sidebarContentWidth = 300;
+export const SIDEBAR_CONTENT_WIDTH = 300;
 
 // Total sidebar width + .5rem padding on each side, 1px border, and .5rem margin on each side
 // sideBarContent + 16 + 2 + 16 = 334
-export const sidebarWidth = sidebarContentWidth + 16 + 2 + 16;
+// export const sidebarWidth = sidebarContentWidth + 16 + 2 + 16;
 
-// The whole site 916 + 334 = 1250
-export const totalWidth = pageWidth + sidebarWidth;
+// The whole site on largest screen size
+export const TOTAL_WIDTH = 1280;
 
 // Header height
-export const headerHeight = 200;
+export const HEADER_HEIGHT = 200;
 
 export type GatsbyFixedImage = {
   sharp?: { fixed?: FixedObject | FixedObject[] | undefined };

@@ -11,20 +11,23 @@ export interface ComicWrapperProps {
 }
 export const ComicWrapper: React.FC<ComicWrapperProps> = ({ comic }) => {
   return (
-    <>
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      `}
+    >
       <Image
+        css={css`
+          margin-bottom: 1rem;
+          margin-top: 1rem;
+        `}
         fixed={comic.comic?.sharp?.fixed ?? []}
         alt={comic.page.toString()}
       />
-      <div
-        css={css`
-          display: flex;
-          justify-content: center;
-        `}
-      >
-        <ComicNav chapter={comic.chapter} page={comic.page} />
-      </div>
+      <ComicNav chapter={comic.chapter} page={comic.page} />
       <MDXRenderer>{comic.note}</MDXRenderer>
-    </>
+    </div>
   );
 };

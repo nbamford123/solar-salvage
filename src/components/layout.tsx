@@ -6,7 +6,7 @@ import { Arwes, Col, Row, Frame, ThemeProvider, createTheme } from 'arwes';
 import Header from './header';
 import { useSiteMetadata } from '../hooks/useSiteMetadata';
 import { Sidebar } from './sidebar';
-import { pageWidth } from '../types';
+import { TOTAL_WIDTH } from '../types';
 
 export interface LayoutProps {
   children?: React.ReactNode;
@@ -29,46 +29,32 @@ const Layout: React.FC<LayoutProps> = ({ children, page }) => {
           <title>{title}</title>
           <meta name="description" content={description} />
         </Helmet>
-        <Header />
-        <Row
+        <div
           css={css`
-            display: flex;
-            margin-top: 1rem;
-            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: ${TOTAL_WIDTH}px;
           `}
         >
-          <Col
-            css={css`
-              align-items: center;
-              display: flex;
-              flex-direction: column;
-              max-width: ${pageWidth}px;
-            `}
-          >
-            <Frame
-              animate
-              css={css`
-                padding: 0.5rem;
-                width: 100%;
-              `}
-              level={1}
-              corners={3}
-            >
-              {page}
-            </Frame>
-          </Col>
-          <Col>
-            <Sidebar />
-          </Col>
-        </Row>
-        <Row
-          css={css`
-            display: flex;
-            justify-content: center;
-          `}
-        >
-          <Col>{children}</Col>
-        </Row>
+          <Row>
+            <Col s={12}>
+              <Header />
+            </Col>
+          </Row>
+          <Row>
+            <Col s={12} xl={9}>
+              <Frame animate level={1} corners={3}>
+                {page}
+              </Frame>
+            </Col>
+            <Col s={12} xl={3}>
+              <Sidebar />
+            </Col>
+          </Row>
+          <Row>
+            <Col s={12}>{children}</Col>
+          </Row>
+        </div>
       </Arwes>
     </ThemeProvider>
   );

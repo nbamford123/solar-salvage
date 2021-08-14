@@ -1,5 +1,7 @@
 import { Project } from 'arwes';
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+
 // import styled from '@emotion/styled';
 
 // import { sidebarContentWidth } from '../types';
@@ -9,6 +11,9 @@ import { css } from '@emotion/react';
 //   height: 300px;
 //   width: ${sidebarContentWidth}px;
 // `;
+const MyProject = styled(Project)`
+  margin-bottom: 6rem;
+`;
 
 export const Sidebar: React.FC = () => {
   return (
@@ -16,15 +21,13 @@ export const Sidebar: React.FC = () => {
       css={css`
         display: flex;
         flex-direction: column;
-        height: 100%;
-        justify-content: space-around;
       `}
     >
-      <Project header="Ad"></Project>
-      <Project header="Links">
+      <MyProject header="Ad"></MyProject>
+      <MyProject header="Links">
         <a href="https://www.girlgeniusonline.com/">Girl Genius</a>
-      </Project>
-      <Project header="Some other shit"></Project>
+      </MyProject>
+      <MyProject header="Some other shit"></MyProject>
     </div>
   );
 };

@@ -9,7 +9,7 @@ import { Header as ArwesHeader, Heading } from 'arwes';
 import { Link } from 'gatsby';
 import { NavLink } from './navLink';
 import { SolarSalvageTitle } from './title';
-import { totalWidth } from '../types';
+import { TOTAL_WIDTH } from '../types';
 
 const HeadingText = ({ children }: { children: React.ReactNode }) => (
   <Heading node="h3">{children}</Heading>
@@ -32,7 +32,7 @@ export const Header: React.FC = () => (
         display: flex;
         flex-direction: column;
         margin: auto;
-        max-width: ${totalWidth}px;
+        max-width: ${TOTAL_WIDTH}px;
       `}
     >
       <div
