@@ -7,6 +7,8 @@
   "dependencies": {
     "@emotion/core": "^11.0.0",
     "@emotion/styled": "^11.1.5",
+    "@fontsource/electrolize": "^4.5.0",
+    "@fontsource/titillium-web": "^4.5.0",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
     "arwes": "^1.0.0-alpha.5",

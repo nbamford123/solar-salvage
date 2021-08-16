@@ -12,7 +12,7 @@ import styled from '@emotion/styled';
 //   width: ${sidebarContentWidth}px;
 // `;
 const MyProject = styled(Project)`
-  margin-bottom: 6rem;
+  margin-top: 6rem;
 `;
 
 export const Sidebar: React.FC = () => {

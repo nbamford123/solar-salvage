@@ -1,4 +1,7 @@
 import React from 'react';
+import '@fontsource/electrolize';
+import '@fontsource/titillium-web';
+
 import { BlogWrapper } from '../components/blogWrapper';
 import { ComicWrapper } from '../components/comicWrapper';
 import Layout from '../components/layout';

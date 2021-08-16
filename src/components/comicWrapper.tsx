@@ -28,6 +28,11 @@ export const ComicWrapper: React.FC<ComicWrapperProps> = ({ comic }) => {
       />
       <ComicNav chapter={comic.chapter} page={comic.page} />
       <MDXRenderer>{comic.note}</MDXRenderer>
+      <div
+        css={css`
+          margin-bottom: 3rem;
+        `}
+      />
     </div>
   );
 };
