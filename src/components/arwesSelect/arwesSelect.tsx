@@ -15,6 +15,7 @@ const selectStyles = (theme: ArwesTheme) => {
       color: theme.color.control.base,
       cursor: 'pointer',
       display: 'block',
+      fontFamily: 'Noto Sans',
       fontSize: '1rem',
       height: '36px',
       // lineHeight: 1,
