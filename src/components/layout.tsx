@@ -1,7 +1,15 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { Helmet } from 'react-helmet';
-import { Arwes, Col, Row, Frame, ThemeProvider, createTheme } from 'arwes';
+import {
+  Arwes,
+  Col,
+  // createResponsive,
+  createTheme,
+  Frame,
+  Row,
+  ThemeProvider,
+} from 'arwes';
 
 import Header from './header';
 import { useSiteMetadata } from '../hooks/useSiteMetadata';
@@ -18,29 +26,37 @@ const myTheme = {
     fontFamily: '"Titillium Web", "sans-serif"',
   },
 };
+const background = {
+  small: './img/background.jpg',
+  medium: './img/background-medium.jpg',
+  large: './img/background-large.jpg',
+  xlarge: './img/background-large.jpg',
+};
+
+// const responsive = createResponsive({
+//   getTheme: () => myTheme,
+// });
 
 const Layout: React.FC<LayoutProps> = ({ children, page }) => {
   const { title, description } = useSiteMetadata();
+
   return (
     <ThemeProvider theme={createTheme(myTheme)}>
-      <Arwes>
+      <Arwes animate pattern="./img/glow.png" background={background}>
         <Helmet>
           <html lang="en" />
           <title>{title}</title>
           <meta name="description" content={description} />
         </Helmet>
+        <Header />
         <div
           css={css`
             margin-left: auto;
             margin-right: auto;
+            margin-top: 1rem;
             max-width: ${TOTAL_WIDTH}px;
           `}
         >
-          <Row>
-            <Col s={12}>
-              <Header />
-            </Col>
-          </Row>
           <Row>
             <Col s={12} xl={9}>
               <Frame animate level={1} corners={3}>

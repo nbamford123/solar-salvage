@@ -33,6 +33,8 @@ export const Header: React.FC = () => (
         flex-direction: column;
         margin: auto;
         max-width: ${TOTAL_WIDTH}px;
+        padding-right: 10px;
+        padding-left: 10px;
       `}
     >
       <div
