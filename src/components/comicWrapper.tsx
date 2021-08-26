@@ -11,13 +11,7 @@ export interface ComicWrapperProps {
 }
 export const ComicWrapper: React.FC<ComicWrapperProps> = ({ comic }) => {
   return (
-    <div
-      css={css`
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      `}
-    >
+    <>
       <Image
         css={css`
           margin-bottom: 1rem;
@@ -33,6 +27,6 @@ export const ComicWrapper: React.FC<ComicWrapperProps> = ({ comic }) => {
           margin-bottom: 3rem;
         `}
       />
-    </div>
+    </>
   );
 };

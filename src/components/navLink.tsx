@@ -40,6 +40,9 @@ const linkStyles = (theme: ArwesTheme) => ({
   },
   header: {
     ...rootStyles(theme),
+    '&&': {
+      fontSize: '1.25rem',
+    },
     '& > svg': {},
     marginRight: '1rem',
     '&:last-of-type': {

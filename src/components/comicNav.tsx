@@ -62,7 +62,7 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
     <ComicNavLink
       disabled={firstPage}
       title="Beginning of Chapter"
-      to={getComicPath(myChapter.chapter, 1)}
+      to={`/${getComicPath(myChapter.chapter, 1)}`}
     >
       <AiOutlineDoubleLeft />
     </ComicNavLink>
@@ -72,13 +72,13 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
     <ComicNavLink
       disabled={firstPage && !prevChapter}
       title="Previous Page"
-      to={
+      to={`/${
         firstPage
           ? prevChapter
             ? getComicPath(prevChapter.chapter, prevChapter.pages)
             : ''
           : getComicPath(myChapter.chapter, page - 1)
-      }
+      }`}
     >
       <AiOutlineLeft
         css={css`
@@ -92,13 +92,13 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
     <ComicNavLink
       disabled={lastPage && !nextChapter}
       title="Next Page"
-      to={
+      to={`/${
         lastPage
           ? nextChapter
             ? getComicPath(nextChapter.chapter, 1)
             : ''
           : getComicPath(myChapter.chapter, page + 1)
-      }
+      }`}
     >
       <AiOutlineRight />
     </ComicNavLink>
@@ -108,7 +108,7 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
     <ComicNavLink
       disabled={lastPage}
       title="End of Chapter"
-      to={getComicPath(myChapter.chapter, myChapter.pages)}
+      to={`/${getComicPath(myChapter.chapter, myChapter.pages)}`}
     >
       <AiOutlineDoubleRight />
     </ComicNavLink>
@@ -126,10 +126,11 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
       {prevPage}
       <ArwesSelect
         title={'Select chapter'}
-        value={chapterOptions.find(
-          (chapter) => chapter.value === myChapter.chapter,
-        )}
-        onChange={(value: number) => navigate(getComicPath(value, 1))}
+        value={
+          chapterOptions.find((chapter) => chapter.value === myChapter.chapter)
+            ?.value
+        }
+        onChange={(value: number) => navigate(`/${getComicPath(value, 1)}`)}
         options={chapterOptions}
       />
       {nextPage}
