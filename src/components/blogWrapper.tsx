@@ -1,7 +1,8 @@
 import { Project } from 'arwes';
+import { css } from '@emotion/react';
 
 import { Blog } from './blog';
-import { ReadLink } from './readLink';
+import { BlogNavLink } from '../components/blogNav';
 import { Post } from '../types';
 
 export interface BlogWrapperProps {
@@ -10,8 +11,13 @@ export interface BlogWrapperProps {
 export const BlogWrapper: React.FC<BlogWrapperProps> = ({ posts }) => (
   <Project header="News">
     <Blog posts={posts} />
-    <ReadLink to="/blog" rel="news">
-      All News →
-    </ReadLink>
+    <div
+      css={css`
+        display: flex;
+        justify-content: flex-end;
+      `}
+    >
+      <BlogNavLink dir="forward" to="/blog" rel="news" text="All News" />
+    </div>
   </Project>
 );

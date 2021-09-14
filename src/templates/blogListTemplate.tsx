@@ -1,9 +1,10 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { css } from '@emotion/react';
 
 import Layout from '../components/layout';
 import { Blog } from '../components/blog';
-import { ReadLink } from '../components/readLink';
+import { BlogNavLink } from '../components/blogNav';
 import { makePost, PostMdx } from '../types';
 
 export const query = graphql`
@@ -55,16 +56,33 @@ const BlogListTemplate: React.FC<BlogListTemplateProps> = ({
   const page = (
     <>
       <Blog posts={posts} />
-      {!isFirst && (
-        <ReadLink to={prevPage} rel="prev">
-          ← Previous Page
-        </ReadLink>
-      )}
-      {!isLast && (
-        <ReadLink to={nextPage} rel="next">
-          Next Page →
-        </ReadLink>
-      )}
+      <div
+        css={css`
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          padding: 1.5rem;
+        `}
+      >
+        {!isFirst ? (
+          <BlogNavLink
+            dir="backward"
+            to={prevPage}
+            rel="prev"
+            text="Previous Page"
+          />
+        ) : (
+          <div />
+        )}
+        {!isLast && (
+          <BlogNavLink
+            dir="forward"
+            to={nextPage}
+            rel="next"
+            text="Next Page"
+          />
+        )}
+      </div>
     </>
   );
   return <Layout page={page} />;

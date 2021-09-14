@@ -64,7 +64,7 @@ export const NavLink = withStyles(linkStyles)(
     classes,
     children,
     disabled = false,
-    fontSize = '1rem',
+    fontSize,
     header = false,
     title,
     to,

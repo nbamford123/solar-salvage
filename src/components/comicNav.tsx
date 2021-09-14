@@ -119,7 +119,7 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
       css={css`
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
       `}
     >
       {beginningOfChapter}

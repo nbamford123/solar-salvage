@@ -11,10 +11,31 @@ export const BlogEntry: React.FC<BlogEntryProps> = ({ post, ...rest }) => (
     <Frame>
       <div
         css={css`
-          padding: 0.5rem;
+          display: flex;
+          flex-direction: column;
+          padding-left: 1rem;
+          padding-right: 1rem;
         `}
       >
+        <h3>{post.title}</h3>
         <MDXRenderer>{post.body}</MDXRenderer>
+        <div
+          css={css`
+            display: flex;
+            justify-content: space-between;
+          `}
+        >
+          <h6>{post.author}</h6>
+          <h6>
+            {post.date &&
+              post.date.toLocaleDateString('en-us', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+              })}
+          </h6>
+        </div>
       </div>
     </Frame>
   </article>

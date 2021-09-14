@@ -13,10 +13,6 @@ export const ComicWrapper: React.FC<ComicWrapperProps> = ({ comic }) => {
   return (
     <>
       <Image
-        css={css`
-          margin-bottom: 1rem;
-          margin-top: 1rem;
-        `}
         fixed={comic.comic?.sharp?.fixed ?? []}
         alt={comic.page.toString()}
       />

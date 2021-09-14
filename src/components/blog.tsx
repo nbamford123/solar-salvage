@@ -10,7 +10,11 @@ export interface BlogProps {
 
 export const Blog: React.FC<BlogProps> = ({ posts }) => {
   return (
-    <>
+    <div
+      css={css`
+        padding: 1rem;
+      `}
+    >
       {posts.map((post) => (
         <BlogEntry
           css={css`
@@ -20,6 +24,6 @@ export const Blog: React.FC<BlogProps> = ({ posts }) => {
           post={post}
         />
       ))}
-    </>
+    </div>
   );
 };

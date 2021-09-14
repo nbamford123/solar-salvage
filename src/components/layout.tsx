@@ -89,6 +89,8 @@ const Layout: React.FC<LayoutProps> = ({ children, page }) => {
                           display: flex;
                           flex-direction: column;
                           align-items: center;
+                          margin-bottom: 1rem;
+                          margin-top: 1rem;
                         `}
                       >
                         <Appear animate show={anim.entered}>
