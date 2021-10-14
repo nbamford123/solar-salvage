@@ -29,6 +29,7 @@ const myTheme = {
     fontFamily: '"Titillium Web", "sans-serif"',
   },
 };
+
 const background = {
   small: '/img/background.jpg',
   medium: '/img/background-medium.jpg',
@@ -83,7 +84,7 @@ const Layout: React.FC<LayoutProps> = ({ children, page }) => {
               >
                 <Row>
                   <Col s={12} xl={9}>
-                    <Frame animate level={1} corners={3}>
+                    <Frame animate level={1} corners={3} show={anim.entered}>
                       <div
                         css={css`
                           display: flex;
