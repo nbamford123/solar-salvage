@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import { Link } from 'gatsby';
+import { Heading, Paragraph } from 'arwes';
 
 import Layout from '../components/layout';
 
@@ -9,19 +9,15 @@ const About: React.FC = () => (
     page={
       <div
         css={css`
-          background: white;
+          display: flex;
+          flex-direction: column;
         `}
       >
-        <h1>About Solar Salvage</h1>
-        <p
-          css={css`
-            padding-bottom: 1rem;
-          `}
-        >
+        <Heading>About Solar Salvage</Heading>
+        <Paragraph>
           Solar Salvage is a long form science fiction webcomic written by James
           Joule and Nathan Bamford.
-        </p>
-        <Link to="/">&larr; back to latest page</Link>
+        </Paragraph>
       </div>
     }
   />

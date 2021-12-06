@@ -52,7 +52,7 @@ export interface Post {
 export const makePost = (mdx: PostMdx): Post => ({
   title: mdx.frontmatter?.title || '',
   author: mdx.frontmatter?.author || '',
-  date: mdx.frontmatter?.date || new Date(),
+  date: (mdx.frontmatter?.date && new Date(mdx.frontmatter.date)) || new Date(),
   body: mdx?.body || '',
   slug: mdx?.fields?.slug || '',
 });

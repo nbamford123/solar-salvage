@@ -17,6 +17,7 @@ export const useLatestBlogs = (): Array<Post> => {
           frontmatter {
             title
             author
+            date
           }
           fields {
             slug
@@ -26,5 +27,6 @@ export const useLatestBlogs = (): Array<Post> => {
       }
     }
   `);
+  console.log(data.allMdx.nodes[0].frontmatter);
   return data.allMdx.nodes.map((postMdx) => makePost(postMdx));
 };

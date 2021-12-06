@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import { Link } from 'gatsby';
 import { rgba } from 'polished';
-import { withStyles } from 'arwes';
+import { withSounds, withStyles } from 'arwes';
 
 import { ArwesTheme } from '../types';
 
@@ -56,27 +56,28 @@ const linkStyles = (theme: ArwesTheme) => ({
   },
 });
 
+interface NavLinkProps {
+  classes: { root: string; disabled: string; header: string };
+  children: React.ReactNode;
+  disabled?: boolean;
+  fontSize?: string;
+  header: boolean;
+  to: string;
+  title?: string;
+}
 // Probably ought to set this up with some list of variants
 // for the various classes, but who knows how the new Arwes will
 // work-- hopefully better.
-export const NavLink = withStyles(linkStyles)(
+const NavLinkBase = withStyles(linkStyles)(
   ({
     classes,
     children,
     disabled = false,
-    fontSize = '1rem',
+    fontSize,
     header = false,
     title,
     to,
-  }: {
-    classes: { root: string; disabled: string; header: string };
-    children: React.ReactNode;
-    disabled?: boolean;
-    fontSize?: string;
-    header: boolean;
-    to: string;
-    title?: string;
-  }) => (
+  }: NavLinkProps) => (
     <Link
       className={
         disabled ? classes.disabled : header ? classes.header : classes.root
@@ -90,5 +91,18 @@ export const NavLink = withStyles(linkStyles)(
     >
       {children}
     </Link>
+  ),
+);
+
+interface NavLinkPropsInternal extends NavLinkProps {
+  sounds: {
+    click: {
+      play: () => void;
+    };
+  };
+}
+export const NavLink = withSounds()(
+  (props: NavLinkPropsInternal): React.ReactNode => (
+    <NavLinkBase onClick={props.sounds.click.play} {...props} />
   ),
 );
