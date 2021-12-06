@@ -1,85 +1,100 @@
+import React from 'react';
 import { css } from '@emotion/react';
+import { Col, Heading, Project, Row, Words } from 'arwes';
 import Image from 'gatsby-image';
 import { Link, navigate } from 'gatsby';
-import Select from 'react-select';
 
 import Layout from '../components/layout';
+import { ArwesSelect } from '../components/arwesSelect';
 import { useChapterSummaries } from '../hooks/useChapterSummaries';
 import { getComicPath } from '../util/getComicPath';
 
 // TODO: Fix page indexing when chapter title pages (0) are added
 const Archive: React.FC = () => {
   const chapters = useChapterSummaries();
-  const page = (
-    <div
-      css={css`
-        background: white;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      `}
-    >
-      <h1>Archive</h1>
-      {chapters.map((chapter) => (
+  return (
+    <Layout
+      page={
         <div
           css={css`
-            max-width: 640px;
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 16px;
           `}
-          key={chapter.chapter}
         >
-          <Link
-            to={getComicPath(chapter.chapter, 1)}
-            css={css`
-              margin: 1rem 1rem 0 0;
-              width: 200px;
-              flex-shrink: 0;
-            `}
-          >
-            <Image
+          <Heading>Archive</Heading>
+          {chapters.map((chapter) => (
+            <Project
               css={css`
-                * {
-                  margin-top: 0;
-                  width: 200px;
-                  object-fit: contain;
-                  align-self: flex-start;
-                }
+                margin-bottom: 16px;
+                width: 100%;
               `}
-              fixed={chapter?.thumb?.sharp?.fixed ?? []}
-              alt={chapter.chapter.toString()}
-            />
-          </Link>
-          <div
-            css={css`
-              display: flex;
-              flex-direction: column;
-              flex: 1 1 auto;
-              height: 40px;
-            `}
-          >
-            <h2>
-              Chapter {chapter.chapter} {chapter.title}
-            </h2>
-            <p>{chapter.synopsis}</p>
-            <Select
-              placeholder="Jump to page"
-              onChange={(value, action) =>
-                action.action === 'select-option' &&
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                navigate((value as any).value)
-              }
-              options={Array.from(Array(chapter.pages), (_, index) => ({
-                value: getComicPath(chapter.chapter, index + 1),
-                label: `${index + 1}`,
-              }))}
-            />
-          </div>
+              key={chapter.chapter}
+              header={`Chapter ${chapter.chapter} ${chapter.title}`}
+            >
+              <Row>
+                <Col s={12} l={3}>
+                  <Link
+                    to={getComicPath(chapter.chapter, 1)}
+                    css={css`
+                      width: 200px;
+                      flex-shrink: 0;
+                    `}
+                  >
+                    <Image
+                      css={css`
+                        * {
+                          margin-top: 0;
+                          width: 200px;
+                        }
+                      `}
+                      fixed={chapter?.thumb?.sharp?.fixed ?? []}
+                      alt={chapter.chapter.toString()}
+                    />
+                  </Link>
+                </Col>
+                <Col s={12} l={9}>
+                  <div
+                    css={css`
+                      display: flex;
+                      flex-direction: column;
+                    `}
+                  >
+                    <Words animate show>
+                      {chapter.synopsis}
+                    </Words>
+                    <div
+                      css={css`
+                        padding-top: 20px;
+                        padding-bottom: 130px;
+                      `}
+                    >
+                      <ArwesSelect
+                        title={'Jump to page'}
+                        onChange={(value: number) => navigate(value)}
+                        options={Array.from(
+                          Array(chapter.pages),
+                          (_, index) => ({
+                            value: `/${getComicPath(
+                              chapter.chapter,
+                              index + 1,
+                            )}`,
+                            name: `${index + 1}`,
+                          }),
+                        )}
+                        placeholder="JUMP TO PAGE..."
+                      />
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+            </Project>
+          ))}
         </div>
-      ))}
-    </div>
+      }
+    />
   );
-
-  return <Layout page={page} />;
 };
 
 export default Archive;

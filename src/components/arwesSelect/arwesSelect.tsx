@@ -31,7 +31,6 @@ const selectStyles = (theme: ArwesTheme) => {
       '&:hover, &:focus': {
         color: theme.color.control.light,
       },
-      width: '17.5em',
     },
     value: {
       // border: `1px solid  ${theme.color.control.base}`,
