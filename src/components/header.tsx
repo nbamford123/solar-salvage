@@ -15,16 +15,12 @@ const HeadingText: React.FC<{ animate: boolean }> = ({ animate, children }) => (
   </h3>
 );
 
-const iconCss = css`
-  position: relative;
-  top: 2px;
-`;
 const HeaderNavMenu: React.FC<{ mobile: boolean; entered: boolean }> = ({
   entered,
   mobile = false,
 }) =>
   mobile ? (
-    <MobileMenu entered={entered}/>
+    <MobileMenu entered={entered} />
   ) : (
     <div
       css={css`
@@ -32,7 +28,7 @@ const HeaderNavMenu: React.FC<{ mobile: boolean; entered: boolean }> = ({
         display: flex;
       `}
     >
-      < Menu entered={entered}/>
+      <Menu entered={entered} />
     </div>
   );
 
