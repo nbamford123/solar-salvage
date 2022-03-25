@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import Image from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
@@ -43,8 +43,8 @@ export const ComicWrapper: React.FC<ComicWrapperProps> = ({ comic }) => {
         chapterSummary={myChapter}
         page={comic.page}
       >
-        <Image
-          fixed={comic.comic?.sharp?.fixed ?? []}
+        <GatsbyImage
+          image={comic.comic?.sharp?.fixed ?? []}
           alt={comic.page.toString()}
         />
       </ImageLink>

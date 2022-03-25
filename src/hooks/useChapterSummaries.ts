@@ -34,9 +34,7 @@ export const useChapterSummaries = (): ChapterSummary[] => {
               title
               thumb {
                 sharp: childImageSharp {
-                  fixed(width: 200, height: 200) {
-                    ...GatsbyImageSharpFixed
-                  }
+                  gatsbyImageData(width: 200, height: 200, layout: FIXED)
                 }
               }
               writtenBy

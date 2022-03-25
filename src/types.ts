@@ -1,4 +1,4 @@
-import { FixedObject } from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 //
 // Widths for main elements page
@@ -26,7 +26,7 @@ export const TOTAL_WIDTH = 1280;
 export const HEADER_HEIGHT = 200;
 
 export type GatsbyFixedImage = {
-  sharp?: { fixed?: FixedObject | FixedObject[] | undefined };
+  sharp?: { fixed?: GatsbyImage | GatsbyImage[] | undefined };
 };
 
 export interface PostMdx {

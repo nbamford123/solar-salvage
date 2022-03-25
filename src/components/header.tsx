@@ -56,7 +56,7 @@ export const Header: React.FC<{ show: boolean }> = ({ show }) => (
             <SolarSalvageTitle />
           </Link>
           <nav>
-            <HeaderNavMenu entered={headerAnim.entered} mobile={false} />
+            <HeaderNavMenu entered={headerAnim.entered} mobile={true} />
           </nav>
         </div>
         <div
