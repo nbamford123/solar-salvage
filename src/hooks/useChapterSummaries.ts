@@ -1,6 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
-import { ChapterInfoQuery } from '../../graphql-types';
 import { ChapterMdx, ChapterSummary } from '../types';
 
 interface PageMdx {
@@ -15,35 +14,36 @@ interface PageMap {
 
 // Get comics and chapters and return chapter info array
 export const useChapterSummaries = (): ChapterSummary[] => {
-  const data: ChapterInfoQuery = useStaticQuery(graphql`
-    query ChapterInfo {
-      pages: allMdx(filter: { frontmatter: { type: { eq: "comic" } } }) {
-        nodes {
-          frontmatter {
-            chapter
+  const data: GatsbyTypes.ChapterInfoQuery =
+    useStaticQuery<GatsbyTypes.ChapterInfoQuery>(graphql`
+      query ChapterInfo {
+        pages: allMdx(filter: { frontmatter: { type: { eq: "comic" } } }) {
+          nodes {
+            frontmatter {
+              chapter
+            }
           }
         }
-      }
-      chapters: allMdx(filter: { frontmatter: { type: { eq: "chapter" } } }) {
-        nodes {
-          frontmatter {
-            type
-            chapters {
-              chapter
-              synopsis
-              title
-              thumb {
-                sharp: childImageSharp {
-                  gatsbyImageData(width: 200, height: 200, layout: FIXED)
+        chapters: allMdx(filter: { frontmatter: { type: { eq: "chapter" } } }) {
+          nodes {
+            frontmatter {
+              type
+              chapters {
+                chapter
+                synopsis
+                title
+                thumb {
+                  childImageSharp {
+                    gatsbyImageData(width: 200, height: 200, layout: FIXED)
+                  }
                 }
+                writtenBy
               }
-              writtenBy
             }
           }
         }
       }
-    }
-  `);
+    `);
 
   // It seems kind of pointless to generate this every time you need a summary, also I bet graphql could do it
   const pageMap = data.pages.nodes.reduce((pv: PageMap, cv: PageMdx) => {

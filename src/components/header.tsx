@@ -32,7 +32,10 @@ const HeaderNavMenu: React.FC<{ mobile: boolean; entered: boolean }> = ({
     </div>
   );
 
-export const Header: React.FC<{ show: boolean }> = ({ show }) => (
+export const Header: React.FC<{ show: boolean; min?: boolean }> = ({
+  show,
+  min = false,
+}) => (
   <ArwesHeader animate show={show} title="Solar Salvage">
     {(headerAnim: { entered: boolean }) => (
       <div
@@ -56,7 +59,7 @@ export const Header: React.FC<{ show: boolean }> = ({ show }) => (
             <SolarSalvageTitle />
           </Link>
           <nav>
-            <HeaderNavMenu entered={headerAnim.entered} mobile={true} />
+            <HeaderNavMenu entered={headerAnim.entered} mobile={min} />
           </nav>
         </div>
         <div

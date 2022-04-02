@@ -11,6 +11,12 @@ module.exports = {
     'gatsby-plugin-emotion',
     'gatsby-plugin-react-helmet',
     {
+      resolve: 'gatsby-plugin-typegen',
+      options: {
+        outputPath: 'src/__generated__/gatsby-types.d.ts',
+      },
+    },
+    {
       resolve: 'gatsby-plugin-jss-provider',
     },
     {

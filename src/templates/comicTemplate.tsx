@@ -3,10 +3,11 @@ import { graphql } from 'gatsby';
 
 import { ComicWrapper } from '../components/comicWrapper';
 import Layout from '../components/layout';
-import { ComicMdx, makeComic } from '../types';
+
+import { makeComic } from '../types';
 
 export const query = graphql`
-  query ($chapter: Int!, $page: Int!) {
+  query ComicMdx($chapter: Int!, $page: Int!) {
     mdx(
       frontmatter: {
         type: { eq: "comic" }
@@ -19,10 +20,13 @@ export const query = graphql`
         page
         posted
         comic {
-          sharp: childImageSharp {
+          childImageSharp {
             gatsbyImageData(width: 900, height: 1350, layout: FIXED)
           }
         }
+      }
+      fields {
+        slug
       }
       body
     }
@@ -30,11 +34,12 @@ export const query = graphql`
 `;
 
 export interface ComicTemplateProps {
-  data: { mdx: ComicMdx };
+  data: { mdx: GatsbyTypes.ComicMdxQuery['mdx'] };
 }
 const ComicTemplate: React.FC<ComicTemplateProps> = ({
   data: { mdx: comicMdx },
 }) => {
+  console.log('comicMdx', comicMdx?.frontmatter);
   const comic = makeComic(comicMdx);
   const page = <ComicWrapper comic={comic} />;
   return <Layout page={page} />;

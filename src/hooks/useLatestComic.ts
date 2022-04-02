@@ -1,42 +1,42 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
-import { LatestComicQuery } from '../../graphql-types';
 import { Comic, makeComic } from '../types';
 
 export const useLatestComic = (): Comic => {
-  const data: LatestComicQuery = useStaticQuery(graphql`
-    query LatestComic {
-      allMdx(
-        sort: {
-          fields: [
-            frontmatter___posted
-            frontmatter___chapter
-            frontmatter___page
-          ]
-          order: [DESC, DESC, DESC]
-        }
-        filter: { frontmatter: { type: { eq: "comic" } } }
-        limit: 1
-      ) {
-        nodes {
-          frontmatter {
-            chapter
-            page
-            posted
-            comic {
-              sharp: childImageSharp {
-                gatsbyImageData(width: 900, height: 1350, layout: FIXED)
+  const data: GatsbyTypes.LatestComicQuery =
+    useStaticQuery<GatsbyTypes.LatestComicQuery>(graphql`
+      query LatestComic {
+        allMdx(
+          sort: {
+            fields: [
+              frontmatter___posted
+              frontmatter___chapter
+              frontmatter___page
+            ]
+            order: [DESC, DESC, DESC]
+          }
+          filter: { frontmatter: { type: { eq: "comic" } } }
+          limit: 1
+        ) {
+          nodes {
+            frontmatter {
+              chapter
+              page
+              posted
+              comic {
+                childImageSharp {
+                  gatsbyImageData(width: 900, height: 1350, layout: FIXED)
+                }
               }
             }
+            fields {
+              slug
+            }
+            body
           }
-          fields {
-            slug
-          }
-          body
         }
       }
-    }
-  `);
+    `);
 
   const comicMdx = data.allMdx.nodes[0];
   return makeComic(comicMdx);

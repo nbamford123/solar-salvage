@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { Col, Heading, Project, Row, Words } from 'arwes';
-import { GatsbyImage } from 'gatsby-plugin-image';
+import { GatsbyImage, getImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import { Link, navigate } from 'gatsby';
 
 import Layout from '../components/layout';
@@ -43,7 +43,7 @@ const Archive: React.FC = () => {
                     `}
                   >
                     <GatsbyImage
-                      image={chapter?.thumb?.sharp?.fixed ?? []}
+                      image={getImage(chapter.thumb) as IGatsbyImageData}
                       css={css`
                         * {
                           margin-top: 0;

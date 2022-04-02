@@ -18,6 +18,7 @@
       "@/util/*": ["src/util/*"]
     },
     "strict": true,
+    "skipLibCheck": true,
     "target": "es5",
     "types": ["node", "@emotion/react/types/css-prop"]
   },
