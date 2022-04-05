@@ -1,5 +1,11 @@
+import { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
-import { Header as ArwesHeader, Words } from 'arwes';
+import {
+  createResponsive,
+  Header as ArwesHeader,
+  withStyles,
+  Words,
+} from 'arwes';
 import { Link } from 'gatsby';
 
 import { Menu } from './menu';
@@ -32,50 +38,75 @@ const HeaderNavMenu: React.FC<{ mobile: boolean; entered: boolean }> = ({
     </div>
   );
 
-export const Header: React.FC<{ show: boolean; min?: boolean }> = ({
+interface ResponsiveState {
+  small?: boolean;
+  medium?: boolean;
+  large?: boolean;
+  status: string;
+}
+
+export const Header: React.FC<{ show: boolean; theme?: unknown }> = ({
   show,
-  min = false,
-}) => (
-  <ArwesHeader animate show={show} title="Solar Salvage">
-    {(headerAnim: { entered: boolean }) => (
-      <div
-        css={css`
-          display: flex;
-          flex-direction: column;
-          margin: auto;
-          max-width: ${TOTAL_WIDTH}px;
-          padding-right: 10px;
-          padding-left: 10px;
-        `}
-      >
+  theme,
+}) => {
+  const [min, setMin] = useState(false);
+
+  useEffect(() => {
+    const responsive = createResponsive({
+      getTheme: () => theme,
+    });
+    if (responsive.get().status === 'small') setMin(true);
+    responsive.on((state: ResponsiveState) => {
+      if (state.status === 'small') setMin(true);
+      else setMin(false);
+    });
+    // return responsive.off(listener);
+  }, [theme]);
+
+  return (
+    <ArwesHeader animate show={show} title="Solar Salvage">
+      {(headerAnim: { entered: boolean }) => (
         <div
           css={css`
-            align-items: center;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            margin: auto;
+            max-width: ${TOTAL_WIDTH}px;
+            padding-right: 10px;
+            padding-left: 10px;
           `}
         >
-          <Link to="/">
-            <SolarSalvageTitle />
-          </Link>
-          <nav>
-            <HeaderNavMenu entered={headerAnim.entered} mobile={min} />
-          </nav>
+          <div
+            css={css`
+              align-items: center;
+              display: flex;
+              justify-content: space-between;
+            `}
+          >
+            <Link to="/">
+              <SolarSalvageTitle />
+            </Link>
+            <nav>
+              <HeaderNavMenu entered={headerAnim.entered} mobile={min} />
+            </nav>
+          </div>
+          <div
+            css={css`
+              align-items: center;
+              display: flex;
+              justify-content: space-between;
+            `}
+          >
+            <HeadingText animate={headerAnim.entered}>
+              A SCIENCE FICTION WEBCOMIC
+            </HeadingText>
+            <HeadingText animate={headerAnim.entered}>
+              UPDATES M W F
+            </HeadingText>
+          </div>
         </div>
-        <div
-          css={css`
-            align-items: center;
-            display: flex;
-            justify-content: space-between;
-          `}
-        >
-          <HeadingText animate={headerAnim.entered}>
-            A SCIENCE FICTION WEBCOMIC
-          </HeadingText>
-          <HeadingText animate={headerAnim.entered}>UPDATES M W F</HeadingText>
-        </div>
-      </div>
-    )}
-  </ArwesHeader>
-);
-export default Header;
+      )}
+    </ArwesHeader>
+  );
+};
+export default withStyles()(Header);

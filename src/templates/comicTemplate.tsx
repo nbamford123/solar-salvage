@@ -21,7 +21,7 @@ export const query = graphql`
         posted
         comic {
           childImageSharp {
-            gatsbyImageData(width: 900, height: 1350, layout: FIXED)
+            gatsbyImageData(width: 900, height: 1350)
           }
         }
       }

@@ -5,7 +5,6 @@ import {
   Appear,
   Arwes,
   Col,
-  // createResponsive,
   createSounds,
   createTheme,
   Frame,
@@ -27,6 +26,12 @@ const myTheme = {
   typography: {
     headerFontFamily: '"Electrolize", "sans-serif"',
     fontFamily: '"Titillium Web", "sans-serif"',
+  },
+  responsive: {
+    // The rest are default, but I needed small a little bigger
+    small: 700,
+    medium: 992,
+    large: 1200,
   },
 };
 
@@ -59,11 +64,13 @@ const sounds = {
   },
 };
 
+const theme = createTheme(myTheme);
+
 const Layout: React.FC<LayoutProps> = ({ children, page }) => {
   const { title, description } = useSiteMetadata();
 
   return (
-    <ThemeProvider theme={createTheme(myTheme)}>
+    <ThemeProvider theme={theme}>
       <SoundsProvider sounds={createSounds(sounds)}>
         <Arwes animate pattern="/img/glow.png" background={background}>
           {(anim: { entered: boolean }) => (
@@ -73,7 +80,7 @@ const Layout: React.FC<LayoutProps> = ({ children, page }) => {
                 <title>{title}</title>
                 <meta name="description" content={description} />
               </Helmet>
-              <Header show={anim.entered} />
+              <Header show={anim.entered} theme={theme} />
               <div
                 css={css`
                   margin-left: auto;
