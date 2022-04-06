@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React from 'react';
+import React, { useContext } from 'react';
 import { css, jsx } from '@emotion/react';
 import { navigate } from 'gatsby';
 import {
@@ -11,6 +11,7 @@ import {
 
 import { ArwesSelect } from './arwesSelect';
 import { getComicPath } from '../util/getComicPath';
+import { MobileContext } from './MobileContext';
 import { NavLink } from './navLink';
 import { useChapterSummaries } from '../hooks/useChapterSummaries';
 
@@ -31,6 +32,7 @@ const ComicNavLink: React.FC<{
 
 // TODO: Maybe tippy or a real tooltip?
 export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
+  const { mobile } = useContext(MobileContext);
   // Fetch all the chapters
   const chapterInfo = useChapterSummaries();
 
@@ -114,7 +116,38 @@ export const ComicNav: React.FC<ComicNavProps> = ({ chapter, page }) => {
     </ComicNavLink>
   );
 
-  return (
+  return mobile ? (
+    <div
+      css={css`
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+      `}
+    >
+      <ArwesSelect
+        title={'Select chapter'}
+        value={
+          chapterOptions.find((chapter) => chapter.value === myChapter.chapter)
+            ?.value
+        }
+        onChange={(value: number) => navigate(`/${getComicPath(value, 1)}`)}
+        options={chapterOptions}
+      />
+      <div
+        css={css`
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 1rem;
+        `}
+      >
+        {beginningOfChapter}
+        {prevPage}
+        {nextPage}
+        {endOfChapter}
+      </div>
+    </div>
+  ) : (
     <div
       css={css`
         display: flex;

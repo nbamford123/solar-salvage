@@ -1,4 +1,4 @@
-import { FixedObject } from 'gatsby-image';
+import { ImageDataLike } from 'gatsby-plugin-image';
 
 //
 // Widths for main elements page
@@ -25,15 +25,11 @@ export const TOTAL_WIDTH = 1280;
 // Header height
 export const HEADER_HEIGHT = 200;
 
-export type GatsbyFixedImage = {
-  sharp?: { fixed?: FixedObject | FixedObject[] | undefined };
-};
-
 export interface PostMdx {
   frontmatter?: {
     title?: string | null;
     author?: string | null;
-    date?: Date;
+    date?: string;
   } | null;
   fields?: {
     slug?: string | null;
@@ -52,7 +48,7 @@ export interface Post {
 export const makePost = (mdx: PostMdx): Post => ({
   title: mdx.frontmatter?.title || '',
   author: mdx.frontmatter?.author || '',
-  date: (mdx.frontmatter?.date && new Date(mdx.frontmatter.date)) || new Date(),
+  date: mdx.frontmatter?.date ? new Date(mdx.frontmatter.date) : new Date(),
   body: mdx?.body || '',
   slug: mdx?.fields?.slug || '',
 });
@@ -60,30 +56,17 @@ export const makePost = (mdx: PostMdx): Post => ({
 export interface Comic {
   chapter: number;
   page: number;
-  posted?: Date;
-  comic: GatsbyFixedImage;
+  posted?: string;
+  comic: ImageDataLike;
   note: string;
   slug: string;
-}
-
-export interface ComicMdx {
-  frontmatter?: {
-    chapter?: number | null;
-    page?: number | null;
-    posted?: Date;
-    comic?: GatsbyFixedImage;
-  } | null;
-  fields?: {
-    slug?: string | null;
-  } | null;
-  body: string;
 }
 
 export interface ChapterMdx {
   chapter?: number | null;
   synopsis?: string | null;
   title?: string | null;
-  thumb?: GatsbyFixedImage;
+  thumb?: ImageDataLike;
   writtenBy?: string | null;
 }
 
@@ -92,7 +75,7 @@ export interface ChapterSummary {
   pages: number;
   synopsis: string;
   title: string;
-  thumb: GatsbyFixedImage;
+  thumb: ImageDataLike;
   writtenBy: string;
 }
 
@@ -103,13 +86,11 @@ export interface ArwesTheme {
   animTime: number;
 }
 
-export const makeComic = (mdx: ComicMdx): Comic => ({
-  chapter: mdx.frontmatter?.chapter || 0,
-  page: mdx.frontmatter?.page || 0,
-  posted: mdx.frontmatter?.posted,
-  // This sucks, but there's no way to coerce graphql into returning the appropriate type
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  comic: (mdx.frontmatter?.comic ?? undefined) as any,
+export const makeComic = (mdx: GatsbyTypes.ComicMdxQuery['mdx']): Comic => ({
+  chapter: mdx?.frontmatter?.chapter || 0,
+  page: mdx?.frontmatter?.page || 0,
+  posted: mdx?.frontmatter?.posted,
+  comic: mdx?.frontmatter?.comic as ImageDataLike,
   note: mdx?.body || '',
   slug: mdx?.fields?.slug || '',
 });

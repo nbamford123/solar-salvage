@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { Col, Heading, Project, Row, Words } from 'arwes';
-import Image from 'gatsby-image';
+import { GatsbyImage, getImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import { Link, navigate } from 'gatsby';
 
 import Layout from '../components/layout';
@@ -42,14 +42,14 @@ const Archive: React.FC = () => {
                       flex-shrink: 0;
                     `}
                   >
-                    <Image
+                    <GatsbyImage
+                      image={getImage(chapter.thumb) as IGatsbyImageData}
                       css={css`
                         * {
                           margin-top: 0;
                           width: 200px;
                         }
                       `}
-                      fixed={chapter?.thumb?.sharp?.fixed ?? []}
                       alt={chapter.chapter.toString()}
                     />
                   </Link>
@@ -59,6 +59,7 @@ const Archive: React.FC = () => {
                     css={css`
                       display: flex;
                       flex-direction: column;
+                      padding-top: 10px;
                     `}
                   >
                     <Words animate show>
