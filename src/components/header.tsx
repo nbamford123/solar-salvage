@@ -1,14 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { css } from '@emotion/react';
-import {
-  createResponsive,
-  Header as ArwesHeader,
-  withStyles,
-  Words,
-} from 'arwes';
+import { Header as ArwesHeader, Words } from 'arwes';
 import { Link } from 'gatsby';
 
 import { Menu } from './menu';
+import { MobileContext } from './MobileContext';
 import { MobileMenu } from './mobileMenu';
 import { SolarSalvageTitle } from './title';
 import { TOTAL_WIDTH } from '../types';
@@ -38,31 +34,8 @@ const HeaderNavMenu: React.FC<{ mobile: boolean; entered: boolean }> = ({
     </div>
   );
 
-interface ResponsiveState {
-  small?: boolean;
-  medium?: boolean;
-  large?: boolean;
-  status: string;
-}
-
-export const Header: React.FC<{ show: boolean; theme?: unknown }> = ({
-  show,
-  theme,
-}) => {
-  const [min, setMin] = useState(false);
-
-  useEffect(() => {
-    const responsive = createResponsive({
-      getTheme: () => theme,
-    });
-    if (responsive.get().status === 'small') setMin(true);
-    responsive.on((state: ResponsiveState) => {
-      if (state.status === 'small') setMin(true);
-      else setMin(false);
-    });
-    // return responsive.off(listener);
-  }, [theme]);
-
+export const Header: React.FC<{ show: boolean }> = ({ show }) => {
+  const { mobile } = useContext(MobileContext);
   return (
     <ArwesHeader animate show={show} title="Solar Salvage">
       {(headerAnim: { entered: boolean }) => (
@@ -87,7 +60,7 @@ export const Header: React.FC<{ show: boolean; theme?: unknown }> = ({
               <SolarSalvageTitle />
             </Link>
             <nav>
-              <HeaderNavMenu entered={headerAnim.entered} mobile={min} />
+              <HeaderNavMenu entered={headerAnim.entered} mobile={mobile} />
             </nav>
           </div>
           <div
@@ -109,4 +82,4 @@ export const Header: React.FC<{ show: boolean; theme?: unknown }> = ({
     </ArwesHeader>
   );
 };
-export default withStyles()(Header);
+export default Header;

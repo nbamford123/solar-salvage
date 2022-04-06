@@ -22,12 +22,21 @@ const ImageLink: React.FC<{
     chapter: 1,
     pages: 1,
   };
-  if (chapterPages > page) {
-    return <Link to={`/${getComicPath(chapter, page + 1)}`}>{children}</Link>;
-  } else if (chapters.length > chapter) {
-    return <Link to={`/${getComicPath(chapter + 1, 1)}`}>{children}</Link>;
-  }
-  return <>{children}</>;
+  return (
+    <div
+      css={css`
+        margin-bottom: 1rem;
+      `}
+    >
+      {chapterPages > page ? (
+        <Link to={`/${getComicPath(chapter, page + 1)}`}>{children}</Link>
+      ) : chapters.length > chapter ? (
+        <Link to={`/${getComicPath(chapter + 1, 1)}`}>{children}</Link>
+      ) : (
+        children
+      )}
+    </div>
+  );
 };
 
 export const ComicWrapper: React.FC<ComicWrapperProps> = ({ comic }) => {
@@ -51,12 +60,13 @@ export const ComicWrapper: React.FC<ComicWrapperProps> = ({ comic }) => {
         )}
       </ImageLink>
       <ComicNav chapter={comic.chapter} page={comic.page} />
-      <MDXRenderer>{comic.note}</MDXRenderer>
       <div
         css={css`
-          margin-bottom: 3rem;
+          padding: 8px;
         `}
-      />
+      >
+        <MDXRenderer>{comic.note}</MDXRenderer>
+      </div>
     </>
   );
 };

@@ -59,6 +59,7 @@ const Archive: React.FC = () => {
                     css={css`
                       display: flex;
                       flex-direction: column;
+                      padding-top: 10px;
                     `}
                   >
                     <Words animate show>

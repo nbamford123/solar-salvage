@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import { Helmet } from 'react-helmet';
 import {
   Appear,
   Arwes,
   Col,
+  createResponsive,
   createSounds,
   createTheme,
   Frame,
@@ -14,6 +15,7 @@ import {
 } from 'arwes';
 
 import Header from './header';
+import { MobileContext } from './MobileContext';
 import { useSiteMetadata } from '../hooks/useSiteMetadata';
 import { Sidebar } from './sidebar';
 import { TOTAL_WIDTH } from '../types';
@@ -64,23 +66,45 @@ const sounds = {
   },
 };
 
+interface ResponsiveState {
+  small?: boolean;
+  medium?: boolean;
+  large?: boolean;
+  status: string;
+}
+
 const theme = createTheme(myTheme);
 
 const Layout: React.FC<LayoutProps> = ({ children, page }) => {
   const { title, description } = useSiteMetadata();
+
+  // This really probably ought to be a context, innit
+  const [mobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    const responsive = createResponsive({
+      getTheme: () => theme,
+    });
+    if (responsive.get().status === 'small') setMobile(true);
+    responsive.on((state: ResponsiveState) => {
+      if (state.status === 'small') setMobile(true);
+      else setMobile(false);
+    });
+    // return responsive.off(listener);
+  }, [theme]);
 
   return (
     <ThemeProvider theme={theme}>
       <SoundsProvider sounds={createSounds(sounds)}>
         <Arwes animate pattern="/img/glow.png" background={background}>
           {(anim: { entered: boolean }) => (
-            <>
+            <MobileContext.Provider value={{ mobile: mobile }}>
               <Helmet>
                 <html lang="en" />
                 <title>{title}</title>
                 <meta name="description" content={description} />
               </Helmet>
-              <Header show={anim.entered} theme={theme} />
+              <Header show={anim.entered} />
               <div
                 css={css`
                   margin-left: auto;
@@ -115,7 +139,7 @@ const Layout: React.FC<LayoutProps> = ({ children, page }) => {
                   <Col s={12}>{children}</Col>
                 </Row>
               </div>
-            </>
+            </MobileContext.Provider>
           )}
         </Arwes>
       </SoundsProvider>
