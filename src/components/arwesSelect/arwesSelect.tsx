@@ -31,6 +31,11 @@ const selectStyles = (theme: ArwesTheme) => {
       '&:hover, &:focus': {
         color: theme.color.control.light,
       },
+      width: '100%',
+      webkitAppearance: 'none',
+      webkitSearchDecoration: '-webkit-appearance:none',
+      webkitSearchCancelButton: '-webkit-appearance:none',
+      webkitSearchResultsDecoration: '-webkit-appearance:none',
     },
     value: {
       // border: `1px solid  ${theme.color.control.base}`,

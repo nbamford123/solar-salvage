@@ -9,7 +9,12 @@ export interface BlogWrapperProps {
   posts: Array<Post>;
 }
 export const BlogWrapper: React.FC<BlogWrapperProps> = ({ posts }) => (
-  <Project header="News">
+  <Project
+    header="News"
+    css={css`
+      padding: 0;
+    `}
+  >
     <Blog posts={posts} />
     <div
       css={css`

@@ -22,7 +22,7 @@
     z-index: 1;
 }
 
-.select-search__value::after {
+/* .select-search__value::after {
     content: '';
     display: inline-block;
     position: absolute;
@@ -30,12 +30,12 @@
     top: calc(50% - 9px);
     width: 11px;
     height: 11px;
-}
+} */
 
 /**
  * Input
  */
-.select-search__input {
+/* .select-search__input {
     display: block;
     height: 36px;
     width: 100%;
@@ -51,7 +51,7 @@
     text-overflow: ellipsis;
     line-height: 36px;
     -webkit-appearance: none;
-}
+} */
 
 .select-search__input::-webkit-search-decoration,
 .select-search__input::-webkit-search-cancel-button,
