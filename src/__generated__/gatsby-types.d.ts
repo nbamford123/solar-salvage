@@ -3517,16 +3517,6 @@ declare namespace GatsbyTypes {
     };
   };
 
-  type Unnamed_2_QueryVariables = Exact<{ [key: string]: never }>;
-
-  type Unnamed_2_Query = {
-    readonly site: Maybe<{
-      readonly siteMetadata: Maybe<
-        Pick<SiteSiteMetadata, 'title' | 'description'>
-      >;
-    }>;
-  };
-
   type LatestComicQueryVariables = Exact<{ [key: string]: never }>;
 
   type LatestComicQuery = {
@@ -3546,6 +3536,16 @@ declare namespace GatsbyTypes {
         }
       >;
     };
+  };
+
+  type Unnamed_2_QueryVariables = Exact<{ [key: string]: never }>;
+
+  type Unnamed_2_Query = {
+    readonly site: Maybe<{
+      readonly siteMetadata: Maybe<
+        Pick<SiteSiteMetadata, 'title' | 'description'>
+      >;
+    }>;
   };
 
   type PostMdxQueryVariables = Exact<{
