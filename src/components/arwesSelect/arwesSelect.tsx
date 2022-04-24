@@ -144,7 +144,6 @@ export const ArwesSelect = withStyles(selectStyles)(
       // closeOnSelect={false}
       // printOptions="always"
       className={(component) => {
-        // console.log(component);
         return component === 'input'
           ? classes.input
           : component === 'container'

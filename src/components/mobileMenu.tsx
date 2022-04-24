@@ -16,18 +16,20 @@ export const MobileMenu: FC<{ entered: boolean }> = ({ entered }) => {
       </ArwesIcon>
       <ReactModal
         style={{
-          content: { backgroundColor: 'rgba(31,35,41,0.85)' },
+          content: {
+            backgroundColor: 'rgba(31,35,41,0.85)',
+            top: '160px',
+            bottom: '160px',
+          },
           overlay: { backgroundColor: 'rgba(31,35,41,0.85)' },
         }}
         isOpen={modalIsOpen}
       >
         <div
           css={css`
-            align-items: center;
             display: flex;
             flex-direction: column;
-            height: 500px;
-            justify-content: space-between;
+            height: 100%;
           `}
         >
           <div
@@ -40,7 +42,17 @@ export const MobileMenu: FC<{ entered: boolean }> = ({ entered }) => {
               <FiX />
             </ArwesIcon>
           </div>
-          <Menu entered={entered} />
+          <div
+            css={css`
+              align-items: center;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-around;
+              height: 100%;
+            `}
+          >
+            <Menu entered={entered} />
+          </div>
         </div>
       </ReactModal>
     </>

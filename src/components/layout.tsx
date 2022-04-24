@@ -78,7 +78,6 @@ const theme = createTheme(myTheme);
 const Layout: React.FC<LayoutProps> = ({ children, page }) => {
   const { title, description } = useSiteMetadata();
 
-  // This really probably ought to be a context, innit
   const [mobile, setMobile] = useState(false);
 
   useEffect(() => {
@@ -91,7 +90,7 @@ const Layout: React.FC<LayoutProps> = ({ children, page }) => {
       else setMobile(false);
     });
     // return responsive.off(listener);
-  }, [theme]);
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
