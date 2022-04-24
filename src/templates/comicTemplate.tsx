@@ -39,7 +39,6 @@ export interface ComicTemplateProps {
 const ComicTemplate: React.FC<ComicTemplateProps> = ({
   data: { mdx: comicMdx },
 }) => {
-  console.log('comicMdx', comicMdx?.frontmatter);
   const comic = makeComic(comicMdx);
   const page = <ComicWrapper comic={comic} />;
   return <Layout page={page} />;

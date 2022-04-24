@@ -239,8 +239,6 @@ declare namespace GatsbyTypes {
   type Site = Node & {
     readonly buildTime: Maybe<Scalars['Date']>;
     readonly siteMetadata: Maybe<SiteSiteMetadata>;
-    readonly port: Maybe<Scalars['Int']>;
-    readonly host: Maybe<Scalars['String']>;
     readonly polyfill: Maybe<Scalars['Boolean']>;
     readonly pathPrefix: Maybe<Scalars['String']>;
     readonly jsxRuntime: Maybe<Scalars['String']>;
@@ -753,8 +751,6 @@ declare namespace GatsbyTypes {
   type Query_siteArgs = {
     buildTime: Maybe<DateQueryOperatorInput>;
     siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
-    port: Maybe<IntQueryOperatorInput>;
-    host: Maybe<StringQueryOperatorInput>;
     polyfill: Maybe<BooleanQueryOperatorInput>;
     pathPrefix: Maybe<StringQueryOperatorInput>;
     jsxRuntime: Maybe<StringQueryOperatorInput>;
@@ -2003,8 +1999,6 @@ declare namespace GatsbyTypes {
     | 'siteMetadata.title'
     | 'siteMetadata.description'
     | 'siteMetadata.author'
-    | 'port'
-    | 'host'
     | 'polyfill'
     | 'pathPrefix'
     | 'jsxRuntime'
@@ -2135,8 +2129,6 @@ declare namespace GatsbyTypes {
   type SiteFilterInput = {
     readonly buildTime: Maybe<DateQueryOperatorInput>;
     readonly siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
-    readonly port: Maybe<IntQueryOperatorInput>;
-    readonly host: Maybe<StringQueryOperatorInput>;
     readonly polyfill: Maybe<BooleanQueryOperatorInput>;
     readonly pathPrefix: Maybe<StringQueryOperatorInput>;
     readonly jsxRuntime: Maybe<StringQueryOperatorInput>;
@@ -3466,76 +3458,14 @@ declare namespace GatsbyTypes {
     readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
   };
 
-  type PostMdxQueryVariables = Exact<{
-    skip: Scalars['Int'];
-    limit: Scalars['Int'];
-  }>;
+  type Unnamed_1_QueryVariables = Exact<{ [key: string]: never }>;
 
-  type PostMdxQuery = {
-    readonly allMdx: {
-      readonly edges: ReadonlyArray<{
-        readonly node: Pick<Mdx, 'body'> & {
-          readonly fields: Maybe<Pick<MdxFields, 'slug'>>;
-          readonly frontmatter: Maybe<
-            Pick<MdxFrontmatter, 'title' | 'author' | 'date'>
-          >;
-        };
-      }>;
-    };
-  };
-
-  type ComicMdxQueryVariables = Exact<{
-    chapter: Scalars['Int'];
-    page: Scalars['Int'];
-  }>;
-
-  type ComicMdxQuery = {
-    readonly mdx: Maybe<
-      Pick<Mdx, 'body'> & {
-        readonly frontmatter: Maybe<
-          Pick<MdxFrontmatter, 'chapter' | 'page' | 'posted'> & {
-            readonly comic: Maybe<{
-              readonly childImageSharp: Maybe<
-                Pick<ImageSharp, 'gatsbyImageData'>
-              >;
-            }>;
-          }
-        >;
-        readonly fields: Maybe<Pick<MdxFields, 'slug'>>;
-      }
-    >;
-  };
-
-  type PagesQueryQueryVariables = Exact<{ [key: string]: never }>;
-
-  type PagesQueryQuery = {
-    readonly allSiteFunction: {
-      readonly nodes: ReadonlyArray<Pick<SiteFunction, 'functionRoute'>>;
-    };
-    readonly allSitePage: {
-      readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>>;
-    };
-  };
-
-  type LatestComicQueryVariables = Exact<{ [key: string]: never }>;
-
-  type LatestComicQuery = {
-    readonly allMdx: {
-      readonly nodes: ReadonlyArray<
-        Pick<Mdx, 'body'> & {
-          readonly frontmatter: Maybe<
-            Pick<MdxFrontmatter, 'chapter' | 'page' | 'posted'> & {
-              readonly comic: Maybe<{
-                readonly childImageSharp: Maybe<
-                  Pick<ImageSharp, 'gatsbyImageData'>
-                >;
-              }>;
-            }
-          >;
-          readonly fields: Maybe<Pick<MdxFields, 'slug'>>;
-        }
+  type Unnamed_1_Query = {
+    readonly site: Maybe<{
+      readonly siteMetadata: Maybe<
+        Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>
       >;
-    };
+    }>;
   };
 
   type ChapterInfoQueryVariables = Exact<{ [key: string]: never }>;
@@ -3587,14 +3517,75 @@ declare namespace GatsbyTypes {
     };
   };
 
-  type Unnamed_1_QueryVariables = Exact<{ [key: string]: never }>;
+  type Unnamed_2_QueryVariables = Exact<{ [key: string]: never }>;
 
-  type Unnamed_1_Query = {
+  type Unnamed_2_Query = {
     readonly site: Maybe<{
       readonly siteMetadata: Maybe<
         Pick<SiteSiteMetadata, 'title' | 'description'>
       >;
     }>;
+  };
+
+  type LatestComicQueryVariables = Exact<{ [key: string]: never }>;
+
+  type LatestComicQuery = {
+    readonly allMdx: {
+      readonly nodes: ReadonlyArray<
+        Pick<Mdx, 'body'> & {
+          readonly frontmatter: Maybe<
+            Pick<MdxFrontmatter, 'chapter' | 'page' | 'posted'> & {
+              readonly comic: Maybe<{
+                readonly childImageSharp: Maybe<
+                  Pick<ImageSharp, 'gatsbyImageData'>
+                >;
+              }>;
+            }
+          >;
+          readonly fields: Maybe<Pick<MdxFields, 'slug'>>;
+        }
+      >;
+    };
+  };
+
+  type PostMdxQueryVariables = Exact<{
+    skip: Scalars['Int'];
+    limit: Scalars['Int'];
+  }>;
+
+  type PostMdxQuery = {
+    readonly allMdx: {
+      readonly edges: ReadonlyArray<{
+        readonly node: Pick<Mdx, 'body'> & {
+          readonly fields: Maybe<Pick<MdxFields, 'slug'>>;
+          readonly frontmatter: Maybe<
+            Pick<MdxFrontmatter, 'title' | 'author' | 'date'>
+          >;
+        };
+      }>;
+    };
+  };
+
+  type ComicMdxQueryVariables = Exact<{
+    chapter: Scalars['Int'];
+    page: Scalars['Int'];
+  }>;
+
+  type ComicMdxQuery = {
+    readonly mdx: Maybe<
+      Pick<Mdx, 'body'> & {
+        readonly frontmatter: Maybe<
+          Pick<MdxFrontmatter, 'chapter' | 'page' | 'posted'> & {
+            readonly comic: Maybe<{
+              readonly childImageSharp: Maybe<
+                Pick<ImageSharp, 'gatsbyImageData'>
+              >;
+            }>;
+          }
+        >;
+        readonly fields: Maybe<Pick<MdxFields, 'slug'>>;
+      }
+    >;
   };
 
   type GatsbyImageSharpFixedFragment = Pick<
@@ -3679,14 +3670,4 @@ declare namespace GatsbyTypes {
     ImageSharpFluid,
     'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
   >;
-
-  type Unnamed_2_QueryVariables = Exact<{ [key: string]: never }>;
-
-  type Unnamed_2_Query = {
-    readonly site: Maybe<{
-      readonly siteMetadata: Maybe<
-        Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>
-      >;
-    }>;
-  };
 }

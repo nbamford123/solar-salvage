@@ -9,13 +9,15 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     'gatsby-plugin-emotion',
+    'gatsby-plugin-netlify',
     'gatsby-plugin-react-helmet',
-    {
-      resolve: 'gatsby-plugin-typegen',
-      options: {
-        outputPath: 'src/__generated__/gatsby-types.d.ts',
-      },
-    },
+    // No need to run this every time and it always makes prettier mad
+    // {
+    //   resolve: 'gatsby-plugin-typegen',
+    //   options: {
+    //     outputPath: 'src/__generated__/gatsby-types.d.ts',
+    //   },
+    // },
     {
       resolve: 'gatsby-plugin-jss-provider',
     },

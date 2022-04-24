@@ -1,4 +1,4 @@
-import { Project } from 'arwes';
+import { Frame, Heading } from 'arwes';
 import { css } from '@emotion/react';
 
 import { Blog } from './blog';
@@ -9,20 +9,23 @@ export interface BlogWrapperProps {
   posts: Array<Post>;
 }
 export const BlogWrapper: React.FC<BlogWrapperProps> = ({ posts }) => (
-  <Project
-    header="News"
-    css={css`
-      padding: 0;
-    `}
-  >
+  <Frame>
+    <Heading
+      css={css`
+        padding: 12px;
+      `}
+    >
+      News
+    </Heading>
     <Blog posts={posts} />
     <div
       css={css`
         display: flex;
         justify-content: flex-end;
+        padding: 24px;
       `}
     >
       <BlogNavLink dir="forward" to="/blog" rel="news" text="All News" />
     </div>
-  </Project>
+  </Frame>
 );
