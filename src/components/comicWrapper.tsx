@@ -65,7 +65,7 @@ export const ComicWrapper: React.FC<ComicWrapperProps> = ({ comic }) => {
           padding: 8px;
         `}
       >
-        <MDXRenderer>{comic.note}</MDXRenderer>
+        {comic.note ? <MDXRenderer>{comic.note}</MDXRenderer> : null}
       </div>
     </>
   );

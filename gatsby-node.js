@@ -87,3 +87,16 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     });
   });
 };
+
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions;
+  const typeDefs = `
+    type MdxFrontmatter implements Node {
+      chapter: Int
+      comic: File @fileByRelativePath
+      page: Int
+      posted: Date
+    }
+  `;
+  createTypes(typeDefs);
+};

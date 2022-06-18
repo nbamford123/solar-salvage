@@ -23,11 +23,9 @@ export const Sidebar: React.FC = () => {
         flex-direction: column;
       `}
     >
-      <MyProject header="Ad"></MyProject>
       <MyProject header="Links">
         <a href="https://www.girlgeniusonline.com/">Girl Genius</a>
       </MyProject>
-      <MyProject header="Some other shit"></MyProject>
     </div>
   );
 };
