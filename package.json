@@ -11,7 +11,7 @@
     "@fontsource/titillium-web": "^4.5.0",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
-    "arwes": "^1.0.0-alpha.5",
+    "@nbamford123/arwes": "^1.0.0-alpha.7",
     "classnames": "^2.3.1",
     "gatsby": "^4.11.1",
     "gatsby-image": "^3.1.0",

@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import { Link } from 'gatsby';
 import { rgba } from 'polished';
-import { withSounds, withStyles } from 'arwes';
+import { withSounds, withStyles } from '@nbamford123/arwes';
 
 import { ArwesTheme } from '../types';
 

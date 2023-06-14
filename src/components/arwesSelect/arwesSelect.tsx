@@ -1,4 +1,4 @@
-import { withStyles } from 'arwes';
+import { withStyles } from '@nbamford123/arwes';
 import { rgba } from 'polished';
 import SelectSearch, { SelectSearchProps } from 'react-select-search';
 
@@ -41,7 +41,6 @@ const selectStyles = (theme: ArwesTheme) => {
       // border: `1px solid  ${theme.color.control.base}`,
       borderRadius: '4px',
       position: 'relative',
-      zIndex: 1,
       '&:before': {
         content: '""',
         display: 'inline-block',
@@ -93,13 +92,13 @@ const selectStyles = (theme: ArwesTheme) => {
         theme.alpha,
       )}`,
       position: 'absolute',
-      zIndex: 2,
       top: '44px',
       right: 0,
       left: 0,
       borderRadius: '3px',
       overflow: 'auto',
-      maxHeight: '360px',
+      maxHeight: '180px',
+      zIndex: 1000,
     },
     option: {
       background: 'transparent',

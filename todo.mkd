@@ -1,12 +1,8 @@
 ## To Do
 
-* Header with text instead of text in image-- background image
-* about/archive pages wrong width
-* Disable the graphql types build
-* Comic size in template should be moved to types.ts
-* Sidebar items-- links? Ads?
-* font, color scheme, backgrounds, button art
-* Mobile version
+* update gatsby? Ugh, but may not have any choice
+* page number and copyright overlays on every page
+* notes for pilot pages, at least a little description on the first and last pages? Add in JJ's old notes?
 * search code for to-do
 * google ads? Webcomic ads?
 * comments?

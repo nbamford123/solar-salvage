@@ -1,4 +1,4 @@
-import { Project } from 'arwes';
+import { Project } from '@nbamford123/arwes';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 

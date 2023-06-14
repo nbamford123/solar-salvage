@@ -1,6 +1,6 @@
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { css } from '@emotion/react';
-import { Frame } from 'arwes';
+import { Frame } from '@nbamford123/arwes';
 import { Post } from '../types';
 
 export interface BlogEntryProps {

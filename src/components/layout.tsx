@@ -12,7 +12,7 @@ import {
   Row,
   SoundsProvider,
   ThemeProvider,
-} from 'arwes';
+} from '@nbamford123/arwes';
 
 import Header from './header';
 import { MobileContext } from './MobileContext';
@@ -122,6 +122,7 @@ const Layout: React.FC<LayoutProps> = ({ children, page }) => {
                           align-items: center;
                           margin-bottom: 1rem;
                           margin-top: 1rem;
+                          position: relative;
                         `}
                       >
                         <Appear animate show={anim.entered}>

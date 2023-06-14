@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { css } from '@emotion/react';
-import { Header as ArwesHeader, Words } from 'arwes';
+import { Header as ArwesHeader, Words } from '@nbamford123/arwes';
 import { Link } from 'gatsby';
 
 import { Menu } from './menu';
