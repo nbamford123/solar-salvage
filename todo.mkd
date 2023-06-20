@@ -1,11 +1,11 @@
 ## To Do
 
-* update gatsby? Ugh, but may not have any choice
-* page number and copyright overlays on every page
-* notes for pilot pages, at least a little description on the first and last pages? Add in JJ's old notes?
+* page title has chapter and page number, like "The Pilot page 1"
+* get google analytics set up and integrated
+* new reader section
+* notes for pilot pages, at least a little description on the first and last pages?
 * search code for to-do
 * google ads? Webcomic ads?
-* comments?
+* comments? https://www.gatsbyjs.com/docs/how-to/adding-common-features/adding-comments/
 * tests?
 * real 404 page
-
