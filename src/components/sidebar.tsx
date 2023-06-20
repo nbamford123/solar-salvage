@@ -1,4 +1,4 @@
-import { Project } from 'arwes';
+import { Link, Project } from '@nbamford123/arwes';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
@@ -24,7 +24,7 @@ export const Sidebar: React.FC = () => {
       `}
     >
       <MyProject header="Links">
-        <a href="https://www.girlgeniusonline.com/">Girl Genius</a>
+        <Link href="https://www.girlgeniusonline.com/">Girl Genius</Link>
       </MyProject>
     </div>
   );

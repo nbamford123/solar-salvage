@@ -1,15 +1,11 @@
 ## To Do
 
-* Header with text instead of text in image-- background image
-* about/archive pages wrong width
-* Disable the graphql types build
-* Comic size in template should be moved to types.ts
-* Sidebar items-- links? Ads?
-* font, color scheme, backgrounds, button art
-* Mobile version
+* page title has chapter and page number, like "The Pilot page 1"
+* get google analytics set up and integrated
+* new reader section
+* notes for pilot pages, at least a little description on the first and last pages?
 * search code for to-do
 * google ads? Webcomic ads?
-* comments?
+* comments? https://www.gatsbyjs.com/docs/how-to/adding-common-features/adding-comments/
 * tests?
 * real 404 page
-

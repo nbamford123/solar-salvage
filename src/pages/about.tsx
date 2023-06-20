@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import { Heading, Paragraph } from 'arwes';
+import { Heading, Paragraph } from '@nbamford123/arwes';
 
 import Layout from '../components/layout';
 

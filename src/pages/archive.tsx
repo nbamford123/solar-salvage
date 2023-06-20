@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import { Col, Heading, Project, Row, Words } from 'arwes';
+import { Col, Heading, Project, Row, Words } from '@nbamford123/arwes';
 import { GatsbyImage, getImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import { Link, navigate } from 'gatsby';
 
@@ -27,7 +27,7 @@ const Archive: React.FC = () => {
           {chapters.map((chapter) => (
             <Project
               css={css`
-                margin-bottom: 16px;
+                margin-bottom: 32px;
                 width: 100%;
               `}
               key={chapter.chapter}

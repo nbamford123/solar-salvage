@@ -1,1 +1,1 @@
-declare module 'arwes';
+declare module '@nbamford123/arwes';

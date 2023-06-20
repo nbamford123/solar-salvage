@@ -2,7 +2,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import { ArwesTheme } from '../types';
 // withSounds
-import { withStyles } from 'arwes';
+import { withStyles } from '@nbamford123/arwes';
 import { rgba } from 'polished';
 
 export const iconStyles = (theme: ArwesTheme): Record<string, unknown> => ({
