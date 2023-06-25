@@ -8,3 +8,6 @@
 * google ads? Webcomic ads?
 * tests?
 * real 404 page
+* SEO? Does that even matter for us?
+* look up resources for listing/promoting web comics, and do so
+* delete version from the duck
