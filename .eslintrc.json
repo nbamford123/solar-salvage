@@ -23,7 +23,8 @@
       { "ignoreClassFields": true }
     ],
     "react/prop-types": 0, // Disable prop-types as we use TypeScript for type checking,
-    "react/react-in-jsx-scope": 0 // No longer necessary as of react 17
+    "react/react-in-jsx-scope": 0, // No longer necessary as of react 17
+    "react/no-unknown-property": ["error", { "ignore": ["css"] }]
   },
   "overrides": [
     // Override some TypeScript rules just for .js files

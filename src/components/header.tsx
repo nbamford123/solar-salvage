@@ -9,7 +9,10 @@ import { MobileMenu } from './mobileMenu';
 import { SolarSalvageTitle } from './title';
 import { TOTAL_WIDTH } from '../types';
 
-const HeadingText: React.FC<{ animate: boolean }> = ({ animate, children }) => (
+const HeadingText: React.FC<{
+  animate: boolean;
+  children: React.ReactNode;
+}> = ({ animate, children }) => (
   <h3>
     <Words animate show={animate}>
       {children}

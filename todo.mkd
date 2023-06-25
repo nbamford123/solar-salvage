@@ -1,11 +1,16 @@
 ## To Do
 
-* page title has chapter and page number, like "The Pilot page 1"
-* get google analytics set up and integrated
-* new reader section
+* point domain to netlify
+* read and set up disqus comment policy, etc.
+* check it against lighthouse and whatever-- secure? performant?
+* new reader section? At least more content for the about page, with a link to the first comic page
 * notes for pilot pages, at least a little description on the first and last pages?
 * search code for to-do
 * google ads? Webcomic ads?
-* comments? https://www.gatsbyjs.com/docs/how-to/adding-common-features/adding-comments/
 * tests?
 * real 404 page
+* SEO? Does that even matter for us?
+* look up resources for listing/promoting web comics, and do so
+* delete version from the duck
+* update README
+* put a footer in about "built with gatsby and arwes"?
