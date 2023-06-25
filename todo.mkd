@@ -12,3 +12,5 @@
 * SEO? Does that even matter for us?
 * look up resources for listing/promoting web comics, and do so
 * delete version from the duck
+* update README
+* put a footer in about "built with gatsby and arwes"?
