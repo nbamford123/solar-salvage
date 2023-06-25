@@ -1,5 +1,6 @@
 ## To Do
 
+* point domain to netlify
 * read and set up disqus comment policy, etc.
 * check it against lighthouse and whatever-- secure? performant?
 * new reader section? At least more content for the about page, with a link to the first comic page
