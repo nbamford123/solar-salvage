@@ -5,17 +5,21 @@ import { Link } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import { ComicNav } from './comicNav';
-import { Comic, ChapterSummary } from '../types';
+import { Comments } from './comments';
 import { getComicPath } from '../util/getComicPath';
+import { Head } from './pageHead';
 import { useChapterSummaries } from '../hooks/useChapterSummaries';
+import { Comic, ChapterSummary } from '../types';
 
 export interface ComicWrapperProps {
   comic: Comic;
+  showComments?: boolean;
 }
 
 const ImageLink: React.FC<{
   chapterSummary?: ChapterSummary;
   chapters: ChapterSummary[];
+  children: React.ReactNode;
   page: number;
 }> = ({ chapterSummary, chapters, children, page }) => {
   const { chapter, pages: chapterPages } = chapterSummary || {
@@ -39,7 +43,10 @@ const ImageLink: React.FC<{
   );
 };
 
-export const ComicWrapper: React.FC<ComicWrapperProps> = ({ comic }) => {
+export const ComicWrapper: React.FC<ComicWrapperProps> = ({
+  comic,
+  showComments = true,
+}) => {
   // Fetch my chapter
   const chapters = useChapterSummaries();
   const myChapter = chapters.find(
@@ -48,6 +55,7 @@ export const ComicWrapper: React.FC<ComicWrapperProps> = ({ comic }) => {
   const image = getImage(comic.comic);
   return (
     <>
+      <Head title={`${myChapter?.title} page ${comic.page}`} />
       <ImageLink
         chapters={chapters}
         chapterSummary={myChapter}
@@ -67,6 +75,7 @@ export const ComicWrapper: React.FC<ComicWrapperProps> = ({ comic }) => {
       >
         {comic.note ? <MDXRenderer>{comic.note}</MDXRenderer> : null}
       </div>
+      {showComments ? <Comments comic={comic} /> : null}
     </>
   );
 };

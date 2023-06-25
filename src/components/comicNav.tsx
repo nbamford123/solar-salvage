@@ -21,6 +21,7 @@ export interface ComicNavProps {
 }
 
 const ComicNavLink: React.FC<{
+  children: React.ReactNode;
   disabled?: boolean;
   title: string;
   to: string;

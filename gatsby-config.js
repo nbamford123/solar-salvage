@@ -11,6 +11,12 @@ module.exports = {
     'gatsby-plugin-emotion',
     'gatsby-plugin-netlify',
     'gatsby-plugin-react-helmet',
+    {
+      resolve: `gatsby-plugin-disqus`,
+      options: {
+        shortname: `solarsalvage`,
+      },
+    },
     // No need to run this every time and it always makes prettier mad
     // {
     //   resolve: 'gatsby-plugin-typegen',
