@@ -5,6 +5,7 @@ import { css } from '@emotion/react';
 import Layout from '../components/layout';
 import { Blog } from '../components/blog';
 import { BlogNavLink } from '../components/blogNav';
+import { getCurrentDate } from '../util/getCurrentDate';
 import { makePost, PostMdx } from '../types';
 
 export const query = graphql`
@@ -43,7 +44,13 @@ const BlogListTemplate: React.FC<BlogListTemplateProps> = ({
   pageContext,
   data,
 }) => {
-  const posts = data.allMdx.edges.map((edge) => makePost(edge.node));
+  const posts = data.allMdx.edges
+    .filter(
+      (e) =>
+        e.node.frontmatter?.date &&
+        new Date(e.node.frontmatter.date) <= new Date(getCurrentDate()),
+    )
+    .map((edge) => makePost(edge.node));
 
   const { currentPage, numPages } = pageContext;
   const isFirst = currentPage === 1;

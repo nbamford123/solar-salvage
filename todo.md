@@ -1,9 +1,9 @@
 ## To Do
 
-* point domain to netlify
+* setup Netlify actions to run a build at midnight MWF
+* create a contact form-- a mailto is just too dangerous for spam harvesting
 * read and set up disqus comment policy, etc.
 * check it against lighthouse and whatever-- secure? performant?
-* new reader section? At least more content for the about page, with a link to the first comic page
 * notes for pilot pages, at least a little description on the first and last pages?
 * search code for to-do
 * google ads? Webcomic ads?

@@ -12,6 +12,8 @@ import styled from '@emotion/styled';
 //   width: ${sidebarContentWidth}px;
 // `;
 const MyProject = styled(Project)`
+  display: flex;
+  flex-direction: column;
   margin-top: 6rem;
 `;
 
@@ -24,7 +26,18 @@ export const Sidebar: React.FC = () => {
       `}
     >
       <MyProject header="Links">
-        <Link href="https://www.girlgeniusonline.com/">Girl Genius</Link>
+        <div
+          css={css`
+            display: flex;
+            flex-direction: column;
+          `}
+        >
+          <Link href="https://www.girlgeniusonline.com/">Girl Genius</Link>
+          <Link href="https://www.penny-arcade.com/">Penny Arcade</Link>
+          <Link href="https://soaps.artstation.com/">
+            Rebecca Ryan at ArtStation
+          </Link>
+        </div>
       </MyProject>
     </div>
   );
