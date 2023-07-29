@@ -29,7 +29,7 @@ const About: React.FC = () => (
           <Heading node="h2">New reader?</Heading>
           <Paragraph>
             You can access the first story starting
-            <Link href={getComicPath(1, 1)}> here</Link>.
+            <Link href={`/${getComicPath(1, 1)}`}> here</Link>.
           </Paragraph>
         </>
       </div>
