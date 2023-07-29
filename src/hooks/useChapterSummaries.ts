@@ -1,10 +1,12 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
+import { getCurrentDate } from '../util/getCurrentDate';
 import { ChapterMdx, ChapterSummary } from '../types';
 
 interface PageMdx {
   frontmatter?: {
     chapter?: number | null;
+    posted?: string | null;
   } | null;
 }
 // Map from chapter to number of pages for easier lookup
@@ -21,6 +23,7 @@ export const useChapterSummaries = (): ChapterSummary[] => {
           nodes {
             frontmatter {
               chapter
+              posted
             }
           }
         }
@@ -46,9 +49,12 @@ export const useChapterSummaries = (): ChapterSummary[] => {
     `);
 
   // It seems kind of pointless to generate this every time you need a summary, also I bet graphql could do it
+  // Don't generate pages for posts that have a date in the future
   const pageMap = data.pages.nodes.reduce((pv: PageMap, cv: PageMdx) => {
     const chapter = cv?.frontmatter?.chapter;
-    return chapter
+    return chapter &&
+      cv?.frontmatter?.posted &&
+      new Date(cv?.frontmatter?.posted) <= new Date(getCurrentDate())
       ? {
           ...pv,
           [chapter]: pv[chapter] ? ++pv[chapter] : 1,
@@ -83,5 +89,5 @@ export const useChapterSummaries = (): ChapterSummary[] => {
     [],
   );
 
-  return chapterSummary;
+  return chapterSummary.filter((s) => s.pages > 0);
 };

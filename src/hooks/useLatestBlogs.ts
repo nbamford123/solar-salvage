@@ -1,4 +1,6 @@
 import { graphql, useStaticQuery } from 'gatsby';
+
+import { getCurrentDate } from '../util/getCurrentDate';
 import { makePost, Post } from '../types';
 
 /*
@@ -11,7 +13,6 @@ export const useLatestBlogs = (): Array<Post> => {
         allMdx(
           filter: { frontmatter: { type: { eq: "blog" } } }
           sort: { fields: [frontmatter___date], order: DESC }
-          limit: 4
         ) {
           nodes {
             frontmatter {
@@ -27,5 +28,14 @@ export const useLatestBlogs = (): Array<Post> => {
         }
       }
     `);
-  return data.allMdx.nodes.map((postMdx) => makePost(postMdx));
+  // Only return posts that are current
+  const validPosts = data.allMdx.nodes
+    .filter((n) => {
+      return (
+        n.frontmatter?.date &&
+        new Date(n.frontmatter.date) <= new Date(getCurrentDate())
+      );
+    })
+    .slice(0, 4);
+  return validPosts.map((postMdx) => makePost(postMdx));
 };
