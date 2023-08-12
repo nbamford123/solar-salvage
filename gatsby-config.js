@@ -4,6 +4,9 @@ module.exports = {
     description: 'A science fiction webcomic',
     author: 'nbamford',
   },
+  flags: {
+    DEV_SSR: true,
+  },
   plugins: [
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
@@ -26,6 +29,13 @@ module.exports = {
     // },
     {
       resolve: 'gatsby-plugin-jss-provider',
+      options: {
+        minify: true,
+        minifyConfig: {
+          restructure: false,
+          comments: false,
+        },
+      },
     },
     {
       resolve: 'gatsby-plugin-mdx',

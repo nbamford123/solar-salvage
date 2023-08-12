@@ -1,7 +1,8 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import { Heading, Paragraph, Link } from '@nbamford123/arwes';
+import { Heading, Paragraph } from '@nbamford123/arwes';
 
+import { NavLink } from '../components/navLink';
 import Layout from '../components/layout';
 import { getComicPath } from '../util/getComicPath';
 
@@ -29,7 +30,7 @@ const About: React.FC = () => (
           <Heading node="h2">New reader?</Heading>
           <Paragraph>
             You can access the first story starting
-            <Link href={`/${getComicPath(1, 1)}`}> here</Link>.
+            <NavLink to={`/${getComicPath(1, 1)}`}> here</NavLink>.
           </Paragraph>
         </>
       </div>

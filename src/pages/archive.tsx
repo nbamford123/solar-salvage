@@ -36,7 +36,7 @@ const Archive: React.FC = () => {
               <Row>
                 <Col s={12} l={3}>
                   <Link
-                    to={getComicPath(chapter.chapter, 1)}
+                    to={`/${getComicPath(chapter.chapter, 1)}`}
                     css={css`
                       width: 200px;
                       flex-shrink: 0;
