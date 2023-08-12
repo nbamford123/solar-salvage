@@ -10,7 +10,6 @@ import {
   createSounds,
   createTheme,
   Frame,
-  Link,
   Row,
   SoundsProvider,
   ThemeProvider,
@@ -20,6 +19,7 @@ import Header from './header';
 import { MobileContext } from './MobileContext';
 import { useSiteMetadata } from '../hooks/useSiteMetadata';
 import { Sidebar } from './sidebar';
+import { NavLink } from './navLink';
 import { TOTAL_WIDTH } from '../types';
 
 export interface LayoutProps {
@@ -98,7 +98,7 @@ const Layout: React.FC<LayoutProps> = ({ children, page }) => {
     <MDXProvider
       components={{
         // Map HTML element tag to React component
-        a: Link,
+        a: NavLink,
       }}
     >
       <ThemeProvider theme={theme}>
