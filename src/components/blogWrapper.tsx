@@ -1,4 +1,4 @@
-import { Frame, Heading } from 'arwes';
+import { Frame, Heading } from '@nbamford123/arwes';
 import { css } from '@emotion/react';
 
 import { Blog } from './blog';

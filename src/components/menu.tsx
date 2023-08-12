@@ -5,18 +5,18 @@ import {
   AiOutlineFolderOpen,
   AiOutlineQuestionCircle,
 } from 'react-icons/ai';
-import { Appear, Highlight, Words } from 'arwes';
+import { Appear, Highlight, Words } from '@nbamford123/arwes';
 import { css } from '@emotion/react';
 
 import { ArwesIcon } from './arwesIcon';
 import { NavLink } from './navLink';
 
-const HeaderNavLink: React.FC<{ show: boolean; text: string; to: string }> = ({
-  show,
-  children,
-  text,
-  to,
-}) => (
+const HeaderNavLink: React.FC<{
+  children: React.ReactNode;
+  show: boolean;
+  text: string;
+  to: string;
+}> = ({ show, children, text, to }) => (
   <NavLink header to={to}>
     <Highlight animate layer="header">
       <Appear animate show={show}>

@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import { Link } from 'gatsby';
 import { rgba } from 'polished';
-import { withSounds, withStyles } from 'arwes';
+import { withSounds, withStyles } from '@nbamford123/arwes';
 
 import { ArwesTheme } from '../types';
 
@@ -62,7 +62,9 @@ interface NavLinkProps {
   disabled?: boolean;
   fontSize?: string;
   header: boolean;
-  to: string;
+  to?: string;
+  // Need to implement this so mdx can substitute navlink for <a>
+  href?: string;
   title?: string;
 }
 // Probably ought to set this up with some list of variants
@@ -75,6 +77,7 @@ const NavLinkBase = withStyles(linkStyles)(
     disabled = false,
     fontSize,
     header = false,
+    href,
     title,
     to,
   }: NavLinkProps) => (
@@ -87,7 +90,7 @@ const NavLinkBase = withStyles(linkStyles)(
         font-size: ${fontSize};
       `}
       title={title}
-      to={to}
+      to={href ? href : to ? to : ''}
     >
       {children}
     </Link>

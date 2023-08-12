@@ -3473,7 +3473,9 @@ declare namespace GatsbyTypes {
   type ChapterInfoQuery = {
     readonly pages: {
       readonly nodes: ReadonlyArray<{
-        readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'chapter'>>;
+        readonly frontmatter: Maybe<
+          Pick<MdxFrontmatter, 'chapter'> & Pick<MdxFrontmatter, 'posted'>
+        >;
       }>;
     };
     readonly chapters: {

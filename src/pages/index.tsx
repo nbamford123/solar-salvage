@@ -4,6 +4,7 @@ import '@fontsource/titillium-web';
 
 import { BlogWrapper } from '../components/blogWrapper';
 import { ComicWrapper } from '../components/comicWrapper';
+import { Comments } from '../components/comments';
 import Layout from '../components/layout';
 
 import { useLatestComic } from '../hooks/useLatestComic';
@@ -14,11 +15,12 @@ const Index: React.FC = () => {
   // Most recent news for the front page
   const posts = useLatestBlogs();
 
-  const page = <ComicWrapper comic={comic} />;
+  const page = <ComicWrapper comic={comic} showComments={false} />;
 
   return (
     <Layout page={page}>
       <BlogWrapper posts={posts} />
+      <Comments comic={comic} />
     </Layout>
   );
 };

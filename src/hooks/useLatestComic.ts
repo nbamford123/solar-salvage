@@ -1,6 +1,7 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
 import { Comic, makeComic } from '../types';
+import { getCurrentDate } from '../util/getCurrentDate';
 
 export const useLatestComic = (): Comic => {
   const data: GatsbyTypes.LatestComicQuery =
@@ -16,7 +17,6 @@ export const useLatestComic = (): Comic => {
             order: [DESC, DESC, DESC]
           }
           filter: { frontmatter: { type: { eq: "comic" } } }
-          limit: 1
         ) {
           nodes {
             frontmatter {
@@ -38,6 +38,12 @@ export const useLatestComic = (): Comic => {
       }
     `);
 
-  const comicMdx = data.allMdx.nodes[0];
-  return makeComic(comicMdx);
+  const latestComicIndex = data.allMdx.nodes.findIndex((n) => {
+    return (
+      n.frontmatter?.posted &&
+      new Date(n.frontmatter.posted) <= new Date(getCurrentDate())
+    );
+  });
+  console.log(data.allMdx.nodes[latestComicIndex]);
+  return makeComic(data.allMdx.nodes[latestComicIndex]);
 };

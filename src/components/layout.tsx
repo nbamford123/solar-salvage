@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { MDXProvider } from '@mdx-js/react';
 import { css } from '@emotion/react';
 import { Helmet } from 'react-helmet';
 import {
@@ -12,12 +13,13 @@ import {
   Row,
   SoundsProvider,
   ThemeProvider,
-} from 'arwes';
+} from '@nbamford123/arwes';
 
 import Header from './header';
 import { MobileContext } from './MobileContext';
 import { useSiteMetadata } from '../hooks/useSiteMetadata';
 import { Sidebar } from './sidebar';
+import { NavLink } from './navLink';
 import { TOTAL_WIDTH } from '../types';
 
 export interface LayoutProps {
@@ -93,56 +95,64 @@ const Layout: React.FC<LayoutProps> = ({ children, page }) => {
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
-      <SoundsProvider sounds={createSounds(sounds)}>
-        <Arwes animate pattern="/img/glow.png" background={background}>
-          {(anim: { entered: boolean }) => (
-            <MobileContext.Provider value={{ mobile: mobile }}>
-              <Helmet>
-                <html lang="en" />
-                <title>{title}</title>
-                <meta name="description" content={description} />
-              </Helmet>
-              <Header show={anim.entered} />
-              <div
-                css={css`
-                  margin-left: auto;
-                  margin-right: auto;
-                  margin-top: 1rem;
-                  max-width: ${TOTAL_WIDTH}px;
-                `}
-              >
-                <Row>
-                  <Col s={12} xl={9}>
-                    <Frame animate level={1} corners={3} show={anim.entered}>
-                      <div
-                        css={css`
-                          display: flex;
-                          flex-direction: column;
-                          align-items: center;
-                          margin-bottom: 1rem;
-                          margin-top: 1rem;
-                        `}
-                      >
-                        <Appear animate show={anim.entered}>
-                          {page}
-                        </Appear>
-                      </div>
-                    </Frame>
-                  </Col>
-                  <Col s={12} xl={3}>
-                    <Sidebar />
-                  </Col>
-                </Row>
-                <Row>
-                  <Col s={12}>{children}</Col>
-                </Row>
-              </div>
-            </MobileContext.Provider>
-          )}
-        </Arwes>
-      </SoundsProvider>
-    </ThemeProvider>
+    <MDXProvider
+      components={{
+        // Map HTML element tag to React component
+        a: NavLink,
+      }}
+    >
+      <ThemeProvider theme={theme}>
+        <SoundsProvider sounds={createSounds(sounds)}>
+          <Arwes animate pattern="/img/glow.png" background={background}>
+            {(anim: { entered: boolean }) => (
+              <MobileContext.Provider value={{ mobile: mobile }}>
+                <Helmet>
+                  <html lang="en" />
+                  <title>{title}</title>
+                  <meta name="description" content={description} />
+                </Helmet>
+                <Header show={anim.entered} />
+                <div
+                  css={css`
+                    margin-left: auto;
+                    margin-right: auto;
+                    margin-top: 1rem;
+                    max-width: ${TOTAL_WIDTH}px;
+                  `}
+                >
+                  <Row>
+                    <Col s={12} xl={9}>
+                      <Frame animate level={1} corners={3} show={anim.entered}>
+                        <div
+                          css={css`
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            margin-bottom: 1rem;
+                            margin-top: 1rem;
+                            position: relative;
+                          `}
+                        >
+                          <Appear animate show={anim.entered}>
+                            {page}
+                          </Appear>
+                        </div>
+                      </Frame>
+                    </Col>
+                    <Col s={12} xl={3}>
+                      <Sidebar />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col s={12}>{children}</Col>
+                  </Row>
+                </div>
+              </MobileContext.Provider>
+            )}
+          </Arwes>
+        </SoundsProvider>
+      </ThemeProvider>
+    </MDXProvider>
   );
 };
 export default Layout;

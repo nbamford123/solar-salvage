@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { css } from '@emotion/react';
-import { Header as ArwesHeader, Words } from 'arwes';
+import { Header as ArwesHeader, Words } from '@nbamford123/arwes';
 import { Link } from 'gatsby';
 
 import { Menu } from './menu';
@@ -9,7 +9,10 @@ import { MobileMenu } from './mobileMenu';
 import { SolarSalvageTitle } from './title';
 import { TOTAL_WIDTH } from '../types';
 
-const HeadingText: React.FC<{ animate: boolean }> = ({ animate, children }) => (
+const HeadingText: React.FC<{
+  animate: boolean;
+  children: React.ReactNode;
+}> = ({ animate, children }) => (
   <h3>
     <Words animate show={animate}>
       {children}

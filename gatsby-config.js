@@ -4,6 +4,9 @@ module.exports = {
     description: 'A science fiction webcomic',
     author: 'nbamford',
   },
+  flags: {
+    DEV_SSR: true,
+  },
   plugins: [
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
@@ -11,6 +14,12 @@ module.exports = {
     'gatsby-plugin-emotion',
     'gatsby-plugin-netlify',
     'gatsby-plugin-react-helmet',
+    {
+      resolve: `gatsby-plugin-disqus`,
+      options: {
+        shortname: `solarsalvage`,
+      },
+    },
     // No need to run this every time and it always makes prettier mad
     // {
     //   resolve: 'gatsby-plugin-typegen',
@@ -20,6 +29,13 @@ module.exports = {
     // },
     {
       resolve: 'gatsby-plugin-jss-provider',
+      options: {
+        minify: true,
+        minifyConfig: {
+          restructure: false,
+          comments: false,
+        },
+      },
     },
     {
       resolve: 'gatsby-plugin-mdx',
@@ -37,13 +53,13 @@ module.exports = {
         path: 'posts',
       },
     },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'images',
-        path: 'images',
-      },
-    },
+    // {
+    //   resolve: 'gatsby-source-filesystem',
+    //   options: {
+    //     name: 'images',
+    //     path: 'images',
+    //   },
+    // },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
