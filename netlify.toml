@@ -5,5 +5,5 @@ package = "netlify-plugin-csp-generator"
   buildDir = "public"
 
   [plugins.inputs.policies]
-    defaultSrc = "'self'"
+    defaultSrc = "'self' 'unsafe-inline"
     styleSrc = "'unsafe-hashes'"
