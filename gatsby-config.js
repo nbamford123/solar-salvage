@@ -12,7 +12,7 @@ module.exports = {
       resolve: `gatsby-plugin-csp`,
       options: {
         directives: {
-          'style-src': "'self' 'https://netlify-cdp-loader.netlify.app'",
+          'style-src': "'self' 'netlify-cdp-loader.netlify.app'",
         },
       },
     },
