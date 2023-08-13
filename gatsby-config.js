@@ -8,14 +8,6 @@ module.exports = {
     DEV_SSR: true,
   },
   plugins: [
-    {
-      resolve: `gatsby-plugin-csp`,
-      options: {
-        directives: {
-          'style-src': "'self' 'netlify-cdp-loader.netlify.app'",
-        },
-      },
-    },
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
