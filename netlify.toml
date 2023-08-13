@@ -6,4 +6,5 @@ package = "netlify-plugin-csp-generator"
 
   [plugins.inputs.policies]
     defaultSrc = "'self' 'unsafe-inline'"
+    scriptSrc = "'self' 'unsafe-inline'"
     styleSrc = "'unsafe-hashes'"
