@@ -8,6 +8,7 @@ module.exports = {
     DEV_SSR: true,
   },
   plugins: [
+    `gatsby-plugin-csp`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
